@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">SayaraDz</string>
+    <string name="title_home">Accueil</string>
+    <string name="title_search">Recherche</string>
+    <string name="title_listing">Moi</string>
+    <string name="title_notification">Notification</string>
+</resources>
