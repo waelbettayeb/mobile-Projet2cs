@@ -4,4 +4,6 @@
     <string name="title_search">Recherche</string>
     <string name="title_listing">Moi</string>
     <string name="title_notification">Notification</string>
+    <string name="hello">Bonjour,</string>
+    <string name="search">Rechercher</string>
 </resources>
