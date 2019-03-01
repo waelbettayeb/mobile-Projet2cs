@@ -31,7 +31,8 @@ class HomeFragment : Fragment() {
         val fragmentManager = childFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()
 
-        fragmentTransaction.replace(R.id.lists_fragment_container, fragment).commit()
+        fragmentTransaction.add(R.id.lists_fragment_container, fragment)
+            .commit()
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

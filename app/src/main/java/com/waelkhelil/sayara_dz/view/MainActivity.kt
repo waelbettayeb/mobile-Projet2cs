@@ -8,13 +8,12 @@ import com.waelkhelil.sayara_dz.R
 
 class MainActivity : AppCompatActivity() {
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
-        lateinit var  selectedFragement:Fragment
         when (item.itemId) {
             R.id.navigation_home -> {
-                setFragment(HomeFragment())
+                setFragment(HomeFragment(), "home",null)
             }
             R.id.navigation_search -> {
-                setFragment(SearchFragment())
+                setFragment(SearchFragment(), "search", null)
             }
 //            R.id.navigation_add_listing-> {
 ////                TODO: User_Authentication
@@ -48,10 +47,13 @@ class MainActivity : AppCompatActivity() {
         fragmentTransaction.add(R.id.fragment_container, fragment)
         fragmentTransaction.commit()
     }
-    fun setFragment(fragment:Fragment){
+    fun setFragment(
+        fragment:Fragment,
+        tag:String,
+        backStackTag:String?){
         val fragmentManager = supportFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()
-        fragmentTransaction.replace(R.id.fragment_container, fragment)
+        fragmentTransaction.replace(R.id.fragment_container, fragment, tag).addToBackStack(backStackTag)
         fragmentTransaction.commit()
     }
 }
