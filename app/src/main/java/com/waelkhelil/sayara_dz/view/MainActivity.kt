@@ -44,7 +44,7 @@ class MainActivity : AppCompatActivity() {
         val fragmentTransaction = fragmentManager.beginTransaction()
 
         val fragment = HomeFragment()
-        fragmentTransaction.add(R.id.fragment_container, fragment)
+        fragmentTransaction.add(R.id.fragment_container, fragment, "home")
         fragmentTransaction.commit()
     }
     fun setFragment(
