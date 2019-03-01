@@ -8,26 +8,24 @@ import android.view.View
 import android.view.ViewGroup
 
 
-class HomeFragment : Fragment() {
+class HorziontalListFragment : Fragment() {
 
     companion object {
-        fun newInstance() = HomeFragment()
+        fun newInstance() = HorziontalListFragment()
     }
 
-    private val TAG = HomeFragment::class.simpleName
-
-    private lateinit var viewModel: HomeViewModel
+    private lateinit var viewModel: HorziontalListViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.home_fragment, container, false)
+        return inflater.inflate(R.layout.horziontal_list_fragment, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(HomeViewModel::class.java)
+        viewModel = ViewModelProviders.of(this).get(HorziontalListViewModel::class.java)
         // TODO: Use the ViewModel
     }
 

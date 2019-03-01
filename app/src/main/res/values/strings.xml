@@ -6,4 +6,6 @@
     <string name="title_notification">Notification</string>
     <string name="hello">Bonjour,</string>
     <string name="search">Rechercher</string>
+    <string name="brands">marques</string>
+    <string name="see_all">voir tout</string>
 </resources>

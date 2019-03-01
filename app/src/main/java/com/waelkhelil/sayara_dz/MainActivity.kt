@@ -15,7 +15,7 @@ class MainActivity : AppCompatActivity() {
         val lBottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_navigation)
         lBottomNavigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
 
-//      Adding the fragment programmatically to @+id/fragment_container
+//      Adding the home fragment programmatically to R.id.fragment_container
         val fragmentManager = supportFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()
 
