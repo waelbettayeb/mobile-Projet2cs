@@ -10,10 +10,10 @@ class MainActivity : AppCompatActivity() {
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
             R.id.navigation_home -> {
-                setFragment(HomeFragment(), "home",null)
+                setFragment(HomeFragment(), "home")
             }
             R.id.navigation_search -> {
-                setFragment(SearchFragment(), "search", null)
+                setFragment(SearchFragment(), "search")
             }
 //            R.id.navigation_add_listing-> {
 ////                TODO: User_Authentication
@@ -50,10 +50,18 @@ class MainActivity : AppCompatActivity() {
     fun setFragment(
         fragment:Fragment,
         tag:String,
-        backStackTag:String?){
+        backStackTag:String){
         val fragmentManager = supportFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()
         fragmentTransaction.replace(R.id.fragment_container, fragment, tag).addToBackStack(backStackTag)
+        fragmentTransaction.commit()
+    }
+    fun setFragment(
+        fragment:Fragment,
+        tag:String){
+        val fragmentManager = supportFragmentManager
+        val fragmentTransaction = fragmentManager.beginTransaction()
+        fragmentTransaction.replace(R.id.fragment_container, fragment, tag)
         fragmentTransaction.commit()
     }
 }
