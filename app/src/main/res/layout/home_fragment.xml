@@ -4,7 +4,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".HomeFragment" android:orientation="vertical">
+        tools:context=".view.HomeFragment" android:orientation="vertical">
     <FrameLayout
             android:id="@+id/lists_fragment_container"
             android:layout_width="match_parent"

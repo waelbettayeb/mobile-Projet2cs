@@ -1,4 +1,4 @@
-package com.waelkhelil.sayara_dz
+package com.waelkhelil.sayara_dz.view
 
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.waelkhelil.sayara_dz.R
 
 
 class HomeFragment : Fragment() {
@@ -25,7 +26,7 @@ class HomeFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        val fragment = HorziontalListFragment()
+        val fragment = BrandsHorziontalListFragment()
 
         val fragmentManager = childFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()
