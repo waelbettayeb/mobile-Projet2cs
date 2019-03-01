@@ -14,7 +14,6 @@ class HomeFragment : Fragment() {
         fun newInstance() = HomeFragment()
     }
 
-    private val TAG = HomeFragment::class.simpleName
 
     private lateinit var viewModel: HomeViewModel
 
@@ -23,6 +22,15 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.home_fragment, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        val fragment = HorziontalListFragment()
+
+        val fragmentManager = childFragmentManager
+        val fragmentTransaction = fragmentManager.beginTransaction()
+
+        fragmentTransaction.replace(R.id.lists_fragment_container, fragment).commit()
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

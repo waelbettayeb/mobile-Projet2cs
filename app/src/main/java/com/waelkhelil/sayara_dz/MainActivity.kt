@@ -3,7 +3,6 @@ package com.waelkhelil.sayara_dz
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import com.google.android.material.bottomnavigation.BottomNavigationMenuView
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
@@ -33,6 +32,10 @@ class MainActivity : AppCompatActivity() {
             R.id.navigation_search -> {
                 selectedFragement = SearchFragment()
             }
+//            R.id.navigation_add_listing-> {
+////                TODO: User_Authentication
+//                return@OnNavigationItemSelectedListener false
+//            }
             R.id.navigation_notification -> {
 //                TODO: User_Authentication
                 return@OnNavigationItemSelectedListener false
