@@ -6,14 +6,15 @@
               android:layout_height="wrap_content">
 
     <ImageView
-            android:layout_width="70dp"
-            android:layout_height="70dp" tools:srcCompat="@tools:sample/avatars" android:id="@+id/imageView"
+            android:layout_width="60dp"
+            android:layout_height="60dp" tools:srcCompat="@mipmap/ic_launcher" android:id="@+id/imageView"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp" android:layout_marginStart="8dp"/>
     <LinearLayout
             android:orientation="vertical"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content" app:layout_constraintStart_toEndOf="@+id/imageView"
             android:layout_marginStart="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
