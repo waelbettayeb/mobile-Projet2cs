@@ -3,22 +3,24 @@ package com.waelkhelil.sayara_dz.database
 import android.content.Context
 import androidx.room.*
 
-@Database(entities = arrayOf(Brand::class), version = 1)
+@Database(entities = [Brand::class], version = 1)
 abstract class AppDatabase : RoomDatabase(){
     companion object Factory {
-        private val DATABASE_NAME: String = "database-sayara"
+        private var DATABASE_NAME: String = "sayara_db"
+        @Volatile
         private var sInstance:AppDatabase? = null
-
-        fun getsInstance(context: Context): AppDatabase? {
-            if (sInstance == null)
-                sInstance = Room.databaseBuilder(
-                                context.applicationContext,
-                                AppDatabase::class.java, DATABASE_NAME
-                                ).build()
-            return sInstance
+        fun getDatabase(context: Context): AppDatabase {
+            return sInstance ?: synchronized(AppDatabase::class) {
+                // Create database here
+                val instance = Room.databaseBuilder(
+                    context.applicationContext,
+                    AppDatabase::class.java,
+                    DATABASE_NAME
+                ).build()
+                    sInstance = instance
+                instance
+            }
         }
     }
-
-
     abstract fun brandDao(): BrandDao
 }

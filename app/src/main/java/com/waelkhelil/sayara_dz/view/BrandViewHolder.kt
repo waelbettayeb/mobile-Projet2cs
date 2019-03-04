@@ -9,6 +9,7 @@ import com.waelkhelil.sayara_dz.R
 
 class BrandViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
     RecyclerView.ViewHolder(inflater.inflate(R.layout.list_item_brand, parent, false)) {
+
     private var mTitleView: TextView? = null
     private var mDescriptionView: TextView? = null
 

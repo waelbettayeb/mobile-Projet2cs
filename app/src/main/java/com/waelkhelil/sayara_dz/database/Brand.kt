@@ -6,6 +6,4 @@ import androidx.room.*
 data class Brand(
     @PrimaryKey var id:String,
     @ColumnInfo var name:String
-) {
-
-}
+)
