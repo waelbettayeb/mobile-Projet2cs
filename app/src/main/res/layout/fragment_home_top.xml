@@ -17,7 +17,7 @@
             app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
             android:layout_marginStart="16dp"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Headline4"
-            android:fontFamily="@font/kollektif_bold" android:textColor="@color/black"/>
+            android:fontFamily="@font/kollektif_bold" android:textColor="@color/orange"/>
     <LinearLayout
             android:orientation="horizontal"
             android:layout_width="wrap_content"
@@ -35,6 +35,6 @@
                 android:text="Wael"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" android:id="@+id/textView4" android:layout_weight="1"
-                android:fontFamily="@font/kollektif_bold"/>
+                android:fontFamily="@font/kollektif_bold" android:textStyle="bold"/>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -46,6 +46,9 @@ class HomeFragment : Fragment() {
         lModelsHorziontalListFragment.arguments = lBundle
 
         fragmentTransaction.add(R.id.lists_fragment_container, lModelsHorziontalListFragment)
+
+        val lHomeSignInFragment = HomeSignInFragment()
+        fragmentTransaction.add(R.id.lists_fragment_container, lHomeSignInFragment)
             .commit()
     }
 
