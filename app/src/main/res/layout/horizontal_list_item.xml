@@ -12,7 +12,7 @@
             android:layout_marginTop="@dimen/card_spacing"
             android:layout_marginRight="@dimen/card_spacing"
             android:layout_marginBottom="@dimen/card_spacing"
-            android:minHeight="200dp" app:cardElevation="8dp"
+            app:cardElevation="8dp"
             app:cardBackgroundColor="@color/white"
             app:cardCornerRadius="8dp">
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -20,8 +20,8 @@
                 android:layout_height="match_parent">
 
             <ImageView
-                    android:layout_width="80dp"
-                    android:layout_height="80dp" tools:srcCompat="@tools:sample/avatars[8]"
+                    android:layout_width="96dp"
+                    android:layout_height="96dp" tools:srcCompat="@tools:sample/avatars[8]"
                     android:id="@+id/item_image" app:layout_constraintEnd_toEndOf="parent"
                     android:layout_marginEnd="8dp" android:layout_marginTop="16dp"
                     app:layout_constraintTop_toTopOf="parent"

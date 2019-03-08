@@ -27,12 +27,5 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
                 android:fontFamily="@font/kollektif_regular"/>
-        <TextView
-                android:id="@+id/text_list_item_description"
-                android:text="Clio 5, Mégane ..."
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
-                android:fontFamily="@font/kollektif_regular" android:textColor="@color/grey"/>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

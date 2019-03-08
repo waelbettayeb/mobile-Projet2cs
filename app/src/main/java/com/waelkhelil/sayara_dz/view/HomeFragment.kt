@@ -26,12 +26,23 @@ class HomeFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        val fragment = BrandsHorziontalListFragment()
 
         val fragmentManager = childFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()
 
-        fragmentTransaction.add(R.id.lists_fragment_container, fragment)
+        val lBrandsHorziontalListFragment = HorziontalListFragment()
+        fragmentTransaction.add(R.id.lists_fragment_container, lBrandsHorziontalListFragment)
+
+//      preparing the Models list
+        val lModelsHorziontalListFragment = HorziontalListFragment()
+        val lBundle:Bundle = Bundle()
+
+        lBundle.putString("header", "Models")
+        lBundle.putBoolean("see_all_button_hidden", true)
+
+        lModelsHorziontalListFragment.arguments = lBundle
+
+        fragmentTransaction.add(R.id.lists_fragment_container, lModelsHorziontalListFragment)
             .commit()
     }
 

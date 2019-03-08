@@ -11,17 +11,14 @@ class BrandViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
     RecyclerView.ViewHolder(inflater.inflate(R.layout.list_item_brand, parent, false)) {
 
     private var mTitleView: TextView? = null
-    private var mDescriptionView: TextView? = null
 
 
     init {
         mTitleView = itemView.findViewById(R.id.text_list_item_name)
-        mDescriptionView = itemView.findViewById(R.id.text_list_item_description)
     }
 
     fun bind(brand: Brand) {
         mTitleView?.text = brand.name
-        mDescriptionView?.text = brand.id
     }
 
 }

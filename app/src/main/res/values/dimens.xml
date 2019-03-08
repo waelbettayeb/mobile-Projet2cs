@@ -4,7 +4,7 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="activity_margin">16dp</dimen>
     <dimen name="card_spacing">8dp</dimen>
-    <dimen name="card_width">128dp</dimen>
-    <dimen name="card_height">150dp</dimen>
+    <dimen name="card_width">148dp</dimen>
+    <dimen name="card_height">164dp</dimen>
 
 </resources>

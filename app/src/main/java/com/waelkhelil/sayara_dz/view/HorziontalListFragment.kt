@@ -7,20 +7,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.Toast
+import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.waelkhelil.sayara_dz.R
 import com.waelkhelil.sayara_dz.database.Brand
 import kotlinx.android.synthetic.main.horziontal_list_fragment.*
 
 
-class BrandsHorziontalListFragment : Fragment() {
+class HorziontalListFragment() : Fragment() {
 
     companion object {
-        fun newInstance() = BrandsHorziontalListFragment()
+        fun newInstance() = HorziontalListFragment()
     }
 
-    private lateinit var viewModelBrands: BrandsHorziontalListViewModel
+    private lateinit var viewModel: HorziontalListViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,8 +30,14 @@ class BrandsHorziontalListFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        val lBundle: Bundle? = arguments
+        if (lBundle != null) {
+            text_list_name.setText(lBundle.getString("header"))
+            if(lBundle.getBoolean("see_all_button_hidden"))
+                button_see_all_brands.visibility = TextView.INVISIBLE
+        }
         val lButtonSeeAll = getView()!!.
-                findViewById<Button>(R.id.see_all_brands_button)
+                findViewById<Button>(R.id.button_see_all_brands)
         lButtonSeeAll.setOnClickListener {
             val parentActivity:MainActivity = activity as MainActivity
             parentActivity.setFragment(BrandsListFragment(), "brands_list", "home")
@@ -59,7 +65,7 @@ class BrandsHorziontalListFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModelBrands = ViewModelProviders.of(this).get(BrandsHorziontalListViewModel::class.java)
+        viewModel = ViewModelProviders.of(this).get(HorziontalListViewModel::class.java)
         // TODO: Use the ViewModel
     }
 
