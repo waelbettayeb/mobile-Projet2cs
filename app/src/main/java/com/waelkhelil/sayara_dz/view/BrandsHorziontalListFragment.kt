@@ -8,7 +8,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.Toast
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.waelkhelil.sayara_dz.R
+import com.waelkhelil.sayara_dz.database.Brand
+import kotlinx.android.synthetic.main.horziontal_list_fragment.*
 
 
 class BrandsHorziontalListFragment : Fragment() {
@@ -32,6 +35,25 @@ class BrandsHorziontalListFragment : Fragment() {
         lButtonSeeAll.setOnClickListener {
             val parentActivity:MainActivity = activity as MainActivity
             parentActivity.setFragment(BrandsListFragment(), "brands_list", "home")
+        }
+
+        val parentActivity:MainActivity = activity as MainActivity
+        val list:List<Brand> = listOf(
+            Brand("id01","Toyota" ),
+            Brand("id01","Audi" ),
+            Brand("id01","BMW" ),
+            Brand("id01","Renault" ),
+            Brand("id01","Mini" )
+        )
+        rv_horizontal_list?. adapter = CardsListItemAdapter(list)
+        var lLayoutManager = LinearLayoutManager(activity)
+        lLayoutManager.orientation = LinearLayoutManager.HORIZONTAL
+        rv_horizontal_list.apply {
+            // set a LinearLayoutManager to handle Android
+            // RecyclerView behavior
+            layoutManager = lLayoutManager
+            // set the custom adapter to the RecyclerView
+            adapter = CardsListItemAdapter(list)
         }
     }
 

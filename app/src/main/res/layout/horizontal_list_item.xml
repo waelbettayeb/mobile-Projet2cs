@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
+              android:orientation="vertical"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content">
+    <com.google.android.material.card.MaterialCardView
+            style="@style/Widget.MaterialComponents.CardView"
+            android:layout_width="@dimen/card_width"
+            android:layout_height="@dimen/card_height"
+            android:layout_marginLeft="@dimen/card_spacing"
+            android:layout_marginTop="@dimen/card_spacing"
+            android:layout_marginRight="@dimen/card_spacing"
+            android:layout_marginBottom="@dimen/card_spacing"
+            android:minHeight="200dp" app:cardElevation="8dp"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="8dp">
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            <ImageView
+                    android:layout_width="80dp"
+                    android:layout_height="80dp" tools:srcCompat="@tools:sample/avatars[8]"
+                    android:id="@+id/item_image" app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginEnd="8dp" android:layout_marginTop="16dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginStart="8dp" android:layout_marginBottom="16dp"
+                    app:layout_constraintBottom_toTopOf="@+id/text_card_header"/>
+            <TextView
+                    android:text="Toyota"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/text_card_header" android:layout_marginBottom="16dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginEnd="8dp" app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginStart="8dp"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle2"
+                    android:fontFamily="@font/kollektif_regular"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+</LinearLayout>
