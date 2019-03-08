@@ -3,7 +3,7 @@
               xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
               android:orientation="vertical"
               android:layout_width="wrap_content"
-              android:layout_height="wrap_content">
+              android:layout_height="wrap_content" android:id="@+id/linearLayout">
     <com.google.android.material.card.MaterialCardView
             style="@style/Widget.MaterialComponents.CardView"
             android:layout_width="@dimen/card_width"
@@ -20,8 +20,8 @@
                 android:layout_height="match_parent">
 
             <ImageView
-                    android:layout_width="96dp"
-                    android:layout_height="96dp" tools:srcCompat="@tools:sample/avatars[8]"
+                    android:layout_width="114dp"
+                    android:layout_height="114dp" tools:srcCompat="@tools:sample/avatars[8]"
                     android:id="@+id/item_image" app:layout_constraintEnd_toEndOf="parent"
                     android:layout_marginEnd="8dp" android:layout_marginTop="16dp"
                     app:layout_constraintTop_toTopOf="parent"
@@ -31,13 +31,15 @@
             <TextView
                     android:text="Toyota"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" android:id="@+id/text_card_header" android:layout_marginBottom="16dp"
+                    android:layout_height="wrap_content" android:id="@+id/text_card_header"
+                    android:layout_marginBottom="16dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     android:layout_marginEnd="8dp" app:layout_constraintStart_toStartOf="parent"
                     android:layout_marginStart="8dp"
                     android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle2"
-                    android:fontFamily="@font/kollektif_regular"/>
+                    android:fontFamily="@font/kollektif_regular"
+            />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>
 </LinearLayout>

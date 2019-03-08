@@ -30,6 +30,9 @@ class HomeFragment : Fragment() {
         val fragmentManager = childFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()
 
+        val lHomeTopFragment= HomeTopFragment()
+        fragmentTransaction.add(R.id.lists_fragment_container, lHomeTopFragment)
+
         val lBrandsHorziontalListFragment = HorziontalListFragment()
         fragmentTransaction.add(R.id.lists_fragment_container, lBrandsHorziontalListFragment)
 

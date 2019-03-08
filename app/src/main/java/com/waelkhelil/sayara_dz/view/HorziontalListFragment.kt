@@ -51,7 +51,7 @@ class HorziontalListFragment() : Fragment() {
             Brand("id01","Renault" ),
             Brand("id01","Mini" )
         )
-        rv_horizontal_list?. adapter = CardsListItemAdapter(list)
+//        rv_horizontal_list?. adapter = CardsListItemAdapter(list)
         var lLayoutManager = LinearLayoutManager(activity)
         lLayoutManager.orientation = LinearLayoutManager.HORIZONTAL
         rv_horizontal_list.apply {
