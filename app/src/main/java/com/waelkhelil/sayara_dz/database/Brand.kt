@@ -4,6 +4,6 @@ import androidx.room.*
 
 @Entity(tableName = "brand")
 data class Brand(
-    @PrimaryKey var id:String,
+    @PrimaryKey var id:Long,
     @ColumnInfo var name:String
 )

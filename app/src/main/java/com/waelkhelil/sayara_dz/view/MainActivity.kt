@@ -1,13 +1,14 @@
 package com.waelkhelil.sayara_dz.view
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.waelkhelil.sayara_dz.database.AppDatabase
-import com.waelkhelil.sayara_dz.database.Brand
-import com.waelkhelil.sayara_dz.database.BrandDao
 import android.os.AsyncTask
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount
+import android.net.Uri
 import android.util.Log
 import com.waelkhelil.sayara_dz.R
 
@@ -47,14 +48,28 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(com.waelkhelil.sayara_dz.R.layout.activity_main)
 
-        val lBottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_navigation)
+        val acct:GoogleSignInAccount? = GoogleSignIn.getLastSignedInAccount(application)
+        if (acct == null) {
+            val intent = Intent(this, AppIntroActivity::class.java)
+            startActivity(intent)
+        }
+        val lUserName:String?  = acct?.getGivenName()
+        val lPersonPhoto: Uri? = acct?.getPhotoUrl()
+        val lBundle:Bundle = Bundle()
+        lBundle.putString("user_name", lUserName)
+        lBundle.putString("user_photo_url", lPersonPhoto.toString())
+
+
+        val lBottomNavigationView = findViewById<BottomNavigationView>(com.waelkhelil.sayara_dz.R.id.bottom_navigation)
         lBottomNavigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
 
 //      Adding the home fragment programmatically to R.id.fragment_container
         val fragmentManager = supportFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()
 
+
         val fragment = HomeFragment()
+        fragment.arguments = lBundle
         fragmentTransaction.add(R.id.fragment_container, fragment, "home")
         fragmentTransaction.commit()
     }

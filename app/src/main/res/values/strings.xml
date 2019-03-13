@@ -14,5 +14,9 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="greeting">Bonjour</string>
     <string name="sign_in">Se connecter</string>
-    <string name="msg_sign_in">Postez des annonces et faites des offres de véhicule, vous pouvez aussi suivre vos modèles préférés</string>
+    <string name="msg_sign_in">Postez des annonces et faites des offres de véhicule, vous pouvez aussi suivre vos
+        modèles préférés
+    </string>
+    <string name="search_hint">Rechercher des véhicules</string>
+    <string name="skip">Passer</string>
 </resources>

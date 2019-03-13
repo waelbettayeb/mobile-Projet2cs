@@ -45,11 +45,11 @@ class HorziontalListFragment() : Fragment() {
 
         val parentActivity:MainActivity = activity as MainActivity
         val list:List<Brand> = listOf(
-            Brand("id01","Toyota" ),
-            Brand("id01","Audi" ),
-            Brand("id01","BMW" ),
-            Brand("id01","Renault" ),
-            Brand("id01","Mini" )
+            Brand(0,"Toyota" ),
+            Brand(1,"Audi" ),
+            Brand(2,"BMW" ),
+            Brand(3,"Renault" ),
+            Brand(4,"Mini" )
         )
 //        rv_horizontal_list?. adapter = CardsListItemAdapter(list)
         var lLayoutManager = LinearLayoutManager(activity)
