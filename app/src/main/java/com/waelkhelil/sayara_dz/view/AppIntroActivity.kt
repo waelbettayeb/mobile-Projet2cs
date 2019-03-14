@@ -1,8 +1,11 @@
 package com.waelkhelil.sayara_dz.view
 
+import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.preference.PreferenceManager
 import android.widget.Button
 import com.google.android.gms.auth.api.signin.*
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -36,6 +39,10 @@ class AppIntroActivity : AppCompatActivity(){
         super.onCreate(savedInstanceState)
         setContentView(com.waelkhelil.sayara_dz.R.layout.activity_app_intro)
 
+        val button_skip = findViewById<Button>(R.id.skip_button)
+        button_skip.setOnClickListener{
+            skipActivity()
+        }
         // Configure sign-in to request the user's ID, email address, and basic
         // profile. ID and basic profile are included in DEFAULT_SIGN_IN.
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -43,17 +50,13 @@ class AppIntroActivity : AppCompatActivity(){
             .build()
 
         // Build a GoogleSignInClient with the options specified by gso.
-           mGoogleSignInClient = GoogleSignIn.getClient(this, gso)
+        mGoogleSignInClient = GoogleSignIn.getClient(this, gso)
 
         val button_sign_in = findViewById<com.google.android.gms.common.SignInButton>(R.id.sign_in_button)
         button_sign_in.setOnClickListener{
-                signIn()
-            }
-
-        val button_skip = findViewById<Button>(R.id.skip_button)
-        button_skip.setOnClickListener{
-            skipActivity()
+            signIn()
         }
+
 
         // Facebook
         val loginButton = findViewById(com.waelkhelil.sayara_dz.R.id.login_button) as LoginButton
@@ -76,7 +79,35 @@ class AppIntroActivity : AppCompatActivity(){
             }
         })
     }
+    public override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        callbackManager?.onActivityResult(requestCode, resultCode, data)
+        super.onActivityResult(requestCode, resultCode, data)
+
+
+        val accessToken = AccessToken.getCurrentAccessToken()
+        val isLoggedIn = accessToken != null && !accessToken.isExpired
+        if(isLoggedIn)
+            switchActivity()
+        // Result returned from launching the Intent from GoogleSignInClient.getSignInIntent(...);
+        if (requestCode == RC_SIGN_IN) {
+            // The Task returned from this call is always completed, no need to attach
+            // a listener.
+            val task = GoogleSignIn.getSignedInAccountFromIntent(data)
+            handleSignInResult(task)
+        }
+    }
+
     fun skipActivity() {
+
+        val sharedPref = PreferenceManager.getDefaultSharedPreferences(applicationContext).edit()
+        sharedPref.clear()
+        sharedPref.putBoolean(getString(R.string.skip_key), true)
+        sharedPref.commit()
+
+        switchActivity()
+    }
+
+    fun switchActivity() {
         val intent = Intent(this, MainActivity::class.java).apply {
         }
         startActivity(intent)
@@ -87,30 +118,12 @@ class AppIntroActivity : AppCompatActivity(){
         startActivityForResult(signInIntent, RC_SIGN_IN)
     }
 
-    public override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        callbackManager?.onActivityResult(requestCode, resultCode, data)
-        super.onActivityResult(requestCode, resultCode, data)
-
-
-        val accessToken = AccessToken.getCurrentAccessToken()
-        val isLoggedIn = accessToken != null && !accessToken.isExpired
-        if(isLoggedIn)
-            skipActivity()
-        // Result returned from launching the Intent from GoogleSignInClient.getSignInIntent(...);
-        if (requestCode == RC_SIGN_IN) {
-            // The Task returned from this call is always completed, no need to attach
-            // a listener.
-            val task = GoogleSignIn.getSignedInAccountFromIntent(data)
-            handleSignInResult(task)
-        }
-    }
-
     private fun handleSignInResult(completedTask: Task<GoogleSignInAccount>) {
         try {
             val account = completedTask.getResult(ApiException::class.java)
 
             // Signed in successfully, show authenticated UI.
-            skipActivity()
+            switchActivity()
         } catch (e: ApiException) {
             // The ApiException status code indicates the detailed failure reason.
             // Please refer to the GoogleSignInStatusCodes class reference for more information.
@@ -119,6 +132,7 @@ class AppIntroActivity : AppCompatActivity(){
         }
 
     }
+
     private fun sendError(){
         val context = applicationContext
         val text = "sign In Result:failed"
