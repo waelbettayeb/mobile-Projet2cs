@@ -63,8 +63,7 @@ class MainActivity : AppCompatActivity() {
         val acct:GoogleSignInAccount? = GoogleSignIn.getLastSignedInAccount(application)
 
         if (!isSkipped && (acct == null) && !isLoggedIn ) {
-            val intent = Intent(this, AppIntroActivity::class.java)
-            startActivity(intent)
+            switchToSignInActivity()
         }
 
         // TODO add user data class (singleton) and use it on a view model
@@ -116,5 +115,9 @@ class MainActivity : AppCompatActivity() {
         val fragmentTransaction = fragmentManager.beginTransaction()
         fragmentTransaction.replace(R.id.fragment_container, fragment, tag)
         fragmentTransaction.commit()
+    }
+    fun switchToSignInActivity(){
+        val intent = Intent(this, AppIntroActivity::class.java)
+        startActivity(intent)
     }
 }

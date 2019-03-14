@@ -37,7 +37,7 @@
             android:fontFamily="@font/kollektif_regular" app:layout_constraintHorizontal_bias="0.0"
             android:id="@+id/textView5"/>
     <com.google.android.material.button.MaterialButton
-            android:id="@+id/material_button"
+            android:id="@+id/button_sign_in"
             android:layout_width="0dp"
             android:layout_height="64dp"
             android:text="@string/sign_in" app:layout_constraintEnd_toEndOf="parent"

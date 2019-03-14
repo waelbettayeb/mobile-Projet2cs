@@ -1,11 +1,13 @@
 package com.waelkhelil.sayara_dz.view
 
+import android.content.Intent
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import com.waelkhelil.sayara_dz.R
 
 
@@ -26,7 +28,10 @@ class HomeSignInFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-
+        val signInButton = getView()?.findViewById<Button>(R.id.button_sign_in)
+        signInButton?.setOnClickListener {
+            (activity as MainActivity).switchToSignInActivity()
+        }
 
     }
 
