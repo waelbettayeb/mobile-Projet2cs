@@ -6,10 +6,10 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import android.os.AsyncTask
-import com.google.android.gms.auth.api.signin.GoogleSignIn
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount
+import com.google.android.gms.auth.api.signin.*
 import android.net.Uri
-import android.util.Log
+import com.facebook.AccessToken
+import com.facebook.Profile
 import com.waelkhelil.sayara_dz.R
 
 
@@ -48,13 +48,25 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(com.waelkhelil.sayara_dz.R.layout.activity_main)
 
+        val accessToken = AccessToken.getCurrentAccessToken()
+        val isLoggedIn = accessToken != null && !accessToken.isExpired
+
         val acct:GoogleSignInAccount? = GoogleSignIn.getLastSignedInAccount(application)
-        if (acct == null) {
+        if ((acct == null) && !isLoggedIn) {
             val intent = Intent(this, AppIntroActivity::class.java)
             startActivity(intent)
         }
-        val lUserName:String?  = acct?.getGivenName()
-        val lPersonPhoto: Uri? = acct?.getPhotoUrl()
+        // TODO add user data class (singleton) and use it on a view model
+        val lUserName:String?
+        val lPersonPhoto: Uri?
+        if(acct != null){
+            lUserName  = acct?.getGivenName()
+            lPersonPhoto = acct?.getPhotoUrl()
+        }else{
+            val profile = Profile.getCurrentProfile()
+            lUserName = profile.firstName
+            lPersonPhoto = profile.getProfilePictureUri(100,100)
+        }
         val lBundle:Bundle = Bundle()
         lBundle.putString("user_name", lUserName)
         lBundle.putString("user_photo_url", lPersonPhoto.toString())

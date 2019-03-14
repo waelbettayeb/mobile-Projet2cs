@@ -10,8 +10,6 @@
     <string name="see_all">voir tout</string>
     <string name="home">Accueil</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="greeting">Bonjour</string>
     <string name="sign_in">Se connecter</string>
     <string name="msg_sign_in">Postez des annonces et faites des offres de véhicule, vous pouvez aussi suivre vos
@@ -19,4 +17,8 @@
     </string>
     <string name="search_hint">Rechercher des véhicules</string>
     <string name="skip">Passer</string>
+    <string name="facebook_app_id">410978659654516</string>
+    <string name="fb_login_protocol_scheme">fb410978659654516</string>
+
+
 </resources>

@@ -41,7 +41,7 @@ class HomeTopFragment : Fragment() {
             Glide
                 .with(this)
                 .load(lUserPhotoUrl)
-                .apply(RequestOptions.circleCropTransform())
+                .apply(RequestOptions   .circleCropTransform())
                 .placeholder(R.drawable.user_icon)
                 .into(getView()!!.findViewById<TextView>(R.id.image_user_profile_picture) as ImageView)
 

@@ -10,16 +10,27 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.tasks.Task
 import com.google.android.gms.common.api.ApiException
 import android.util.Log
-import androidx.fragment.app.FragmentActivity
 import com.waelkhelil.sayara_dz.R
 import android.widget.Toast
+import com.facebook.CallbackManager
+import com.facebook.FacebookException
+import com.facebook.login.LoginResult
+import com.facebook.FacebookCallback
+import com.facebook.GraphRequest
+import com.facebook.login.LoginManager
+import com.facebook.login.widget.LoginButton
+import java.util.*
+import com.facebook.AccessToken
 
 
 
 
-class AppIntroActivity : AppCompatActivity() {
+// TODO : take a look https://developers.google.com/identity/sign-in/android/backend-auth
+class AppIntroActivity : AppCompatActivity(){
+    private val TAG : String = "AppIntroActivity"
     val RC_SIGN_IN: Int = 1
     private lateinit var mGoogleSignInClient:GoogleSignInClient
+    val callbackManager = CallbackManager.Factory.create()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,6 +54,27 @@ class AppIntroActivity : AppCompatActivity() {
         button_skip.setOnClickListener{
             skipActivity()
         }
+
+        // Facebook
+        val loginButton = findViewById(com.waelkhelil.sayara_dz.R.id.login_button) as LoginButton
+        loginButton.setReadPermissions(Arrays.asList("public_profile"))
+
+        // Callback registration
+        loginButton.registerCallback(callbackManager, object : FacebookCallback<LoginResult> {
+            override fun onSuccess(loginResult: LoginResult) {
+                Log.d(TAG, "logged with facebook")
+//                skipActivity()
+            }
+
+            override fun onCancel() {
+                Log.d(TAG, "login with facebook canceled")
+            }
+
+            override fun onError(exception: FacebookException) {
+                Log.w(TAG, "signInResult:failed code=" + exception.toString())
+                sendError()
+            }
+        })
     }
     fun skipActivity() {
         val intent = Intent(this, MainActivity::class.java).apply {
@@ -56,8 +88,14 @@ class AppIntroActivity : AppCompatActivity() {
     }
 
     public override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        callbackManager?.onActivityResult(requestCode, resultCode, data)
         super.onActivityResult(requestCode, resultCode, data)
 
+
+        val accessToken = AccessToken.getCurrentAccessToken()
+        val isLoggedIn = accessToken != null && !accessToken.isExpired
+        if(isLoggedIn)
+            skipActivity()
         // Result returned from launching the Intent from GoogleSignInClient.getSignInIntent(...);
         if (requestCode == RC_SIGN_IN) {
             // The Task returned from this call is always completed, no need to attach
@@ -76,13 +114,16 @@ class AppIntroActivity : AppCompatActivity() {
         } catch (e: ApiException) {
             // The ApiException status code indicates the detailed failure reason.
             // Please refer to the GoogleSignInStatusCodes class reference for more information.
-            Log.w("AppIntroActivity", "signInResult:failed code=" + e.statusCode)
-            val context = applicationContext
-            val text = "sign In Result:failed"
-            val duration = Toast.LENGTH_SHORT
-            val toast = Toast.makeText(context, text, duration)
-            toast.show()
+            Log.w(TAG, "signInResult:failed code=" + e.statusCode)
+            sendError()
         }
 
+    }
+    private fun sendError(){
+        val context = applicationContext
+        val text = "sign In Result:failed"
+        val duration = Toast.LENGTH_SHORT
+        val toast = Toast.makeText(context, text, duration)
+        toast.show()
     }
 }
