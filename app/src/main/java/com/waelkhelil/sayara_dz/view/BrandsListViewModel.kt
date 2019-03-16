@@ -3,26 +3,35 @@ package com.waelkhelil.sayara_dz.view
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel;
 import com.waelkhelil.sayara_dz.database.AppDatabase
 import com.waelkhelil.sayara_dz.database.Brand
-import com.waelkhelil.sayara_dz.database.BrandDao
+import com.waelkhelil.sayara_dz.database.BrandRepository
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
+import kotlin.coroutines.CoroutineContext
 
 class BrandsListViewModel(application: Application) : AndroidViewModel(application) {
-    private val mBrandDao:BrandDao = AppDatabase.getDatabase(application).brandDao()
+    private var parentJob = Job()
+    private val coroutineContext: CoroutineContext
+        get() = parentJob + Dispatchers.Main
+    private val scope = CoroutineScope(coroutineContext)
 
-    private val brands: MutableLiveData<List<Brand>> by lazy {
-        MutableLiveData<List<Brand>>().also {
-            loadBrands()
-        }
+    private val repository: BrandRepository
+    val Allbrands: LiveData<List<Brand>>
+    init {
+        val brandsDao = AppDatabase.getDatabase(application,scope).brandDao()
+        repository = BrandRepository(brandsDao)
+        Allbrands=repository.brands
     }
 
-    fun getBrands(): LiveData<List<Brand>> {
-        return brands
+    fun insert(brand: Brand) = scope.launch(Dispatchers.IO) {
+        repository.insert(brand)
     }
-    private fun loadBrands(): LiveData<List<Brand>> {
-        // TODO Do an asynchronous operation to fetch users.
-        return mBrandDao.getAll()
+    override fun onCleared() {
+        super.onCleared()
+        parentJob.cancel()
     }
+
 }

@@ -1,6 +1,6 @@
 package com.waelkhelil.sayara_dz.database
 
-import androidx.lifecycle.*
+import androidx.lifecycle.LiveData
 import androidx.room.*
 
 @Dao
@@ -19,4 +19,7 @@ interface BrandDao {
 
     @Delete
     fun delete(brand: Brand)
+
+    @Query("DELETE FROM brand")
+    fun deleteAll()
 }
