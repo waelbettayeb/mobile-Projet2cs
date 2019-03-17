@@ -2,12 +2,14 @@ package com.waelkhelil.sayara_dz.view
 
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
+import android.preference.PreferenceManager
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import com.waelkhelil.sayara_dz.R
+import com.waelkhelil.sayara_dz.database.User
 import kotlinx.android.synthetic.main.horziontal_list_fragment.*
 
 
@@ -32,12 +34,8 @@ class HomeFragment : Fragment() {
         val fragmentManager = childFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()
 
-        var lBundle = Bundle()
 
-        lBundle.putString("user_name", arguments?.getString("user_name"))
-        lBundle.putString("user_photo_url", arguments?.getString("user_photo_url"))
         val lHomeTopFragment= HomeTopFragment()
-        lHomeTopFragment.arguments = lBundle
         fragmentTransaction.add(R.id.lists_fragment_container, lHomeTopFragment)
 
         val lBrandsHorziontalListFragment = HorziontalListFragment()
@@ -45,7 +43,7 @@ class HomeFragment : Fragment() {
 
 //      preparing the Models list
         val lModelsHorziontalListFragment = HorziontalListFragment()
-        lBundle= Bundle()
+        val lBundle= Bundle()
 
         lBundle.putString("header", "Models")
         lBundle.putBoolean("see_all_button_hidden", true)
@@ -54,9 +52,12 @@ class HomeFragment : Fragment() {
 
         fragmentTransaction.add(R.id.lists_fragment_container, lModelsHorziontalListFragment)
 
-        val lHomeSignInFragment = HomeSignInFragment()
-        fragmentTransaction.add(R.id.lists_fragment_container, lHomeSignInFragment)
-            .commit()
+        val sharedPref =  PreferenceManager.getDefaultSharedPreferences(activity?.applicationContext)
+        if(!sharedPref.getBoolean("is_connected", false)){
+            val lHomeSignInFragment = HomeSignInFragment()
+            fragmentTransaction.add(R.id.lists_fragment_container, lHomeSignInFragment)
+        }
+        fragmentTransaction.commit()
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

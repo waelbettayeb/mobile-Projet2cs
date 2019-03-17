@@ -3,6 +3,7 @@ package com.waelkhelil.sayara_dz.view
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.preference.PreferenceManager
@@ -15,20 +16,15 @@ import com.google.android.gms.common.api.ApiException
 import android.util.Log
 import com.waelkhelil.sayara_dz.R
 import android.widget.Toast
-import com.facebook.CallbackManager
-import com.facebook.FacebookException
+import com.facebook.*
 import com.facebook.login.LoginResult
-import com.facebook.FacebookCallback
-import com.facebook.GraphRequest
 import com.facebook.login.LoginManager
 import com.facebook.login.widget.LoginButton
+import com.waelkhelil.sayara_dz.database.User
 import java.util.*
-import com.facebook.AccessToken
 
 
-
-
-// TODO : take a look https://developers.google.com/identity/sign-in/android/backend-auth
+// TODO : take a look at https://developers.google.com/identity/sign-in/android/backend-auth
 class AppIntroActivity : AppCompatActivity(){
     private val TAG : String = "AppIntroActivity"
     val RC_SIGN_IN: Int = 1
@@ -66,7 +62,6 @@ class AppIntroActivity : AppCompatActivity(){
         loginButton.registerCallback(callbackManager, object : FacebookCallback<LoginResult> {
             override fun onSuccess(loginResult: LoginResult) {
                 Log.d(TAG, "logged with facebook")
-//                skipActivity()
             }
 
             override fun onCancel() {
@@ -80,21 +75,23 @@ class AppIntroActivity : AppCompatActivity(){
         })
     }
     public override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        callbackManager?.onActivityResult(requestCode, resultCode, data)
         super.onActivityResult(requestCode, resultCode, data)
-
+        callbackManager?.onActivityResult(requestCode, resultCode, data)
 
         val accessToken = AccessToken.getCurrentAccessToken()
         val isLoggedIn = accessToken != null && !accessToken.isExpired
-        if(isLoggedIn)
-            switchActivity()
-        // Result returned from launching the Intent from GoogleSignInClient.getSignInIntent(...);
         if (requestCode == RC_SIGN_IN) {
             // The Task returned from this call is always completed, no need to attach
             // a listener.
             val task = GoogleSignIn.getSignedInAccountFromIntent(data)
             handleSignInResult(task)
         }
+        if(isLoggedIn){
+            val profile = Profile.getCurrentProfile()
+            setUser(profile.firstName, profile.getProfilePictureUri(100,100))
+            switchActivity()
+        }
+        // Result returned from launching the Intent from GoogleSignInClient.getSignInIntent(...);
     }
 
     fun skipActivity() {
@@ -122,6 +119,7 @@ class AppIntroActivity : AppCompatActivity(){
         try {
             val account = completedTask.getResult(ApiException::class.java)
 
+            setUser(account?.getGivenName(), account?.getPhotoUrl())
             // Signed in successfully, show authenticated UI.
             switchActivity()
         } catch (e: ApiException) {
@@ -139,5 +137,14 @@ class AppIntroActivity : AppCompatActivity(){
         val duration = Toast.LENGTH_SHORT
         val toast = Toast.makeText(context, text, duration)
         toast.show()
+    }
+    private fun setUser(name: String?, uri:Uri?):User{
+        val sharedPref = PreferenceManager.getDefaultSharedPreferences(applicationContext).edit()
+        sharedPref.clear()
+        sharedPref.putString("user_name", name)
+        sharedPref.putString("photo_url", uri.toString())
+        sharedPref.putBoolean("is_connected", true)
+        sharedPref.commit()
+        return User(name?:"", uri.toString())
     }
 }

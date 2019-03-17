@@ -13,6 +13,7 @@ import android.preference.PreferenceManager
 import com.facebook.AccessToken
 import com.facebook.Profile
 import com.waelkhelil.sayara_dz.R
+import com.waelkhelil.sayara_dz.database.User
 
 
 class MainActivity : AppCompatActivity() {
@@ -54,36 +55,12 @@ class MainActivity : AppCompatActivity() {
         val sharedPref =  PreferenceManager.getDefaultSharedPreferences(applicationContext)
         val defaultValue = false
         val isSkipped = sharedPref.getBoolean(getString(R.string.skip_key), defaultValue)
+        val isConnected = sharedPref.getBoolean("is_connected", defaultValue)
 
-        //Facebook auth
-        val accessToken = AccessToken.getCurrentAccessToken()
-        val isLoggedIn = accessToken != null && !accessToken.isExpired
 
-        //Google auth
-        val acct:GoogleSignInAccount? = GoogleSignIn.getLastSignedInAccount(application)
-
-        if (!isSkipped && (acct == null) && !isLoggedIn ) {
+        if (!isSkipped && !isConnected) {
             switchToSignInActivity()
         }
-
-        // TODO add user data class (singleton) and use it on a view model
-        val lUserName:String?
-        val lPersonPhoto: Uri?
-        val lBundle:Bundle = Bundle()
-        if(acct != null){
-            lUserName  = acct?.getGivenName()
-            lPersonPhoto = acct?.getPhotoUrl()
-            lBundle.putString("user_name", lUserName)
-            lBundle.putString("user_photo_url", lPersonPhoto.toString())
-        }else if(isLoggedIn){
-            val profile = Profile.getCurrentProfile()
-            lUserName = profile.firstName
-            lPersonPhoto = profile.getProfilePictureUri(100,100)
-            lBundle.putString("user_name", lUserName)
-            lBundle.putString("user_photo_url", lPersonPhoto.toString())
-        }
-
-
 
         val lBottomNavigationView = findViewById<BottomNavigationView>(com.waelkhelil.sayara_dz.R.id.bottom_navigation)
         lBottomNavigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
@@ -92,9 +69,7 @@ class MainActivity : AppCompatActivity() {
         val fragmentManager = supportFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()
 
-
         val fragment = HomeFragment()
-        fragment.arguments = lBundle
         fragmentTransaction.add(R.id.fragment_container, fragment, "home")
         fragmentTransaction.commit()
     }
@@ -117,6 +92,8 @@ class MainActivity : AppCompatActivity() {
         fragmentTransaction.commit()
     }
     fun switchToSignInActivity(){
+        val sharedPref = PreferenceManager.getDefaultSharedPreferences(applicationContext).edit()
+        sharedPref.clear()
         val intent = Intent(this, AppIntroActivity::class.java)
         startActivity(intent)
     }
