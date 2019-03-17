@@ -1,7 +1,5 @@
 package com.waelkhelil.sayara_dz.view
 
-import android.app.Activity
-import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
@@ -9,8 +7,7 @@ import android.os.Bundle
 import android.preference.PreferenceManager
 import android.widget.Button
 import com.google.android.gms.auth.api.signin.*
-import com.google.android.gms.auth.api.signin.GoogleSignIn
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount
+
 import com.google.android.gms.tasks.Task
 import com.google.android.gms.common.api.ApiException
 import android.util.Log
@@ -18,10 +15,13 @@ import com.waelkhelil.sayara_dz.R
 import android.widget.Toast
 import com.facebook.*
 import com.facebook.login.LoginResult
-import com.facebook.login.LoginManager
 import com.facebook.login.widget.LoginButton
 import com.waelkhelil.sayara_dz.database.User
 import java.util.*
+
+
+
+
 
 
 // TODO : take a look at https://developers.google.com/identity/sign-in/android/backend-auth
@@ -48,8 +48,8 @@ class AppIntroActivity : AppCompatActivity(){
         // Build a GoogleSignInClient with the options specified by gso.
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso)
 
-        val button_sign_in = findViewById<com.google.android.gms.common.SignInButton>(R.id.sign_in_button)
-        button_sign_in.setOnClickListener{
+        val buttonSignIn = findViewById<com.google.android.gms.common.SignInButton>(R.id.sign_in_button)
+        buttonSignIn.setOnClickListener{
             signIn()
         }
 
@@ -76,16 +76,19 @@ class AppIntroActivity : AppCompatActivity(){
     }
     public override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        callbackManager?.onActivityResult(requestCode, resultCode, data)
 
-        val accessToken = AccessToken.getCurrentAccessToken()
-        val isLoggedIn = accessToken != null && !accessToken.isExpired
+        // Result returned from launching the Intent from GoogleSignInClient.getSignInIntent(...);
         if (requestCode == RC_SIGN_IN) {
             // The Task returned from this call is always completed, no need to attach
             // a listener.
             val task = GoogleSignIn.getSignedInAccountFromIntent(data)
             handleSignInResult(task)
         }
+
+        callbackManager?.onActivityResult(requestCode, resultCode, data)
+        val accessToken = AccessToken.getCurrentAccessToken()
+        val isLoggedIn = accessToken != null && !accessToken.isExpired
+
         if(isLoggedIn){
             val profile = Profile.getCurrentProfile()
             setUser(profile.firstName, profile.getProfilePictureUri(100,100))
@@ -139,6 +142,7 @@ class AppIntroActivity : AppCompatActivity(){
         toast.show()
     }
     private fun setUser(name: String?, uri:Uri?):User{
+        Log.i(TAG, "user name = $name")
         val sharedPref = PreferenceManager.getDefaultSharedPreferences(applicationContext).edit()
         sharedPref.clear()
         sharedPref.putString("user_name", name)
