@@ -1,4 +1,4 @@
-package com.waelkhelil.sayara_dz.view
+package com.waelkhelil.sayara_dz.view.models_ui
 
 import androidx.lifecycle.ViewModel;
 

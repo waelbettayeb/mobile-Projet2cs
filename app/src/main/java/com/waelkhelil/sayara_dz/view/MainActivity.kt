@@ -1,19 +1,14 @@
 package com.waelkhelil.sayara_dz.view
 
-import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import android.os.AsyncTask
-import com.google.android.gms.auth.api.signin.*
-import android.net.Uri
 import android.preference.PreferenceManager
-import com.facebook.AccessToken
-import com.facebook.Profile
 import com.waelkhelil.sayara_dz.R
-import com.waelkhelil.sayara_dz.database.User
+import com.waelkhelil.sayara_dz.view.home_ui.HomeFragment
 
 
 class MainActivity : AppCompatActivity() {
@@ -76,7 +71,7 @@ class MainActivity : AppCompatActivity() {
     fun setFragment(
         fragment:Fragment,
         tag:String,
-        backStackTag:String
+        backStackTag:String?
     ){
         val fragmentManager = supportFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()

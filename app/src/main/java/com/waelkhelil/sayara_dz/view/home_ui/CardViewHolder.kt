@@ -1,5 +1,6 @@
-package com.waelkhelil.sayara_dz.view
+package com.waelkhelil.sayara_dz.view.home_ui
 
+import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -8,6 +9,8 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.waelkhelil.sayara_dz.database.Brand
 import com.waelkhelil.sayara_dz.R
+import com.waelkhelil.sayara_dz.view.MainActivity
+import com.waelkhelil.sayara_dz.view.models_ui.ModelFragment
 
 class CardViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
     RecyclerView.ViewHolder(inflater.inflate(R.layout.horizontal_list_item, parent, false)), View.OnClickListener  {
@@ -28,6 +31,14 @@ class CardViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
 
     override fun onClick(v: View?) {
         Log.d(toString(), "onClick")
+        val lMainActivity = this.itemView.context as MainActivity
 
+        val lBundle= Bundle()
+        val lFragment = ModelFragment()
+
+        mBrand?.id?.let { lBundle.putLong("brand_id", it) }
+        lFragment.arguments = lBundle
+
+        lMainActivity.setFragment(lFragment, "model", null)
     }
 }

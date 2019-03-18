@@ -4,7 +4,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent" xmlns:app="http://schemas.android.com/apk/res-auto"
-        tools:context=".view.BrandsListFragment">
+        tools:context=".view.brands_ui.BrandsListFragment">
     <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_brands_list"
             android:layout_width="match_parent"

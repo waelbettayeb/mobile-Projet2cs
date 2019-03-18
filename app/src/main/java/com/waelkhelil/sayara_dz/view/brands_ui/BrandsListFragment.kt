@@ -1,4 +1,4 @@
-package com.waelkhelil.sayara_dz.view
+package com.waelkhelil.sayara_dz.view.brands_ui
 
 import android.os.Bundle
 import android.view.LayoutInflater

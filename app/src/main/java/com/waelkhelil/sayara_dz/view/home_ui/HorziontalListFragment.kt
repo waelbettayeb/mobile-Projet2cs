@@ -1,4 +1,4 @@
-package com.waelkhelil.sayara_dz.view
+package com.waelkhelil.sayara_dz.view.home_ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,6 +11,8 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.waelkhelil.sayara_dz.R
 import com.waelkhelil.sayara_dz.database.Brand
+import com.waelkhelil.sayara_dz.view.brands_ui.BrandsListFragment
+import com.waelkhelil.sayara_dz.view.MainActivity
 import kotlinx.android.synthetic.main.horziontal_list_fragment.*
 
 
@@ -39,11 +41,11 @@ class HorziontalListFragment() : Fragment() {
         val lButtonSeeAll = getView()!!.
                 findViewById<Button>(R.id.button_see_all_brands)
         lButtonSeeAll.setOnClickListener {
-            val parentActivity:MainActivity = activity as MainActivity
+            val parentActivity: MainActivity = activity as MainActivity
             parentActivity.setFragment(BrandsListFragment(), "brands_list", "home")
         }
 
-        val parentActivity:MainActivity = activity as MainActivity
+        val parentActivity: MainActivity = activity as MainActivity
         val list:List<Brand> = listOf(
             Brand(0,"Toyota" ,R.mipmap.ic_launcher),
             Brand(1,"Audi" ,R.mipmap.ic_launcher),

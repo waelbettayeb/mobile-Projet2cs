@@ -1,4 +1,4 @@
-package com.waelkhelil.sayara_dz.view
+package com.waelkhelil.sayara_dz.view.home_ui
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

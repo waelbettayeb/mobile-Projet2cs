@@ -5,7 +5,7 @@
         android:id="@+id/lists_fragment_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:context=".view.HomeTopFragment"
+        tools:context=".view.home_ui.HomeTopFragment"
         android:background="@color/white">
 
 
