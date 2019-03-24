@@ -39,6 +39,6 @@ class CardViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
         mBrand?.id?.let { lBundle.putLong("brand_id", it) }
         lFragment.arguments = lBundle
 
-        lMainActivity.setFragment(lFragment, "model", null)
+//        lMainActivity.setFragment(lFragment, "model", null)
     }
 }

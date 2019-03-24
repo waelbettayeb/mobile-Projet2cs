@@ -42,7 +42,7 @@ class HorziontalListFragment() : Fragment() {
                 findViewById<Button>(R.id.button_see_all_brands)
         lButtonSeeAll.setOnClickListener {
             val parentActivity: MainActivity = activity as MainActivity
-            parentActivity.setFragment(BrandsListFragment(), "brands_list", "home")
+//            parentActivity.setFragment(BrandsListFragment(), "brands_list", "home")
         }
 
         val parentActivity: MainActivity = activity as MainActivity

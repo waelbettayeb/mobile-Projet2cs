@@ -18,7 +18,13 @@
     <string name="fb_login_protocol_scheme">fb410978659654516</string>
     <string name="preference_file_key">410978659654516410978659654556</string>
     <string name="skip_key">410978659659916410978659654556</string>
-    <string name="msg_sign_in">Postez des annonces et faites des offres de véhicule, vous pouvez aussi suivre vos modèles préférés</string>
+    <string name="msg_sign_in">Postez des annonces et faites des offres de véhicule, vous pouvez aussi suivre vos
+        modèles préférés
+    </string>
     <string name="default_web_client_id">79546982130-8jegptpaonfkobaogj2pno0deqo31oqd.apps.googleusercontent.com
     </string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="invalid_credentials">invalid_credentials</string>
 </resources>

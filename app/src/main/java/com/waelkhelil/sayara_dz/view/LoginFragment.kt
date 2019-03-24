@@ -1,41 +1,60 @@
 package com.waelkhelil.sayara_dz.view
 
+import android.app.Activity
 import android.content.Intent
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.preference.PreferenceManager
-import android.widget.Button
-import com.google.android.gms.auth.api.signin.*
-
-import com.google.android.gms.tasks.Task
-import com.google.android.gms.common.api.ApiException
 import android.util.Log
-import com.waelkhelil.sayara_dz.R
+import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.Button
 import android.widget.Toast
+import androidx.lifecycle.Observer
+import androidx.navigation.Navigation.findNavController
 import com.facebook.*
-import com.facebook.login.LoginResult
 import com.facebook.login.widget.LoginButton
+import com.facebook.login.LoginResult
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.common.api.ApiException
+import com.google.android.gms.tasks.Task
+import com.google.android.material.snackbar.Snackbar
+import com.waelkhelil.sayara_dz.R
 import com.waelkhelil.sayara_dz.database.User
+import com.waelkhelil.sayara_dz.view.LoginViewModel.AuthenticationState.*
 import java.util.*
 
 
+class LoginFragment : Fragment() {
 
+    companion object {
+        fun newInstance() = LoginFragment()
+    }
 
-
-
-// TODO : take a look at https://developers.google.com/identity/sign-in/android/backend-auth
-class AppIntroActivity : AppCompatActivity(){
-    private val TAG : String = "AppIntroActivity"
+    private val TAG : String = "LoginFragment"
+    private lateinit var mGoogleSignInClient: GoogleSignInClient
+    private lateinit var viewModel: LoginViewModel
     val RC_SIGN_IN: Int = 1
-    private lateinit var mGoogleSignInClient:GoogleSignInClient
     val callbackManager = CallbackManager.Factory.create()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(com.waelkhelil.sayara_dz.R.layout.activity_app_intro)
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        return inflater.inflate(R.layout.fragment_login, container, false)
+    }
 
-        val button_skip = findViewById<Button>(R.id.skip_button)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        viewModel = ViewModelProviders.of(this).get(LoginViewModel::class.java)
+
+        val button_skip = view.findViewById<Button>(R.id.skip_button)
         button_skip.setOnClickListener{
             skipActivity()
         }
@@ -46,16 +65,16 @@ class AppIntroActivity : AppCompatActivity(){
             .build()
 
         // Build a GoogleSignInClient with the options specified by gso.
-        mGoogleSignInClient = GoogleSignIn.getClient(this, gso)
+        mGoogleSignInClient = GoogleSignIn.getClient(activity as Activity, gso)
 
-        val buttonSignIn = findViewById<com.google.android.gms.common.SignInButton>(R.id.sign_in_button)
+        val buttonSignIn = view.findViewById<com.google.android.gms.common.SignInButton>(R.id.sign_in_button)
         buttonSignIn.setOnClickListener{
             signIn()
         }
 
 
         // Facebook
-        val loginButton = findViewById(com.waelkhelil.sayara_dz.R.id.login_button) as LoginButton
+        val loginButton = view.findViewById(com.waelkhelil.sayara_dz.R.id.login_button) as LoginButton
         loginButton.setReadPermissions(Arrays.asList("public_profile"))
 
         // Callback registration
@@ -73,33 +92,29 @@ class AppIntroActivity : AppCompatActivity(){
                 sendError()
             }
         })
-    }
-    public override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
 
-        // Result returned from launching the Intent from GoogleSignInClient.getSignInIntent(...);
-        if (requestCode == RC_SIGN_IN) {
-            // The Task returned from this call is always completed, no need to attach
-            // a listener.
-            val task = GoogleSignIn.getSignedInAccountFromIntent(data)
-            handleSignInResult(task)
-        }
+//        requireActivity().addOnBackPressedCallback(viewLifecycleOwner, OnBackPressedCallback {
+//            viewModel.refuseAuthentication()
+//            navController.popBackStack(R.id.main_fragment, false)
+//            true
+//        })
 
-        callbackManager?.onActivityResult(requestCode, resultCode, data)
-        val accessToken = AccessToken.getCurrentAccessToken()
-        val isLoggedIn = accessToken != null && !accessToken.isExpired
-
-        if(isLoggedIn){
-            val profile = Profile.getCurrentProfile()
-            setUser(profile.firstName, profile.getProfilePictureUri(100,100))
-            switchActivity()
-        }
-        // Result returned from launching the Intent from GoogleSignInClient.getSignInIntent(...);
+        val navController = findNavController(view)
+        viewModel.authenticationState.observe(viewLifecycleOwner, Observer { authenticationState ->
+            when (authenticationState) {
+                AUTHENTICATED -> navController.popBackStack()
+                INVALID_AUTHENTICATION ->
+                    Snackbar.make(view,
+                        R.string.invalid_credentials,
+                        Snackbar.LENGTH_SHORT
+                    ).show()
+            }
+        })
     }
 
     fun skipActivity() {
 
-        val sharedPref = PreferenceManager.getDefaultSharedPreferences(applicationContext).edit()
+        val sharedPref = PreferenceManager.getDefaultSharedPreferences(context).edit()
         sharedPref.clear()
         sharedPref.putBoolean(getString(R.string.skip_key), true)
         sharedPref.commit()
@@ -108,9 +123,7 @@ class AppIntroActivity : AppCompatActivity(){
     }
 
     fun switchActivity() {
-        val intent = Intent(this, MainActivity::class.java).apply {
-        }
-        startActivity(intent)
+
     }
 
     private fun signIn() {
@@ -135,15 +148,14 @@ class AppIntroActivity : AppCompatActivity(){
     }
 
     private fun sendError(){
-        val context = applicationContext
         val text = "sign In Result:failed"
         val duration = Toast.LENGTH_SHORT
         val toast = Toast.makeText(context, text, duration)
         toast.show()
     }
-    private fun setUser(name: String?, uri:Uri?):User{
+    private fun setUser(name: String?, uri: Uri?): User {
         Log.i(TAG, "user name = $name")
-        val sharedPref = PreferenceManager.getDefaultSharedPreferences(applicationContext).edit()
+        val sharedPref = PreferenceManager.getDefaultSharedPreferences(context).edit()
         sharedPref.clear()
         sharedPref.putString("user_name", name)
         sharedPref.putString("photo_url", uri.toString())
