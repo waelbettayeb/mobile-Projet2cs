@@ -76,7 +76,7 @@ class LoginFragment : Fragment() {
         // Facebook
         val loginButton = view.findViewById(com.waelkhelil.sayara_dz.R.id.login_button) as LoginButton
         loginButton.setReadPermissions(Arrays.asList("public_profile"))
-
+        loginButton.setFragment(this);
         // Callback registration
         loginButton.registerCallback(callbackManager, object : FacebookCallback<LoginResult> {
             override fun onSuccess(loginResult: LoginResult) {
@@ -131,21 +131,7 @@ class LoginFragment : Fragment() {
         startActivityForResult(signInIntent, RC_SIGN_IN)
     }
 
-    private fun handleSignInResult(completedTask: Task<GoogleSignInAccount>) {
-        try {
-            val account = completedTask.getResult(ApiException::class.java)
 
-            setUser(account?.getGivenName(), account?.getPhotoUrl())
-            // Signed in successfully, show authenticated UI.
-            switchActivity()
-        } catch (e: ApiException) {
-            // The ApiException status code indicates the detailed failure reason.
-            // Please refer to the GoogleSignInStatusCodes class reference for more information.
-            Log.w(TAG, "signInResult:failed code=" + e.statusCode)
-            sendError()
-        }
-
-    }
 
     private fun sendError(){
         val text = "sign In Result:failed"
@@ -162,5 +148,41 @@ class LoginFragment : Fragment() {
         sharedPref.putBoolean("is_connected", true)
         sharedPref.commit()
         return User(name?:"", uri.toString())
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        // Result returned from launching the Intent from GoogleSignInClient.getSignInIntent(...);
+        if (requestCode == RC_SIGN_IN) {
+            // The Task returned from this call is always completed, no need to attach
+            // a listener.
+            val task = GoogleSignIn.getSignedInAccountFromIntent(data)
+            handleSignInResult(task)
+        }
+
+        callbackManager?.onActivityResult(requestCode, resultCode, data)
+        val accessToken = AccessToken.getCurrentAccessToken()
+        val isLoggedIn = accessToken != null && !accessToken.isExpired
+
+        if (isLoggedIn) {
+            val profile = Profile.getCurrentProfile()
+            setUser(profile.firstName, profile.getProfilePictureUri(100, 100))
+            switchActivity()
+        }
+    }
+    private fun handleSignInResult(completedTask: Task<GoogleSignInAccount>) {
+        try {
+            val account = completedTask.getResult(ApiException::class.java)
+
+//            setUser(account?.getGivenName(), account?.getPhotoUrl())
+            // Signed in successfully, show authenticated UI.
+//            switchActivity()
+        } catch (e: ApiException) {
+            // The ApiException status code indicates the detailed failure reason.
+            // Please refer to the GoogleSignInStatusCodes class reference for more information.
+            Log.w(TAG, "signInResult:failed code=" + e.statusCode)
+//            sendError()
+        }
+
     }
 }

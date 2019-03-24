@@ -16,6 +16,7 @@
     <string name="skip">Passer</string>
     <string name="facebook_app_id">410978659654516</string>
     <string name="fb_login_protocol_scheme">fb410978659654516</string>
+
     <string name="preference_file_key">410978659654516410978659654556</string>
     <string name="skip_key">410978659659916410978659654556</string>
     <string name="msg_sign_in">Postez des annonces et faites des offres de véhicule, vous pouvez aussi suivre vos

@@ -1,4 +1,4 @@
-package com.waelkhelil.sayara_dz.view
+    package com.waelkhelil.sayara_dz.view
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -7,11 +7,18 @@ import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import android.os.AsyncTask
 import android.preference.PreferenceManager
+import android.util.Log
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount
+import com.google.android.gms.common.api.ApiException
+import com.google.android.gms.tasks.Task
 import com.waelkhelil.sayara_dz.R
 import com.waelkhelil.sayara_dz.view.home_ui.HomeFragment
 
 
 class MainActivity : AppCompatActivity() {
+    private val TAG : String = "MainActivity"
+
 //    private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
 //        when (item.itemId) {
 //            R.id.navigation_home -> {
@@ -68,7 +75,8 @@ class MainActivity : AppCompatActivity() {
 ////        fragmentTransaction.add(R.id.fragment_container, fragment, "home")
 ////        fragmentTransaction.commit()
     }
-//    fun setFragment(
+
+    //    fun setFragment(
 //        fragment:Fragment,
 //        tag:String,
 //        backStackTag:String?
@@ -92,4 +100,7 @@ class MainActivity : AppCompatActivity() {
 //        val intent = Intent(this, AppIntroActivity::class.java)
 //        startActivity(intent)
 //    }
+
+
+
 }
