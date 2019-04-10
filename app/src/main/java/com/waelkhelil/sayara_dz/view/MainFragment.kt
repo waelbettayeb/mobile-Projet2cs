@@ -1,17 +1,14 @@
 package com.waelkhelil.sayara_dz.view
 
-import android.app.Activity
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.Navigation.findNavController
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.waelkhelil.sayara_dz.R
-import com.waelkhelil.sayara_dz.view.LoginViewModel.AuthenticationState.*
 
 
 class MainFragment : Fragment() {
@@ -20,9 +17,27 @@ class MainFragment : Fragment() {
         fun newInstance() = MainFragment()
     }
 
+    private lateinit var navController : NavController
+        private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
+        when (item.itemId) {
 
-    private lateinit var viewModel: LoginViewModel
+            R.id.navigation_home -> {
+                navController.navigate(R.id.home_fragment)
+            }
+            R.id.navigation_search -> {
+                navController.navigate(R.id.search_fragment)
 
+            }
+            R.id.navigation_notification -> {
+                navController.navigate(R.id.notification_fragment)
+
+            }
+            R.id.navigation_user -> {
+                navController.navigate(R.id.fragment_user_content)
+            }
+        }
+        true
+    }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -32,23 +47,10 @@ class MainFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val navController = findNavController(view)
-        viewModel = ViewModelProviders.of(this).get(LoginViewModel::class.java)
+        val fragmentContainer = view.findViewById<View>(R.id.nav_main_host_fragment)
+        navController = findNavController(fragmentContainer)
 
-        viewModel.authenticationState.observe(viewLifecycleOwner, Observer { authenticationState ->
-            when (authenticationState) {
-                AUTHENTICATED -> showWelcomeMessage()
-                UNAUTHENTICATED -> navController.navigate(R.id.fragment_login)
-            }
-        })
-
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-
-    }
-    private fun showWelcomeMessage() {
-
+        val lBottomNavigationView = view.findViewById<BottomNavigationView>(R.id.bottom_navigation)
+        lBottomNavigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
     }
 }

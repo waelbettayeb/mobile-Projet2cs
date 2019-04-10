@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/main_nav_graph" app:startDestination="@id/home_fragment">
+
+
+
+    <fragment android:id="@+id/home_fragment"
+              android:name="com.waelkhelil.sayara_dz.view.home_ui.HomeFragment"
+              android:label="HomeFragment"
+              tools:layout="@layout/home_fragment"/>
+
+    <fragment android:id="@+id/search_fragment"
+              android:name="com.waelkhelil.sayara_dz.view.SearchFragment"
+              android:label="SearchFragment"
+              tools:layout="@layout/search_fragment"/>
+
+    <fragment android:id="@+id/notification_fragment"
+              android:name="com.waelkhelil.sayara_dz.view.NotificationFragment"
+              android:label="NotificationFragment"
+              tools:layout="@layout/fragment_notification"/>
+
+  <fragment android:id="@+id/fragment_user_content"
+              android:name="com.waelkhelil.sayara_dz.view.UserContentFragment"
+              android:label="UserNavigationFragment"
+              tools:layout="@layout/fragment_user_content"/>
+
+</navigation>

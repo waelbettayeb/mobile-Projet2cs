@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.waelkhelil.sayara_dz.database.Brand
+import com.waelkhelil.sayara_dz.model.Brand
 import com.waelkhelil.sayara_dz.R
 
 class BrandViewHolder(inflater: LayoutInflater, parent: ViewGroup) :

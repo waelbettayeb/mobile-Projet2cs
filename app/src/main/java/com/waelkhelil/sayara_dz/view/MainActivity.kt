@@ -8,6 +8,10 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import android.os.AsyncTask
 import android.preference.PreferenceManager
 import android.util.Log
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.Navigation
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.common.api.ApiException
@@ -19,30 +23,7 @@ import com.waelkhelil.sayara_dz.view.home_ui.HomeFragment
 class MainActivity : AppCompatActivity() {
     private val TAG : String = "MainActivity"
 
-//    private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
-//        when (item.itemId) {
-//            R.id.navigation_home -> {
-//                setFragment(HomeFragment(), "home")
-//            }
-//            R.id.navigation_search -> {
-//                setFragment(SearchFragment(), "search")
-//            }
-////            R.id.navigation_add_listing-> {
-//////                TODO: User_Authentication
-////                return@OnNavigationItemSelectedListener false
-////            }
-//            R.id.navigation_notification -> {
-////                TODO: User_Authentication
-//                return@OnNavigationItemSelectedListener false
-//            }
-//            R.id.navigation_user -> {
-////                TODO: User_Authentication
-//                return@OnNavigationItemSelectedListener false
-//
-//            }
-//        }
-//        true
-//    }
+
 //    class doAsync(val handler: () -> Unit) : AsyncTask<Void, Void, Void>() {
 //        override fun doInBackground(vararg params: Void?): Void? {
 //            handler()
@@ -53,19 +34,34 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(com.waelkhelil.sayara_dz.R.layout.activity_main)
+
+        val navController = Navigation.findNavController(this, R.id.nav_host_fragment)
+
+        val viewModel = ViewModelProviders.of(this).get(LoginViewModel::class.java)
+
+
+        viewModel.authenticationState.observe(this,
+            Observer<LoginViewModel.AuthenticationState> { authenticationState ->
+            when (authenticationState) {
+                LoginViewModel.AuthenticationState.UNAUTHENTICATED -> navController.navigate(R.id.fragment_login)
+                LoginViewModel.AuthenticationState.AUTHENTICATED ->
+                    navController.navigate(R.id.fragment_main)
+            }
+        })
+
 //
 //        val sharedPref =  PreferenceManager.getDefaultSharedPreferences(applicationContext)
 //        val defaultValue = false
 //        val isSkipped = sharedPref.getBoolean(getString(R.string.skip_key), defaultValue)
 //        val isConnected = sharedPref.getBoolean("is_connected", defaultValue)
+
 //
 //
 //        if (!isSkipped && !isConnected) {
 //            switchToSignInActivity()
 //        }
 //
-////        val lBottomNavigationView = findViewById<BottomNavigationView>(com.waelkhelil.sayara_dz.R.id.bottom_navigation)
-////        lBottomNavigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
+
 //
 ////      Adding the home fragment programmatically to R.id.fragment_container
 //        val fragmentManager = supportFragmentManager

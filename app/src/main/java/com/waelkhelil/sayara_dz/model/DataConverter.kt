@@ -1,4 +1,4 @@
-package com.waelkhelil.sayara_dz.database
+package com.waelkhelil.sayara_dz.model
 
 import androidx.room.*
 import java.sql.Date

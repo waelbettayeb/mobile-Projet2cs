@@ -26,7 +26,7 @@ import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.Task
 import com.google.android.material.snackbar.Snackbar
 import com.waelkhelil.sayara_dz.R
-import com.waelkhelil.sayara_dz.database.User
+import com.waelkhelil.sayara_dz.model.User
 import com.waelkhelil.sayara_dz.view.LoginViewModel.AuthenticationState.*
 import java.util.*
 
@@ -118,13 +118,8 @@ class LoginFragment : Fragment() {
         sharedPref.clear()
         sharedPref.putBoolean(getString(R.string.skip_key), true)
         sharedPref.commit()
-
-        switchActivity()
     }
 
-    fun switchActivity() {
-
-    }
 
     private fun signIn() {
         val signInIntent = mGoogleSignInClient.getSignInIntent()
@@ -139,7 +134,7 @@ class LoginFragment : Fragment() {
         val toast = Toast.makeText(context, text, duration)
         toast.show()
     }
-    private fun setUser(name: String?, uri: Uri?): User {
+    private fun setUser(name: String, uri: Uri): User {
         Log.i(TAG, "user name = $name")
         val sharedPref = PreferenceManager.getDefaultSharedPreferences(context).edit()
         sharedPref.clear()
@@ -147,7 +142,10 @@ class LoginFragment : Fragment() {
         sharedPref.putString("photo_url", uri.toString())
         sharedPref.putBoolean("is_connected", true)
         sharedPref.commit()
-        return User(name?:"", uri.toString())
+
+        viewModel.authenticate(name, uri.toString())
+
+        return User(name, uri.toString())
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -167,16 +165,14 @@ class LoginFragment : Fragment() {
         if (isLoggedIn) {
             val profile = Profile.getCurrentProfile()
             setUser(profile.firstName, profile.getProfilePictureUri(100, 100))
-            switchActivity()
         }
     }
     private fun handleSignInResult(completedTask: Task<GoogleSignInAccount>) {
         try {
             val account = completedTask.getResult(ApiException::class.java)
 
-//            setUser(account?.getGivenName(), account?.getPhotoUrl())
+            setUser(account?.getGivenName()!!, account?.getPhotoUrl()!!)
             // Signed in successfully, show authenticated UI.
-//            switchActivity()
         } catch (e: ApiException) {
             // The ApiException status code indicates the detailed failure reason.
             // Please refer to the GoogleSignInStatusCodes class reference for more information.

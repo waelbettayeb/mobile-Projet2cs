@@ -3,9 +3,9 @@ package com.waelkhelil.sayara_dz.view.brands_ui
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
-import com.waelkhelil.sayara_dz.database.AppDatabase
-import com.waelkhelil.sayara_dz.database.Brand
-import com.waelkhelil.sayara_dz.database.BrandRepository
+import com.waelkhelil.sayara_dz.model.AppDatabase
+import com.waelkhelil.sayara_dz.model.Brand
+import com.waelkhelil.sayara_dz.model.BrandRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job

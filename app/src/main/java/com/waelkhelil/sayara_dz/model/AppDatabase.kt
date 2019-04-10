@@ -1,4 +1,4 @@
-package com.waelkhelil.sayara_dz.database
+package com.waelkhelil.sayara_dz.model
 
 import android.content.Context
 import androidx.room.Database
@@ -19,7 +19,7 @@ abstract class AppDatabase : RoomDatabase()
     companion object Factory {
         private var DATABASE_NAME: String = "sayara_db"
         @Volatile
-        private var sInstance:AppDatabase? = null
+        private var sInstance: AppDatabase? = null
 
         fun getDatabase(context: Context, scope: CoroutineScope): AppDatabase {
             val tempInstance = sInstance
@@ -57,7 +57,7 @@ abstract class AppDatabase : RoomDatabase()
             brandDao.deleteAll()
 
             var brand1 = Brand(1, "toyota", R.mipmap.ic_launcher)
-            var brand2 = Brand(2, "Renault",R.drawable.test)
+            var brand2 = Brand(2, "Renault", R.drawable.test)
             brandDao.insertAll(brand1,brand2)
 
 

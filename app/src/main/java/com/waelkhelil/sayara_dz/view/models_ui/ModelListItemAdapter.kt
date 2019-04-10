@@ -3,8 +3,7 @@ package com.waelkhelil.sayara_dz.view.models_ui
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.waelkhelil.sayara_dz.database.Brand
-import com.waelkhelil.sayara_dz.database.Model
+import com.waelkhelil.sayara_dz.model.Model
 
 class ModelListItemAdapter(private val list: List<Model>)
     : RecyclerView.Adapter<ModelItemViewHolder>() {

@@ -10,8 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.waelkhelil.sayara_dz.R
-import com.waelkhelil.sayara_dz.database.Brand
-import com.waelkhelil.sayara_dz.view.brands_ui.BrandsListFragment
+import com.waelkhelil.sayara_dz.model.Brand
 import com.waelkhelil.sayara_dz.view.MainActivity
 import kotlinx.android.synthetic.main.horziontal_list_fragment.*
 
@@ -47,11 +46,11 @@ class HorziontalListFragment() : Fragment() {
 
         val parentActivity: MainActivity = activity as MainActivity
         val list:List<Brand> = listOf(
-            Brand(0,"Toyota" ,R.mipmap.ic_launcher),
-            Brand(1,"Audi" ,R.mipmap.ic_launcher),
-            Brand(2,"BMW" ,R.mipmap.ic_launcher),
-            Brand(3,"Renault",R.mipmap.ic_launcher ),
-            Brand(4,"Mini",R.mipmap.ic_launcher)
+            Brand(0, "Toyota", R.mipmap.ic_launcher),
+            Brand(1, "Audi", R.mipmap.ic_launcher),
+            Brand(2, "BMW", R.mipmap.ic_launcher),
+            Brand(3, "Renault", R.mipmap.ic_launcher),
+            Brand(4, "Mini", R.mipmap.ic_launcher)
         )
 //        rv_horizontal_list?. adapter = CardsListItemAdapter(list)
         var lLayoutManager = LinearLayoutManager(activity)

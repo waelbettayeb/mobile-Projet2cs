@@ -8,7 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.waelkhelil.sayara_dz.R
-import com.waelkhelil.sayara_dz.database.Model
+import com.waelkhelil.sayara_dz.model.Model
 import kotlinx.android.synthetic.main.model_fragment.*
 
 class ModelFragment : Fragment() {
@@ -33,13 +33,13 @@ class ModelFragment : Fragment() {
 
         }
         val list:List<Model> = listOf(
-            Model(0,"Toyota" ,""),
-            Model(1,"Audi" ,""),
-            Model(2,"BMW" ,""),
-            Model(3,"Renault","" ),
-            Model(4,"Renault","" ),
-            Model(5,"Renault","" ),
-            Model(6,"Mini","")
+            Model(0, "Toyota", ""),
+            Model(1, "Audi", ""),
+            Model(2, "BMW", ""),
+            Model(3, "Renault", ""),
+            Model(4, "Renault", ""),
+            Model(5, "Renault", ""),
+            Model(6, "Mini", "")
         )
 //        rv_horizontal_list?. adapter = CardsListItemAdapter(list)
         var lLayoutManager = LinearLayoutManager(activity)

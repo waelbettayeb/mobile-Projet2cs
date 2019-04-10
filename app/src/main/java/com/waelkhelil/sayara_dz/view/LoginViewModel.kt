@@ -1,5 +1,6 @@
 package com.waelkhelil.sayara_dz.view
 
+import android.preference.PreferenceManager
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel;
 
@@ -12,10 +13,13 @@ class LoginViewModel : ViewModel() {
 
     val authenticationState = MutableLiveData<AuthenticationState>()
     var username = ""
+    var userPhotoUrl = ""
 
     init {
         // In this example, the user is always unauthenticated when MainActivity is launched
+
         authenticationState.value = AuthenticationState.UNAUTHENTICATED
+        authenticationState.value = AuthenticationState.AUTHENTICATED
         username = ""
     }
 
@@ -23,14 +27,11 @@ class LoginViewModel : ViewModel() {
         authenticationState.value = AuthenticationState.UNAUTHENTICATED
     }
 
-    fun authenticate(username: String, password: String) {
-        if (true) {
+    fun authenticate(username: String, userPhotoUrl: String) {
             this.username = username
+            this.userPhotoUrl = userPhotoUrl
             authenticationState.value = AuthenticationState.AUTHENTICATED
-        } else {
-            authenticationState.value =
-                AuthenticationState.INVALID_AUTHENTICATION
-        }
+
     }
 
 

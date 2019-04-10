@@ -1,17 +1,14 @@
 package com.waelkhelil.sayara_dz.view.models_ui
 
-import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.waelkhelil.sayara_dz.database.Brand
 import com.waelkhelil.sayara_dz.R
-import com.waelkhelil.sayara_dz.database.Model
+import com.waelkhelil.sayara_dz.model.Model
 import com.waelkhelil.sayara_dz.view.MainActivity
-import com.waelkhelil.sayara_dz.view.models_ui.ModelFragment
 
 class ModelItemViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
     RecyclerView.ViewHolder(inflater.inflate(R.layout.model_list_item, parent, false)), View.OnClickListener  {

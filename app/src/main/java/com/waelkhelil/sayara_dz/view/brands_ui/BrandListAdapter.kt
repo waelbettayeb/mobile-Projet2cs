@@ -9,7 +9,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import com.waelkhelil.sayara_dz.R
-import com.waelkhelil.sayara_dz.database.Brand
+import com.waelkhelil.sayara_dz.model.Brand
 
 class BrandListAdapter internal constructor(context: Context) : RecyclerView.Adapter<BrandListAdapter.BrandViewHolder>()
 {
