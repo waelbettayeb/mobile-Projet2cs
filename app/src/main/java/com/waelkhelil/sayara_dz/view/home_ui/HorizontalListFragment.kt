@@ -11,14 +11,13 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.waelkhelil.sayara_dz.R
 import com.waelkhelil.sayara_dz.model.Brand
-import com.waelkhelil.sayara_dz.view.MainActivity
 import kotlinx.android.synthetic.main.horziontal_list_fragment.*
 
 
-class HorziontalListFragment() : Fragment() {
+class HorizontalListFragment() : Fragment() {
 
     companion object {
-        fun newInstance() = HorziontalListFragment()
+        fun newInstance() = HorizontalListFragment()
     }
 
     private lateinit var viewModel: HorziontalListViewModel
@@ -31,6 +30,8 @@ class HorziontalListFragment() : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
         val lBundle: Bundle? = arguments
         if (lBundle != null) {
             text_list_name.setText(lBundle.getString("header"))
@@ -40,11 +41,9 @@ class HorziontalListFragment() : Fragment() {
         val lButtonSeeAll = getView()!!.
                 findViewById<Button>(R.id.button_see_all_brands)
         lButtonSeeAll.setOnClickListener {
-            val parentActivity: MainActivity = activity as MainActivity
-//            parentActivity.setFragment(BrandsListFragment(), "brands_list", "home")
+
         }
 
-        val parentActivity: MainActivity = activity as MainActivity
         val list:List<Brand> = listOf(
             Brand(0, "Toyota", R.mipmap.ic_launcher),
             Brand(1, "Audi", R.mipmap.ic_launcher),
@@ -53,7 +52,7 @@ class HorziontalListFragment() : Fragment() {
             Brand(4, "Mini", R.mipmap.ic_launcher)
         )
 //        rv_horizontal_list?. adapter = CardsListItemAdapter(list)
-        var lLayoutManager = LinearLayoutManager(activity)
+        val lLayoutManager = LinearLayoutManager(activity)
         lLayoutManager.orientation = LinearLayoutManager.HORIZONTAL
         rv_horizontal_list.apply {
             // set a LinearLayoutManager to handle Android
@@ -67,7 +66,6 @@ class HorziontalListFragment() : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this).get(HorziontalListViewModel::class.java)
-        // TODO: Use the ViewModel
     }
 
 }
