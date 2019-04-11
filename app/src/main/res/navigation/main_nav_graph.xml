@@ -8,7 +8,11 @@
     <fragment android:id="@+id/home_fragment"
               android:name="com.waelkhelil.sayara_dz.view.home_ui.HomeFragment"
               android:label="HomeFragment"
-              tools:layout="@layout/home_fragment"/>
+              tools:layout="@layout/home_fragment">
+        <action android:id="@+id/action_home_fragment_to_modelFragment" app:destination="@id/modelFragment"/>
+        <action android:id="@+id/action_home_fragment_to_brandsListFragment" app:destination="@id/brandsListFragment"
+                app:popUpTo="@+id/home_fragment"/>
+    </fragment>
 
     <fragment android:id="@+id/search_fragment"
               android:name="com.waelkhelil.sayara_dz.view.SearchFragment"
@@ -20,9 +24,14 @@
               android:label="NotificationFragment"
               tools:layout="@layout/fragment_notification"/>
 
-  <fragment android:id="@+id/fragment_user_content"
+    <fragment android:id="@+id/fragment_user_content"
               android:name="com.waelkhelil.sayara_dz.view.UserContentFragment"
               android:label="UserNavigationFragment"
               tools:layout="@layout/fragment_user_content"/>
+    <fragment android:id="@+id/modelFragment" android:name="com.waelkhelil.sayara_dz.view.models_ui.ModelFragment"
+              android:label="model_fragment" tools:layout="@layout/model_fragment"/>
+    <fragment android:id="@+id/brandsListFragment"
+              android:name="com.waelkhelil.sayara_dz.view.brands_ui.BrandsListFragment"
+              android:label="brands_list_fragment" tools:layout="@layout/brands_list_fragment"/>
 
 </navigation>

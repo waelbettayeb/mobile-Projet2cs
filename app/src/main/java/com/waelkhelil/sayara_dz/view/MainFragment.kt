@@ -47,9 +47,9 @@ class MainFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+//        findNavController(view).navigate(R.id.action_fragment_main_to_main_nav_graph)
         val fragmentContainer = view.findViewById<View>(R.id.nav_main_host_fragment)
         navController = findNavController(fragmentContainer)
-
         val lBottomNavigationView = view.findViewById<BottomNavigationView>(R.id.bottom_navigation)
         lBottomNavigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
     }

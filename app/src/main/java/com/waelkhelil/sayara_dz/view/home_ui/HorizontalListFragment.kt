@@ -8,6 +8,7 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.waelkhelil.sayara_dz.R
 import com.waelkhelil.sayara_dz.model.Brand
@@ -41,7 +42,9 @@ class HorizontalListFragment() : Fragment() {
         val lButtonSeeAll = getView()!!.
                 findViewById<Button>(R.id.button_see_all_brands)
         lButtonSeeAll.setOnClickListener {
-
+            val fragmentContainer = activity?.findViewById<View>(R.id.nav_main_host_fragment)
+            val navController = fragmentContainer?.let { Navigation.findNavController(it)}
+            navController?.navigate(R.id.action_home_fragment_to_brandsListFragment)
         }
 
         val list:List<Brand> = listOf(

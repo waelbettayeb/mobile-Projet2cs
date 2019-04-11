@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.waelkhelil.sayara_dz.model.Brand
 import com.waelkhelil.sayara_dz.R
@@ -29,16 +30,14 @@ class CardViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
         mBrand = brand
     }
 
-    override fun onClick(v: View?) {
+    override fun onClick(view: View?) {
         Log.d(toString(), "onClick")
-        val lMainActivity = this.itemView.context as MainActivity
 
-        val lBundle= Bundle()
-        val lFragment = ModelFragment()
+        val fragmentContainer = view?.findViewById<View>(R.id.nav_main_host_fragment)
+        val navController = fragmentContainer?.let { Navigation.findNavController(it)}
+        mBrand?.id?.let {
+            navController?.navigate(R.id.action_home_fragment_to_modelFragment)
+        }
 
-        mBrand?.id?.let { lBundle.putLong("brand_id", it) }
-        lFragment.arguments = lBundle
-
-//        lMainActivity.setFragment(lFragment, "model", null)
     }
 }
