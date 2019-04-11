@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-            android:id="@+id/navigation_home"
+            android:id="@+id/home_fragment"
             android:icon="@drawable/ic_menu_home_black_24dp"
             android:title="@string/title_home"/>
     <item
-            android:id="@+id/navigation_search"
+            android:id="@+id/search_fragment"
             android:icon="@drawable/ic_menu_search_black_24dp"
             android:title="@string/title_search"/>
     <!--<item-->
@@ -13,11 +13,11 @@
             <!--android:icon="@drawable/ic_menu_add_black_24dp"-->
             <!--android:title="@string/title_add"/>-->
     <item
-            android:id="@+id/navigation_notification"
+            android:id="@+id/notification_fragment"
             android:icon="@drawable/ic_menu_notifications_none_black_24dp"
             android:title="@string/title_notification"/>
     <item
-            android:id="@+id/navigation_user"
+            android:id="@+id/fragment_user_content"
             android:icon="@drawable/ic_menu_person_outline_black_24dp"
             android:title="@string/title_listing"/>
 </menu>

@@ -6,9 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.NavController
+import androidx.navigation.Navigation
 import androidx.navigation.Navigation.findNavController
+import androidx.navigation.ui.NavigationUI
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.waelkhelil.sayara_dz.R
+import kotlinx.android.synthetic.main.fragment_main.*
 
 
 class MainFragment : Fragment() {
@@ -18,26 +21,7 @@ class MainFragment : Fragment() {
     }
 
     private lateinit var navController : NavController
-        private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
-        when (item.itemId) {
 
-            R.id.navigation_home -> {
-                navController.navigate(R.id.home_fragment)
-            }
-            R.id.navigation_search -> {
-                navController.navigate(R.id.search_fragment)
-
-            }
-            R.id.navigation_notification -> {
-                navController.navigate(R.id.notification_fragment)
-
-            }
-            R.id.navigation_user -> {
-                navController.navigate(R.id.fragment_user_content)
-            }
-        }
-        true
-    }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -47,10 +31,11 @@ class MainFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-//        findNavController(view).navigate(R.id.action_fragment_main_to_main_nav_graph)
+
         val fragmentContainer = view.findViewById<View>(R.id.nav_main_host_fragment)
-        navController = findNavController(fragmentContainer)
         val lBottomNavigationView = view.findViewById<BottomNavigationView>(R.id.bottom_navigation)
-        lBottomNavigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
+
+        navController = findNavController(requireActivity(), R.id.nav_main_host_fragment)
+        NavigationUI.setupWithNavController(lBottomNavigationView, navController)
     }
 }

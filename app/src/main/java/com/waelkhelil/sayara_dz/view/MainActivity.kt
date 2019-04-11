@@ -11,6 +11,7 @@ import android.util.Log
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
@@ -33,19 +34,18 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(com.waelkhelil.sayara_dz.R.layout.activity_main)
+        setContentView(R.layout.activity_main)
 
         val navController = Navigation.findNavController(this, R.id.nav_host_fragment)
 
         val viewModel = ViewModelProviders.of(this).get(LoginViewModel::class.java)
-
-
         viewModel.authenticationState.observe(this,
             Observer<LoginViewModel.AuthenticationState> { authenticationState ->
             when (authenticationState) {
-                LoginViewModel.AuthenticationState.UNAUTHENTICATED -> navController.navigate(R.id.fragment_login)
-                LoginViewModel.AuthenticationState.AUTHENTICATED ->
-                    navController.navigate(R.id.fragment_main)
+                LoginViewModel.AuthenticationState.UNAUTHENTICATED ->
+                    navController.navigate(R.id.fragment_login)
+//                LoginViewModel.AuthenticationState.AUTHENTICATED ->
+//                    navController.navigate(R.id.action_global_main_nav_graph)
             }
         })
 

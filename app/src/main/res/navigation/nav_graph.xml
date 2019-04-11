@@ -2,31 +2,15 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:app="http://schemas.android.com/apk/res-auto"
             xmlns:tools="http://schemas.android.com/tools" android:id="@+id/nav_graph"
-            app:startDestination="@id/startFragment">
-    <include app:graph="@navigation/main_nav_graph" />
+            app:startDestination="@id/fragment_main">
 
-    <fragment android:id="@+id/startFragment"
-              android:name="com.waelkhelil.sayara_dz.view.StartFragment"
-              android:label="StartFragment"
-              tools:layout="@layout/fragment_start">
-
-        <action android:id="@+id/action_startFragment_to_fragment_login" app:destination="@id/fragment_login"/>
-        <action android:id="@+id/action_startFragment_to_fragment_main" app:destination="@id/fragment_main"/>
-
-
-    </fragment>
-
-
+    <fragment android:id="@+id/fragment_main"
+              android:name="com.waelkhelil.sayara_dz.view.MainFragment"
+              android:label="brands_list_fragment"
+              tools:layout="@layout/fragment_main"/>
 
     <fragment android:id="@+id/fragment_login"
               android:name="com.waelkhelil.sayara_dz.view.LoginFragment"
               android:label="brands_list_fragment"
               tools:layout="@layout/fragment_login"/>
-
-    <fragment android:id="@+id/fragment_main"
-              android:name="com.waelkhelil.sayara_dz.view.MainFragment"
-              android:label="brands_list_fragment"
-              tools:layout="@layout/fragment_main">
-        <action android:id="@+id/action_fragment_main_to_main_nav_graph" app:destination="@id/main_nav_graph"/>
-    </fragment>
 </navigation>
