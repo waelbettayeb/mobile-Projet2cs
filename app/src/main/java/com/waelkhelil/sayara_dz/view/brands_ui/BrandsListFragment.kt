@@ -4,8 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toolbar
+import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
+import androidx.navigation.Navigation
+import androidx.navigation.ui.NavigationUI
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.waelkhelil.sayara_dz.R
 import com.waelkhelil.sayara_dz.model.Brand
@@ -25,10 +27,16 @@ class BrandsListFragment : Fragment() {
         return inflater.inflate(R.layout.brands_list_fragment, container, false)
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        val toolbar: Toolbar = view.findViewById(R.id.toolbar)
+        val navController = Navigation.findNavController(requireActivity(), R.id.nav_main_host_fragment)
+        NavigationUI.setupWithNavController(toolbar, navController)
+    }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-//        setSupportActionBar(view?.findViewById(R.id.toolbar) as Toolbar)
+
         val list:List<Brand> = listOf(
             Brand(0, "Toyota", ""),
             Brand(1, "Audi", ""),

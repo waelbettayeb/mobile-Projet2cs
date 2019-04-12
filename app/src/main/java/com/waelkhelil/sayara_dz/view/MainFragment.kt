@@ -32,7 +32,6 @@ class MainFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val fragmentContainer = view.findViewById<View>(R.id.nav_main_host_fragment)
         val lBottomNavigationView = view.findViewById<BottomNavigationView>(R.id.bottom_navigation)
 
         navController = findNavController(requireActivity(), R.id.nav_main_host_fragment)

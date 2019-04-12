@@ -33,6 +33,6 @@
     </fragment>
     <fragment android:id="@+id/brandsListFragment"
               android:name="com.waelkhelil.sayara_dz.view.brands_ui.BrandsListFragment"
-              android:label="brands_list_fragment" tools:layout="@layout/brands_list_fragment"/>
+              tools:layout="@layout/brands_list_fragment"/>
 
 </navigation>
