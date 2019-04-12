@@ -3,16 +3,22 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_height="match_parent"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         tools:context=".view.brands_ui.BrandsListFragment">
-    <androidx.recyclerview.widget.RecyclerView
+
+
+    <com.simplecityapps.recyclerview_fastscroll.views.FastScrollRecyclerView
             android:id="@+id/rv_brands_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:clipToPadding="false"
-            android:paddingLeft="@dimen/activity_margin"
-            android:paddingRight="@dimen/activity_margin"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:context="com.google.samples.apps.sunflower.GardenActivity"
-            tools:listitem="@layout/list_item_brand" />
+            app:fastScrollPopupBgColor="@color/colorAccent"
+            app:fastScrollPopupTextColor="@android:color/primary_text_dark"
+            app:fastScrollThumbColor="@color/colorAccent"
+            app:fastScrollPopupTextSize="20sp"
+            app:fastScrollPopupBackgroundSize="60dp"
+            tools:context=".view.brands_ui.BrandsListFragment"
+            tools:listitem="@layout/list_item_brand"/>
+
 </FrameLayout>

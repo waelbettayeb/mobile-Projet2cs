@@ -34,6 +34,17 @@ class BrandsListFragment : Fragment() {
             Brand(3, "Renault", ""),
             Brand(4, "Renault", ""),
             Brand(5, "Renault", ""),
+            Brand(6, "Mini", "") ,
+            Brand(2, "BMW", ""),
+            Brand(3, "Renault", ""),
+            Brand(4, "Renault", ""),
+            Brand(5, "Renault", ""),
+            Brand(6, "Mini", ""),
+            Brand(6, "Mini", "") ,
+            Brand(2, "BMW", ""),
+            Brand(3, "Renault", ""),
+            Brand(4, "Renault", ""),
+            Brand(5, "Renault", ""),
             Brand(6, "Mini", "")
         )
         val recyclerView = rv_brands_list

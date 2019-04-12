@@ -29,7 +29,7 @@ class BrandViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
             .with(itemView)
             .load(brand.url)
             .apply(RequestOptions.circleCropTransform())
-            .placeholder(R.drawable.user_icon)
+            .placeholder(R.drawable.icon_mono)
             .into(itemView.findViewById(R.id.image_list_item_logo))
     }
 
