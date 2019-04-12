@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.waelkhelil.sayara_dz.R
@@ -27,6 +28,7 @@ class BrandsListFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+//        setSupportActionBar(view?.findViewById(R.id.toolbar) as Toolbar)
         val list:List<Brand> = listOf(
             Brand(0, "Toyota", ""),
             Brand(1, "Audi", ""),
