@@ -9,10 +9,8 @@ import android.view.ViewGroup
 import androidx.viewpager.widget.PagerAdapter
 import com.waelkhelil.sayara_dz.R
 import androidx.viewpager.widget.ViewPager
-
-
-
-
+import com.facebook.shimmer.Shimmer
+import com.facebook.shimmer.ShimmerFrameLayout
 
 
 class NotificationBidsFragment : Fragment() {
@@ -28,4 +26,9 @@ class NotificationBidsFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_notification_bids, container, false)
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        val container:ShimmerFrameLayout = view.findViewById(R.id.shimmer_view_container_bids)
+
+    }
 }

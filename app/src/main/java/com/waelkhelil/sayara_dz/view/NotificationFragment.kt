@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
-import androidx.viewpager.widget.PagerAdapter
 import com.waelkhelil.sayara_dz.R
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.tabs.TabLayout
