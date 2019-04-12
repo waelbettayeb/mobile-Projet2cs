@@ -28,11 +28,11 @@
               android:label="UserNavigationFragment"
               tools:layout="@layout/fragment_user_content"/>
     <fragment android:id="@+id/modelsFragment" android:name="com.waelkhelil.sayara_dz.view.models_ui.ModelsFragment"
-              android:label="models_fragment" tools:layout="@layout/models_fragment">
+               tools:layout="@layout/models_fragment">
         <argument android:name="brandId" app:argType="long"/>
     </fragment>
     <fragment android:id="@+id/brandsListFragment"
               android:name="com.waelkhelil.sayara_dz.view.brands_ui.BrandsListFragment"
-              tools:layout="@layout/brands_list_fragment"/>
+              android:label="@string/brands" tools:layout="@layout/brands_list_fragment"/>
 
 </navigation>
