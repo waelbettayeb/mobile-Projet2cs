@@ -29,10 +29,10 @@ class ModelItemViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
 
     override fun onClick(v: View?) {
         Log.d(toString(), "onClick")
-        val lMainActivity = this.itemView.context as MainActivity
+//        val lMainActivity = this.itemView.context as MainActivity
 
 //        val lBundle= Bundle()
-//        val lFragment = ModelFragment()
+//        val lFragment = ModelsFragment()
 //
 //        mModel?.id?.let { lBundle.putLong("model_id", it) }
 //        lFragment.arguments = lBundle

@@ -9,12 +9,12 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.waelkhelil.sayara_dz.R
 import com.waelkhelil.sayara_dz.model.Model
-import kotlinx.android.synthetic.main.model_fragment.*
+import kotlinx.android.synthetic.main.models_fragment.*
 
-class ModelFragment : Fragment() {
+class ModelsFragment : Fragment() {
 
     companion object {
-        fun newInstance() = ModelFragment()
+        fun newInstance() = ModelsFragment()
     }
 
     private lateinit var viewModel: ModelViewModel
@@ -23,7 +23,7 @@ class ModelFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.model_fragment, container, false)
+        return inflater.inflate(R.layout.models_fragment, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -42,7 +42,7 @@ class ModelFragment : Fragment() {
             Model(6, "Mini", "")
         )
 //        rv_horizontal_list?. adapter = CardsListItemAdapter(list)
-        var lLayoutManager = LinearLayoutManager(activity)
+        val lLayoutManager = LinearLayoutManager(activity)
         rv_models_list.apply {
             // set a LinearLayoutManager to handle Android
             // RecyclerView behavior

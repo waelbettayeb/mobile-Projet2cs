@@ -10,7 +10,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-@Database(entities = [Brand::class], version = 1)
+@Database(entities = [Brand::class], version = 2)
 
 abstract class AppDatabase : RoomDatabase()
 {
@@ -56,11 +56,9 @@ abstract class AppDatabase : RoomDatabase()
         fun populateDatabase(brandDao: BrandDao) {
             brandDao.deleteAll()
 
-            var brand1 = Brand(1, "toyota", R.mipmap.ic_launcher)
-            var brand2 = Brand(2, "Renault", R.drawable.test)
+            var brand1 = Brand(1, "toyota", "")
+            var brand2 = Brand(2, "Renault", "")
             brandDao.insertAll(brand1,brand2)
-
-
         }
     }
 }

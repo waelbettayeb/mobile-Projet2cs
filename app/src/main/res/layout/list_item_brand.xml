@@ -6,8 +6,8 @@
               android:layout_height="wrap_content">
 
     <ImageView
-            android:layout_width="60dp"
-            android:layout_height="60dp" tools:srcCompat="@mipmap/ic_launcher"
+            android:layout_width="50dp"
+            android:layout_height="50dp" tools:srcCompat="@mipmap/ic_launcher"
             android:id="@+id/image_list_item_logo"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -18,7 +18,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toEndOf="@+id/image_list_item_logo"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="24dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent"
     >
@@ -27,7 +27,7 @@
                 android:text="Renault"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
-                android:fontFamily="@font/kollektif_regular"/>
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
+        />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

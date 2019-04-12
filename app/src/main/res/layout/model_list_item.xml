@@ -20,7 +20,7 @@
 
             <ImageView
                     android:layout_width="100dp"
-                    android:layout_height="100dp" app:srcCompat="@drawable/test" android:id="@+id/imageView3"
+                    android:layout_height="100dp" app:srcCompat="@drawable/user_icon" android:id="@+id/imageView3"
                     app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp" app:layout_constraintTop_toTopOf="parent"
                     android:layout_marginBottom="8dp" app:layout_constraintBottom_toBottomOf="parent"/>

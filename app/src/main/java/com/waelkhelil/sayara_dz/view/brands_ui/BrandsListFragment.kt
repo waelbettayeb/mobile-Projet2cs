@@ -5,14 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.waelkhelil.sayara_dz.R
+import com.waelkhelil.sayara_dz.model.Brand
 import kotlinx.android.synthetic.main.brands_list_fragment.*
 
 
-class BrandsListFragment() : Fragment() {
+class BrandsListFragment : Fragment() {
 
     companion object {
         fun newInstance() = BrandsListFragment()
@@ -25,23 +24,22 @@ class BrandsListFragment() : Fragment() {
         return inflater.inflate(R.layout.brands_list_fragment, container, false)
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-
-
-    }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        val list:List<Brand> = listOf(
+            Brand(0, "Toyota", ""),
+            Brand(1, "Audi", ""),
+            Brand(2, "BMW", ""),
+            Brand(3, "Renault", ""),
+            Brand(4, "Renault", ""),
+            Brand(5, "Renault", ""),
+            Brand(6, "Mini", "")
+        )
         val recyclerView = rv_brands_list
-        val adapter = BrandListAdapter(activity!!.baseContext)
-        recyclerView.adapter = adapter
-        recyclerView.layoutManager = LinearLayoutManager(activity!!.baseContext)
-         lateinit var viewModel: BrandsListViewModel
-         viewModel = ViewModelProviders.of(this).get(BrandsListViewModel::class.java)
-         viewModel.Allbrands.observe(this, Observer { brands ->
-            // Update the cached copy of the words in the adapter.
-            brands?.let { adapter.setBrands(it) }
-        })
+        recyclerView.adapter = BrandsListAdapter(list)
+
+        recyclerView.layoutManager = LinearLayoutManager(activity)
 
     }
 

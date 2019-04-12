@@ -9,10 +9,9 @@
               android:name="com.waelkhelil.sayara_dz.view.home_ui.HomeFragment"
               android:label="HomeFragment"
               tools:layout="@layout/home_fragment">
-        <action android:id="@+id/action_home_fragment_to_modelFragment" app:destination="@id/modelFragment"/>
-        <action android:id="@+id/action_home_fragment_to_brandsListFragment" app:destination="@id/brandsListFragment"
-                app:popUpTo="@+id/home_fragment"/>
     </fragment>
+    <action android:id="@+id/action_global_to_modelsFragment" app:destination="@id/modelsFragment"/>
+    <action android:id="@+id/action_global_to_brandsListFragment" app:destination="@id/brandsListFragment"/>
 
     <fragment android:id="@+id/search_fragment"
               android:name="com.waelkhelil.sayara_dz.view.SearchFragment"
@@ -28,8 +27,10 @@
               android:name="com.waelkhelil.sayara_dz.view.UserContentFragment"
               android:label="UserNavigationFragment"
               tools:layout="@layout/fragment_user_content"/>
-    <fragment android:id="@+id/modelFragment" android:name="com.waelkhelil.sayara_dz.view.models_ui.ModelFragment"
-              android:label="model_fragment" tools:layout="@layout/model_fragment"/>
+    <fragment android:id="@+id/modelsFragment" android:name="com.waelkhelil.sayara_dz.view.models_ui.ModelsFragment"
+              android:label="models_fragment" tools:layout="@layout/models_fragment">
+        <argument android:name="brandId" app:argType="long"/>
+    </fragment>
     <fragment android:id="@+id/brandsListFragment"
               android:name="com.waelkhelil.sayara_dz.view.brands_ui.BrandsListFragment"
               android:label="brands_list_fragment" tools:layout="@layout/brands_list_fragment"/>

@@ -7,7 +7,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
@@ -38,14 +37,14 @@ class HomeTopFragment : Fragment() {
 
         val lUser = sharedPref.getString("user_name", R.string.msg_please_sign_in.toString())
         val lUserPhotoUrl = sharedPref.getString("photo_url","")
-        val lUserNameTextView = getView()!!.
+        val lUserNameTextView = view!!.
             findViewById<TextView>(R.id.text_user_name)
-        lUserNameTextView.setText(lUser)
+        lUserNameTextView.text = lUser
         Glide
             .with(this)
             .load(lUserPhotoUrl)
             .apply(RequestOptions.circleCropTransform())
             .placeholder(R.drawable.user_icon)
-            .into(getView()!!.findViewById<TextView>(R.id.image_user_profile_picture) as ImageView)    }
-
+            .into(view!!.findViewById(R.id.image_user_profile_picture))
+    }
 }

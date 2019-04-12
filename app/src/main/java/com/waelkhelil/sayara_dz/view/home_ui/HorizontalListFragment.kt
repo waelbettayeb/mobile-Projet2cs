@@ -44,15 +44,15 @@ class HorizontalListFragment() : Fragment() {
         lButtonSeeAll.setOnClickListener {
             val fragmentContainer = activity?.findViewById<View>(R.id.nav_main_host_fragment)
             val navController = fragmentContainer?.let { Navigation.findNavController(it)}
-            navController?.navigate(R.id.action_home_fragment_to_brandsListFragment)
+            navController?.navigate(R.id.action_global_to_brandsListFragment)
         }
 
         val list:List<Brand> = listOf(
-            Brand(0, "Toyota", R.mipmap.ic_launcher),
-            Brand(1, "Audi", R.mipmap.ic_launcher),
-            Brand(2, "BMW", R.mipmap.ic_launcher),
-            Brand(3, "Renault", R.mipmap.ic_launcher),
-            Brand(4, "Mini", R.mipmap.ic_launcher)
+            Brand(0, "Toyota", ""),
+            Brand(1, "Audi", ""),
+            Brand(2, "BMW", ""),
+            Brand(3, "Renault", ""),
+            Brand(4, "Mini", "")
         )
 //        rv_horizontal_list?. adapter = CardsListItemAdapter(list)
         val lLayoutManager = LinearLayoutManager(activity)
