@@ -7,7 +7,7 @@
 
     <fragment android:id="@+id/home_fragment"
               android:name="com.waelkhelil.sayara_dz.view.home_ui.HomeFragment"
-              android:label="HomeFragment"
+              android:label="@string/title_home"
               tools:layout="@layout/home_fragment">
     </fragment>
     <action android:id="@+id/action_global_to_modelsFragment" app:destination="@id/modelsFragment"/>
@@ -15,17 +15,17 @@
 
     <fragment android:id="@+id/search_fragment"
               android:name="com.waelkhelil.sayara_dz.view.SearchFragment"
-              android:label="SearchFragment"
+              android:label="@string/search"
               tools:layout="@layout/search_fragment"/>
 
     <fragment android:id="@+id/notification_fragment"
               android:name="com.waelkhelil.sayara_dz.view.NotificationFragment"
-              android:label="NotificationFragment"
+              android:label="@string/notification"
               tools:layout="@layout/fragment_notification"/>
 
     <fragment android:id="@+id/fragment_user_content"
               android:name="com.waelkhelil.sayara_dz.view.UserContentFragment"
-              android:label="UserNavigationFragment"
+              android:label="@string/title_listing"
               tools:layout="@layout/fragment_user_content"/>
     <fragment android:id="@+id/modelsFragment" android:name="com.waelkhelil.sayara_dz.view.models_ui.ModelsFragment"
                tools:layout="@layout/models_fragment">

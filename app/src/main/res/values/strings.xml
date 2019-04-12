@@ -29,4 +29,7 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="invalid_credentials">invalid_credentials</string>
     <string name="brand_logo">brand_logo</string>
+    <string name="notification">Notification</string>
+    <string name="subscriptions">Abonnements</string>
+    <string name="bids">Offres</string>
 </resources>
