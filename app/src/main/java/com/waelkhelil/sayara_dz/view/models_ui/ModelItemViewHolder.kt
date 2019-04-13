@@ -3,6 +3,7 @@ package com.waelkhelil.sayara_dz.view.models_ui
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
@@ -18,6 +19,9 @@ class ModelItemViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
 
     init {
         mTitleView = itemView.findViewById(R.id.text_card_header)
+        this.itemView.setOnClickListener(
+            Navigation.createNavigateOnClickListener(R.id.modelFragment)
+        )
     }
 
     fun bind(model: Model) {

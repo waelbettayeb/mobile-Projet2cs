@@ -5,7 +5,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        tools:context=".view.models_ui.ModelsFragment">
+        tools:context=".view.model.ModelFragment">
 
     <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
@@ -19,8 +19,7 @@
                 app:expandedTitleTextAppearance="@style/hidden">
             <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-            >
+                    android:layout_height="match_parent">
 
                 <ImageView
                         android:src="@drawable/icon_mono"
@@ -32,7 +31,7 @@
                         android:layout_marginStart="16dp" app:layout_constraintEnd_toEndOf="parent"
                         android:layout_marginEnd="16dp" android:contentDescription="@string/brand_logo"/>
                 <TextView
-                        android:text="Renault"
+                        android:text="Clio"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/tv_model_name" android:layout_marginTop="8dp"
@@ -76,19 +75,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
-        <com.simplecityapps.recyclerview_fastscroll.views.FastScrollRecyclerView
-                android:id="@+id/rv_models_list"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:clipToPadding="false"
-                app:fastScrollPopupBgColor="@color/colorAccent"
-                app:fastScrollPopupTextColor="@android:color/primary_text_dark"
-                app:fastScrollThumbColor="@color/colorAccent"
-                app:fastScrollTrackColor="@color/whiteGrey"
-                app:fastScrollPopupTextSize="20sp"
-                app:fastScrollPopupBackgroundSize="60dp"
-                tools:context=".view.brands_ui.BrandsListFragment"
-                tools:listitem="@layout/list_item_brand"/>
+
     </FrameLayout>
 
 

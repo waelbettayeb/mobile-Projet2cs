@@ -27,12 +27,17 @@
               android:name="com.waelkhelil.sayara_dz.view.UserContentFragment"
               android:label="@string/title_listing"
               tools:layout="@layout/fragment_user_content"/>
+
     <fragment android:id="@+id/modelsFragment" android:name="com.waelkhelil.sayara_dz.view.models_ui.ModelsFragment"
               tools:layout="@layout/models_fragment">
         <argument android:name="brandId" app:argType="long"/>
     </fragment>
+
     <fragment android:id="@+id/brandsListFragment"
               android:name="com.waelkhelil.sayara_dz.view.brands_ui.BrandsListFragment"
               android:label="@string/brands" tools:layout="@layout/brands_list_fragment"/>
+
+    <fragment android:id="@+id/modelFragment" android:name="com.waelkhelil.sayara_dz.view.model.ModelFragment"
+              android:label="fragment_model" tools:layout="@layout/fragment_model"/>
 
 </navigation>

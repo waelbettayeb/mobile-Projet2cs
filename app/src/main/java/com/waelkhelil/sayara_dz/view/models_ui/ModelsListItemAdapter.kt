@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.simplecityapps.recyclerview_fastscroll.views.FastScrollRecyclerView
 import com.waelkhelil.sayara_dz.model.Model
 
-class ModelListItemAdapter(private val list: List<Model>)
+class ModelsListItemAdapter(private val list: List<Model>)
     : RecyclerView.Adapter<ModelItemViewHolder>() , FastScrollRecyclerView.SectionedAdapter{
     var models:MutableList<Model>
     init {

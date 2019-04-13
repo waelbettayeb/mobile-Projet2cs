@@ -6,7 +6,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import androidx.appcompat.widget.Toolbar
 import androidx.navigation.Navigation
 import androidx.navigation.ui.NavigationUI
@@ -45,7 +44,7 @@ class ModelsFragment : Fragment() {
             .load("https://logo.clearbit.com/renault.com")
             .apply(RequestOptions.circleCropTransform())
             .placeholder(R.drawable.icon_mono)
-            .into(view.findViewById<ImageView>(R.id.image_brand_logo))
+            .into(view.findViewById(R.id.image_brand_logo))
 
 
         val list:List<Model> = listOf(
@@ -64,7 +63,7 @@ class ModelsFragment : Fragment() {
             // RecyclerView behavior
             layoutManager = lLayoutManager
             // set the custom adapter to the RecyclerView
-            adapter = ModelListItemAdapter(list)
+            adapter = ModelsListItemAdapter(list)
         }
     }
 
