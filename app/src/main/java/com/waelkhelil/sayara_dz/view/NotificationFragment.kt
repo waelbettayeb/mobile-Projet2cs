@@ -34,7 +34,6 @@ class NotificationFragment : Fragment() {
 
     inner class NotificationPagerAdapter(pFragmentManager:FragmentManager) : FragmentStatePagerAdapter(pFragmentManager) {
 
-
         private val mFragmentList = mutableListOf(NotificationSubscriptionsFragment(),
             NotificationBidsFragment())
         private val mFragmentTitleList = mutableListOf(resources.getString(R.string.subscriptions),

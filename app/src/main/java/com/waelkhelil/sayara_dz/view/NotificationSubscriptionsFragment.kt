@@ -1,18 +1,11 @@
 package com.waelkhelil.sayara_dz.view
 
-import android.content.Context
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.viewpager.widget.PagerAdapter
+import androidx.fragment.app.Fragment
 import com.waelkhelil.sayara_dz.R
-import androidx.viewpager.widget.ViewPager
-
-
-
-
 
 
 class NotificationSubscriptionsFragment : Fragment() {

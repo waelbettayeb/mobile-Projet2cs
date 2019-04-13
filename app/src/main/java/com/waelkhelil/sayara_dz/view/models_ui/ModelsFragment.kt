@@ -6,6 +6,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.Toolbar
+import androidx.navigation.Navigation
+import androidx.navigation.ui.NavigationUI
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.waelkhelil.sayara_dz.R
 import com.waelkhelil.sayara_dz.model.Model
@@ -28,6 +31,12 @@ class ModelsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val toolbar: Toolbar = view.findViewById(R.id.toolbar)
+        val navController = Navigation.findNavController(requireActivity(), R.id.nav_main_host_fragment)
+        NavigationUI.setupWithNavController(toolbar, navController)
+        toolbar.title = "Renault"
+
         val lBundle: Bundle? = arguments
         if (lBundle != null) {
 
