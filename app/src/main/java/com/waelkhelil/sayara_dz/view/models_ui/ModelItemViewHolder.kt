@@ -1,17 +1,16 @@
 package com.waelkhelil.sayara_dz.view.models_ui
 
-import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.waelkhelil.sayara_dz.R
 import com.waelkhelil.sayara_dz.model.Model
-import com.waelkhelil.sayara_dz.view.MainActivity
 
 class ModelItemViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
-    RecyclerView.ViewHolder(inflater.inflate(R.layout.model_list_item, parent, false)), View.OnClickListener  {
+    RecyclerView.ViewHolder(inflater.inflate(R.layout.model_list_item, parent, false)){
     //TODO : convert this class to a generic class
     private var mModel: Model? = null
     private var mTitleView: TextView? = null
@@ -19,24 +18,16 @@ class ModelItemViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
 
     init {
         mTitleView = itemView.findViewById(R.id.text_card_header)
-        this.itemView.setOnClickListener(this)
     }
 
     fun bind(model: Model) {
         mTitleView?.text = model.name
         mModel = model
+        Glide
+            .with(itemView)
+            .load(model.url)
+            .placeholder(R.drawable.icon_mono)
+            .into(itemView.findViewById(R.id.image_list_item_logo))
     }
 
-    override fun onClick(v: View?) {
-        Log.d(toString(), "onClick")
-//        val lMainActivity = this.itemView.context as MainActivity
-
-//        val lBundle= Bundle()
-//        val lFragment = ModelsFragment()
-//
-//        mModel?.id?.let { lBundle.putLong("model_id", it) }
-//        lFragment.arguments = lBundle
-//
-//        lMainActivity.setFragment(lFragment, "version", null)
-    }
 }
