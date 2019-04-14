@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
 import androidx.navigation.Navigation
@@ -48,13 +49,18 @@ class HomeFragment : Fragment() {
         val lUserPhotoUrl = sharedPref.getString("photo_url","")
         val lUserNameTextView = view!!.
             findViewById<TextView>(R.id.text_user_name)
+        val lUserProfileImageView = view!!.findViewById<ImageView>(R.id.image_user_profile_picture)
+
         lUserNameTextView.text = lUser
+        lUserProfileImageView.setOnClickListener(
+            Navigation.createNavigateOnClickListener(R.id.fragment_user_content)
+        )
         Glide
             .with(this)
             .load(lUserPhotoUrl)
             .apply(RequestOptions.circleCropTransform())
             .placeholder(R.drawable.user_icon)
-            .into(view!!.findViewById(R.id.image_user_profile_picture))
+            .into(lUserProfileImageView)
     }
 //    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 //

@@ -62,7 +62,7 @@
                         android:layout_gravity="center"
                         android:adjustViewBounds="true"
                         android:id="@+id/image_user_profile_picture" app:srcCompat="@drawable/user_icon"
-                        android:padding="8dp" android:layout_marginRight="8dp"/>
+                        android:padding="8dp" android:layout_marginRight="8dp" android:clickable="true"/>
             </androidx.appcompat.widget.Toolbar>
         </com.google.android.material.appbar.CollapsingToolbarLayout>
     </com.google.android.material.appbar.AppBarLayout>
