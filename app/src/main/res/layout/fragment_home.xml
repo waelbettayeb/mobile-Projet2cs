@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        tools:context=".view.home_ui.HomeFragment">
+
+    <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:background="@android:color/transparent">
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:contentScrim="@color/white"
+                app:layout_scrollFlags="scroll|snap|snapMargins|exitUntilCollapsed"
+                app:scrimAnimationDuration="100"
+                app:expandedTitleTextAppearance="@style/hidden">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                <TextView
+                        android:text="@string/home"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textView" android:layout_marginTop="80dp"
+                        app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
+                        android:layout_marginStart="16dp"
+                        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline4"
+                        android:fontFamily="@font/kollektif_bold" android:textColor="@color/black"/>
+                <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" android:layout_marginBottom="32dp"
+                        app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintTop_toBottomOf="@+id/textView"
+                        app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="16dp">
+                    <TextView
+                            android:text="Good morning, "
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" android:id="@+id/textView2"
+                            app:layout_constraintTop_toBottomOf="@+id/textView" app:layout_constraintStart_toStartOf="parent"
+                            android:fontFamily="@font/kollektif_regular"
+                            app:layout_constraintBottom_toBottomOf="parent" android:textColor="@color/grey"/>
+                    <TextView
+                            android:text="Wael"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" android:id="@+id/text_user_name" android:layout_weight="1"
+                            android:fontFamily="@font/kollektif_bold" android:textStyle="bold"/>
+                </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    app:layout_collapseMode="pin">
+                <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:adjustViewBounds="true"
+                        android:id="@+id/image_user_profile_picture" app:srcCompat="@drawable/user_icon"
+                        android:padding="8dp" android:layout_marginRight="8dp"/>
+            </androidx.appcompat.widget.Toolbar>
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+    <androidx.core.widget.NestedScrollView
+            android:id="@+id/settings"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+        <fragment android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  android:name="com.waelkhelil.sayara_dz.view.home_ui.HorizontalListFragment"
+                  android:id="@+id/horizontal_brands_list_fragment"/>
+    </androidx.core.widget.NestedScrollView>
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

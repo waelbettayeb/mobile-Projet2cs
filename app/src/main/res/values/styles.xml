@@ -13,4 +13,7 @@
         <item name="android:visibility">gone</item>
         <item name="android:text">0sp</item>
     </style>
+    <style name="toolbar_collapsedText" parent="AppTheme">
+        <item name="android:fontFamily">@font/kollektif_bold</item>
+    </style>
 </resources>

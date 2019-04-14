@@ -29,22 +29,5 @@ class HomeTopFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_home_top, container, false)
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(HomeViewModel::class.java)
 
-        val sharedPref = PreferenceManager.getDefaultSharedPreferences(activity?.applicationContext)
-
-        val lUser = sharedPref.getString("user_name", R.string.msg_please_sign_in.toString())
-        val lUserPhotoUrl = sharedPref.getString("photo_url","")
-        val lUserNameTextView = view!!.
-            findViewById<TextView>(R.id.text_user_name)
-        lUserNameTextView.text = lUser
-        Glide
-            .with(this)
-            .load(lUserPhotoUrl)
-            .apply(RequestOptions.circleCropTransform())
-            .placeholder(R.drawable.user_icon)
-            .into(view!!.findViewById(R.id.image_user_profile_picture))
-    }
 }
