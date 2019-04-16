@@ -33,7 +33,7 @@ class ModelFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val viewPager : ViewPager = view.findViewById(R.id.view_pager_model)
-        val tabs = view.findViewById(R.id.tabs_model) as TabLayout
+        val tabs:TabLayout = view.findViewById(R.id.tabs_model)
         tabs.setupWithViewPager(viewPager)
         viewPager.adapter = fragmentManager?.let { ModelPagerAdapter(it) }
 
