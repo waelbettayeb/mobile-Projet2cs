@@ -11,12 +11,8 @@ import androidx.fragment.app.FragmentStatePagerAdapter
 import androidx.navigation.Navigation
 import androidx.navigation.ui.NavigationUI
 import androidx.viewpager.widget.ViewPager
-import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions
 import com.google.android.material.tabs.TabLayout
 import com.waelkhelil.sayara_dz.R
-import com.waelkhelil.sayara_dz.view.NotificationBidsFragment
-import com.waelkhelil.sayara_dz.view.NotificationSubscriptionsFragment
 
 class ModelFragment : Fragment() {
 
@@ -35,30 +31,27 @@ class ModelFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val viewPager : ViewPager = view.findViewById(R.id.view_pager_model)
+        val tabs = view.findViewById(R.id.tabs_model) as TabLayout
+        tabs.setupWithViewPager(viewPager)
+        viewPager.adapter = fragmentManager?.let { ModelPagerAdapter(it) }
+
         val toolbar: Toolbar = view.findViewById(R.id.toolbar)
         val navController = Navigation.findNavController(requireActivity(), R.id.nav_main_host_fragment)
         NavigationUI.setupWithNavController(toolbar, navController)
+        toolbar.subtitle = "Renault" // set the subtitle first
         toolbar.title = "Clio"
-        Glide
-            .with(view)
-            .load("https://www.renault.fr/content/dam/Renault/master/vehicules/clio-bja/reveal/renault-clio-reveal-022.jpg")
-            .apply(RequestOptions.circleCropTransform())
-            .placeholder(R.drawable.icon_mono)
-            .into(view.findViewById(R.id.image_model))
-        val viewPager : ViewPager = view.findViewById(R.id.view_pager_model)
-        val tabs = view.findViewById(R.id.tabs_model) as TabLayout
-        viewPager.adapter = fragmentManager?.let { ModelPagerAdapter(it) }
-        tabs.setupWithViewPager(viewPager)
+
     }
 
     inner class ModelPagerAdapter(pFragmentManager: FragmentManager) : FragmentStatePagerAdapter(pFragmentManager) {
 
         private val mFragmentList = mutableListOf(
-            NotificationSubscriptionsFragment(),
-            NotificationBidsFragment()
+            ModelInfoFragment(),
+            ModelVersionsFragment()
         )
-        private val mFragmentTitleList = mutableListOf(resources.getString(R.string.subscriptions),
-            resources.getString(R.string.bids))
+        private val mFragmentTitleList = mutableListOf(resources.getString(R.string.information),
+            resources.getString(R.string.versions))
 
         override fun getCount(): Int {
             return mFragmentList.size

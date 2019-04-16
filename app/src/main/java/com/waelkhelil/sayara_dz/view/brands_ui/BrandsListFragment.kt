@@ -11,7 +11,7 @@ import androidx.navigation.ui.NavigationUI
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.waelkhelil.sayara_dz.R
 import com.waelkhelil.sayara_dz.model.Brand
-import kotlinx.android.synthetic.main.brands_list_fragment.*
+import kotlinx.android.synthetic.main.fragment_brands_list.*
 
 
 class BrandsListFragment : Fragment() {
@@ -24,7 +24,7 @@ class BrandsListFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View?
     {
-        return inflater.inflate(R.layout.brands_list_fragment, container, false)
+        return inflater.inflate(R.layout.fragment_brands_list, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
