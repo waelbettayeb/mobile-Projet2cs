@@ -24,6 +24,7 @@ class ModelFragment : Fragment() {
 
     private lateinit var viewModel: ModelViewModel
     private lateinit var mMenu: Menu
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -53,12 +54,9 @@ class ModelFragment : Fragment() {
 
     }
 
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.model_menu, menu)
-    }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == R.id.action_favorite) {
+        return if (item.itemId == R.id.action_favorite) {
             if(viewModel.isFavorite.value!!){
                 Toast.makeText(context, "unsubscribed", Toast.LENGTH_SHORT).show()
                 viewModel.setFavorite(false)
@@ -66,9 +64,8 @@ class ModelFragment : Fragment() {
                 Toast.makeText(context, "subscribed", Toast.LENGTH_SHORT).show()
                 viewModel.setFavorite(true)
             }
-            return true
-        }
-        else return super.onOptionsItemSelected(item)
+            true
+        } else super.onOptionsItemSelected(item)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
