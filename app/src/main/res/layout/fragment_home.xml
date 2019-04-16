@@ -37,15 +37,14 @@
                         app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintTop_toBottomOf="@+id/textView"
                         app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="16dp">
                     <TextView
-                            android:text="Good morning, "
+                            android:text="@string/good_morning"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" android:id="@+id/textView2"
                             app:layout_constraintTop_toBottomOf="@+id/textView" app:layout_constraintStart_toStartOf="parent"
                             android:fontFamily="@font/kollektif_regular"
                             app:layout_constraintBottom_toBottomOf="parent" android:textColor="@color/grey"/>
                     <TextView
-                            android:text="Wael"
-                            android:layout_width="wrap_content"
+                            android:layout_width="0sp"
                             android:layout_height="wrap_content" android:id="@+id/text_user_name" android:layout_weight="1"
                             android:fontFamily="@font/kollektif_bold" android:textStyle="bold"/>
                 </LinearLayout>
@@ -61,8 +60,10 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:adjustViewBounds="true"
+                        app:layout_collapseMode="parallax"
                         android:id="@+id/image_user_profile_picture" app:srcCompat="@drawable/user_icon"
-                        android:padding="8dp" android:layout_marginRight="8dp" android:clickable="true"/>
+                        android:padding="8dp" android:layout_marginEnd="8dp"
+                        android:contentDescription="@string/user_profile_image"/>
             </androidx.appcompat.widget.Toolbar>
         </com.google.android.material.appbar.CollapsingToolbarLayout>
     </com.google.android.material.appbar.AppBarLayout>
@@ -71,10 +72,22 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
-        <fragment android:layout_width="match_parent"
-                  android:layout_height="match_parent"
-                  android:name="com.waelkhelil.sayara_dz.view.home_ui.HorizontalListFragment"
-                  android:id="@+id/horizontal_brands_list_fragment"/>
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+            <fragment android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:name="com.waelkhelil.sayara_dz.view.home_ui.HorizontalListFragment"
+                      android:id="@+id/horizontal_brands_list_fragment"/>
+            <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_models_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:clipToPadding="false"
+                    tools:context=".view.brands_ui.BrandsListFragment"
+                    tools:listitem="@layout/list_item_brand"/>
+        </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 
 

@@ -6,6 +6,8 @@ import android.widget.TextView
 import androidx.core.os.bundleOf
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.waelkhelil.sayara_dz.model.Brand
 import com.waelkhelil.sayara_dz.R
 
@@ -28,6 +30,12 @@ class CardViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
     fun bind(brand: Brand) {
         mTitleView?.text = brand.name
         mBrand = brand
+        Glide
+            .with(itemView)
+            .load(brand.url)
+            .apply(RequestOptions.circleCropTransform())
+            .placeholder(R.drawable.icon_mono)
+            .into(itemView.findViewById(R.id.item_image))
     }
 
 

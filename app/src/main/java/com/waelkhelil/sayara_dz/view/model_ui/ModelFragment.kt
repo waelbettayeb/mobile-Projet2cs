@@ -1,4 +1,4 @@
-package com.waelkhelil.sayara_dz.view.model
+package com.waelkhelil.sayara_dz.view.model_ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,8 +8,6 @@ import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import androidx.navigation.ui.NavigationUI
-import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions
 import com.waelkhelil.sayara_dz.R
 
 class ModelFragment : Fragment() {

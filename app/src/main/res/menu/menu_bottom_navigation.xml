@@ -8,10 +8,10 @@
             android:id="@+id/search_fragment"
             android:icon="@drawable/ic_menu_search_black_24dp"
             android:title="@string/title_search"/>
-    <!--<item-->
-            <!--android:id="@+id/navigation_add_listing"-->
-            <!--android:icon="@drawable/ic_menu_add_black_24dp"-->
-            <!--android:title="@string/title_add"/>-->
+    <item
+            android:id="@+id/navigation_add_listing"
+            android:icon="@drawable/ic_menu_add_black_24dp"
+            android:title="@string/title_add"/>
     <item
             android:id="@+id/notification_fragment"
             android:icon="@drawable/ic_menu_notifications_none_black_24dp"

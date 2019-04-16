@@ -15,7 +15,7 @@ import com.waelkhelil.sayara_dz.model.Brand
 import kotlinx.android.synthetic.main.horziontal_list_fragment.*
 
 
-class HorizontalListFragment() : Fragment() {
+class HorizontalListFragment : Fragment() {
 
     companion object {
         fun newInstance() = HorizontalListFragment()
@@ -48,9 +48,9 @@ class HorizontalListFragment() : Fragment() {
         }
 
         val list:List<Brand> = listOf(
-            Brand(0, "Toyota", ""),
-            Brand(1, "Audi", ""),
-            Brand(2, "BMW", ""),
+            Brand(0, "Toyota", "https://logo.clearbit.com/toyota.jp"),
+            Brand(1, "Audi", "https://logo.clearbit.com/audi.ca"),
+            Brand(2, "BMW", "https://logo.clearbit.com/bmwusa.com"),
             Brand(3, "Renault", ""),
             Brand(4, "Mini", "")
         )

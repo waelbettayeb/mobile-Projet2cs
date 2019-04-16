@@ -43,24 +43,8 @@ class HomeFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this).get(HomeViewModel::class.java)
 
-        val sharedPref = PreferenceManager.getDefaultSharedPreferences(activity?.applicationContext)
+        prepareUi()
 
-        val lUser = sharedPref.getString("user_name", R.string.msg_please_sign_in.toString())
-        val lUserPhotoUrl = sharedPref.getString("photo_url","")
-        val lUserNameTextView = view!!.
-            findViewById<TextView>(R.id.text_user_name)
-        val lUserProfileImageView = view!!.findViewById<ImageView>(R.id.image_user_profile_picture)
-
-        lUserNameTextView.text = lUser
-        lUserProfileImageView.setOnClickListener(
-            Navigation.createNavigateOnClickListener(R.id.fragment_user_content)
-        )
-        Glide
-            .with(this)
-            .load(lUserPhotoUrl)
-            .apply(RequestOptions.circleCropTransform())
-            .placeholder(R.drawable.user_icon)
-            .into(lUserProfileImageView)
     }
 //    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 //
@@ -93,5 +77,24 @@ class HomeFragment : Fragment() {
 //        fragmentTransaction.commit()
 //    }
 
+    fun prepareUi(){
+        val sharedPref = PreferenceManager.getDefaultSharedPreferences(activity?.applicationContext)
 
+        val lUser = sharedPref.getString("user_name", R.string.msg_please_sign_in.toString())
+        val lUserPhotoUrl = sharedPref.getString("photo_url","")
+        val lUserNameTextView = view!!.
+            findViewById<TextView>(R.id.text_user_name)
+        val lUserProfileImageView = view!!.findViewById<ImageView>(R.id.image_user_profile_picture)
+
+        lUserNameTextView.text = lUser
+        lUserProfileImageView.setOnClickListener(
+            Navigation.createNavigateOnClickListener(R.id.fragment_user_content)
+        )
+        Glide
+            .with(this)
+            .load(lUserPhotoUrl)
+            .apply(RequestOptions.circleCropTransform())
+            .placeholder(R.drawable.user_icon)
+            .into(lUserProfileImageView)
+    }
 }

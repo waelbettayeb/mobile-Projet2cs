@@ -32,4 +32,6 @@
     <string name="notification">Notification</string>
     <string name="subscriptions">Abonnements</string>
     <string name="bids">Offres</string>
+    <string name="good_morning">Good morning,</string>
+    <string name="user_profile_image">user profile image</string>
 </resources>

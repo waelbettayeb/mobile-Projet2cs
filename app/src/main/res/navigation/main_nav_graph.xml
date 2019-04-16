@@ -37,7 +37,7 @@
               android:name="com.waelkhelil.sayara_dz.view.brands_ui.BrandsListFragment"
               android:label="@string/brands" tools:layout="@layout/brands_list_fragment"/>
 
-    <fragment android:id="@+id/modelFragment" android:name="com.waelkhelil.sayara_dz.view.model.ModelFragment"
+    <fragment android:id="@+id/modelFragment" android:name="com.waelkhelil.sayara_dz.view.model_ui.ModelFragment"
               android:label="fragment_model" tools:layout="@layout/fragment_model"/>
 
 </navigation>
