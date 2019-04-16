@@ -1,21 +1,19 @@
 package com.waelkhelil.sayara_dz.view.model_ui
 
-import android.graphics.drawable.Icon
 import android.os.Bundle
 import android.view.*
 import android.widget.Toast
-import androidx.appcompat.widget.ActionMenuView
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation
 import androidx.navigation.ui.NavigationUI
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.tabs.TabLayout
 import com.waelkhelil.sayara_dz.R
-import androidx.lifecycle.Observer
 
 
 class ModelFragment : Fragment() {
@@ -60,20 +58,17 @@ class ModelFragment : Fragment() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            R.id.action_favorite -> {
-                if(viewModel.isFavorite.value!!){
-                    Toast.makeText(context, "unsubscribed", Toast.LENGTH_SHORT).show()
-                    viewModel.setFavorite(false)
-                }
-                else{
-                    Toast.makeText(context, "subscribed", Toast.LENGTH_SHORT).show()
-                    viewModel.setFavorite(true)
-                }
-                return true
+        if (item.itemId == R.id.action_favorite) {
+            if(viewModel.isFavorite.value!!){
+                Toast.makeText(context, "unsubscribed", Toast.LENGTH_SHORT).show()
+                viewModel.setFavorite(false)
+            } else{
+                Toast.makeText(context, "subscribed", Toast.LENGTH_SHORT).show()
+                viewModel.setFavorite(true)
             }
-            else -> return super.onOptionsItemSelected(item)
+            return true
         }
+        else return super.onOptionsItemSelected(item)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
