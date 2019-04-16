@@ -2,6 +2,7 @@ package com.waelkhelil.sayara_dz.view.model_ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.Toolbar
@@ -62,6 +63,18 @@ class ModelFragment : Fragment() {
         }
         override fun getItem(position: Int): Fragment {
             return mFragmentList[position]
+        }
+    }
+    override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
+
+        R.id.action_favorite -> {
+            true
+        }
+
+        else -> {
+            // If we got here, the user's action was not recognized.
+            // Invoke the superclass to handle it.
+            super.onOptionsItemSelected(item)
         }
     }
 

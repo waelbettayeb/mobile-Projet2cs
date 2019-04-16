@@ -3,7 +3,7 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="match_parent" xmlns:app="http://schemas.android.com/apk/res-auto"
         tools:context=".view.model_ui.ModelFragment">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -13,7 +13,8 @@
                     android:id="@+id/toolbar"
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
-                    android:background="@color/white"/>
+                    android:background="@color/white"
+            app:menu="@menu/model_menu"/>
 
         <com.google.android.material.tabs.TabLayout
                 android:id="@+id/tabs_model"
