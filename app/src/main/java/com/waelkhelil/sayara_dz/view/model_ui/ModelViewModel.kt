@@ -6,7 +6,7 @@ import androidx.lifecycle.MutableLiveData
 
 
 class ModelViewModel : ViewModel() {
-    val isFavorite = MutableLiveData<Boolean>(true)
+    val isFavorite = MutableLiveData<Boolean>(false)
 
     fun setFavorite(f:Boolean){
         isFavorite.postValue(f)

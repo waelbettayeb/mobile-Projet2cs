@@ -40,6 +40,7 @@ class BrandsListFragment : Fragment() {
         val list:List<Brand> = listOf(
             Brand(0, "Toyota", ""),
             Brand(1, "Audi", ""),
+            Brand(1, "Audi", ""),
             Brand(2, "BMW", ""),
             Brand(3, "Renault", ""),
             Brand(4, "Renault", ""),
