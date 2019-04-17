@@ -29,7 +29,7 @@ class ModelInfoFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         //Description
-        view?.findViewById<TextView>(R.id.tv_description)!!.setText("Nouvelle CLIO propose un niveau de qualité des matériaux inédit dans la catégorie, avec notamment le Smart cockpit immersif avec sa console haute, l’accoudoir coulissant et les écrans personnalisables.")
+        view?.findViewById<TextView>(R.id.tv_description)!!.text = "Nouvelle CLIO propose un niveau de qualité des matériaux inédit dans la catégorie, avec notamment le Smart cockpit immersif avec sa console haute"
         //Colors
         val colorsList:List<PaintColor> = listOf(
             PaintColor("red", "#2196F3"),
