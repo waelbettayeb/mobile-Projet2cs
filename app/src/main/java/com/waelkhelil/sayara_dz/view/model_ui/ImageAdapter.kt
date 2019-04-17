@@ -1,13 +1,13 @@
 package com.waelkhelil.sayara_dz.view.model_ui
 
-import android.graphics.Bitmap
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.waelkhelil.sayara_dz.R
 
-class ImageAdapter(private val list: List<Bitmap>)
+class ImageAdapter(private val list: List<String>)
     : RecyclerView.Adapter<ImageAdapter.ImageViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ImageViewHolder {
@@ -16,24 +16,27 @@ class ImageAdapter(private val list: List<Bitmap>)
     }
 
     override fun onBindViewHolder(holder: ImageViewHolder, position: Int) {
-        val lBitmap: Bitmap = list[position]
-        holder.bind(lBitmap)
+        val lUrl: String = list[position]
+        holder.bind(lUrl)
     }
 
     override fun getItemCount(): Int = list.size
     inner class ImageViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
         RecyclerView.ViewHolder(inflater.inflate(R.layout.layout_image, parent, false)){
-        private var mBitmap: Bitmap? = null
-        private var mImageView : ImageView? = null
-
+        private lateinit var mUrl: String
+        private var mImageView : ImageView
 
         init {
             mImageView = itemView.findViewById(R.id.imageView)
         }
 
-        fun bind(Bitmap: Bitmap) {
-            mBitmap = Bitmap
-            mImageView?.setImageBitmap(mBitmap)
+        fun bind(pUrl: String) {
+            this.mUrl = pUrl
+            Glide
+                .with(itemView)
+                .load(mUrl)
+                .placeholder(R.drawable.icon_mono)
+                .into(mImageView)
         }
     }
 }
