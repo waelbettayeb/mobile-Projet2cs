@@ -8,6 +8,7 @@ import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import androidx.navigation.ui.NavigationUI
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.waelkhelil.sayara_dz.R
 import com.waelkhelil.sayara_dz.model.Brand
@@ -62,6 +63,11 @@ class BrandsListFragment : Fragment() {
         recyclerView.adapter = BrandsListAdapter(list)
 
         recyclerView.layoutManager = LinearLayoutManager(activity)
+        val dividerItemDecoration = DividerItemDecoration(
+            recyclerView.context,
+            LinearLayoutManager.VERTICAL
+        )
+        recyclerView.addItemDecoration(dividerItemDecoration)
 
     }
 
