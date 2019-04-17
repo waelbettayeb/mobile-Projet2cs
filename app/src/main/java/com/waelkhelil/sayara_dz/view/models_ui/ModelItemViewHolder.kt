@@ -4,19 +4,15 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.navigation.Navigation
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions
 import com.waelkhelil.sayara_dz.R
 import com.waelkhelil.sayara_dz.model.Model
 import com.waelkhelil.sayara_dz.model.PaintColor
 import com.waelkhelil.sayara_dz.view.model_ui.ColorListAdapter
-import kotlinx.android.synthetic.main.fragment_model_info.*
 
 class ModelItemViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
     RecyclerView.ViewHolder(inflater.inflate(R.layout.model_list_item, parent, false)){
-    //TODO : convert this class to a generic class
     private var mModel: Model? = null
     private var mTitleView: TextView? = null
 
