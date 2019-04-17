@@ -39,10 +39,7 @@ class ModelInfoFragment : Fragment() {
             PaintColor("red", "#DDE3FE")
         )
         val recyclerView = rv_colors_list
-        val lLayoutManager = LinearLayoutManager(activity)
         recyclerView.adapter = ColorListAdapter(list)
-        lLayoutManager.orientation = LinearLayoutManager.HORIZONTAL
-        recyclerView.layoutManager = lLayoutManager
 
     }
 }
