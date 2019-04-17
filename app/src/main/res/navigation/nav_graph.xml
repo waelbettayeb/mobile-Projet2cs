@@ -10,7 +10,7 @@
               tools:layout="@layout/fragment_main"/>
 
     <fragment android:id="@+id/fragment_login"
-              android:name="com.waelkhelil.sayara_dz.view.LoginFragment"
+              android:name="com.waelkhelil.sayara_dz.view.login_ui.LoginFragment"
               android:label="brands_list_fragment"
               tools:layout="@layout/fragment_login"/>
 </navigation>

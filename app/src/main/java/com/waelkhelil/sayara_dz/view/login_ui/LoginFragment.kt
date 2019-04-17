@@ -1,4 +1,4 @@
-package com.waelkhelil.sayara_dz.view
+package com.waelkhelil.sayara_dz.view.login_ui
 
 import android.app.Activity
 import android.content.Intent
@@ -27,7 +27,7 @@ import com.google.android.gms.tasks.Task
 import com.google.android.material.snackbar.Snackbar
 import com.waelkhelil.sayara_dz.R
 import com.waelkhelil.sayara_dz.model.User
-import com.waelkhelil.sayara_dz.view.LoginViewModel.AuthenticationState.*
+import com.waelkhelil.sayara_dz.view.login_ui.LoginViewModel.AuthenticationState.*
 import java.util.*
 
 

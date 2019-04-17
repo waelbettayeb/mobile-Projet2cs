@@ -1,6 +1,5 @@
-package com.waelkhelil.sayara_dz.view
+package com.waelkhelil.sayara_dz.view.login_ui
 
-import android.preference.PreferenceManager
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel;
 
@@ -18,19 +17,23 @@ class LoginViewModel : ViewModel() {
     init {
         // In this example, the user is always unauthenticated when MainActivity is launched
 
-        authenticationState.value = AuthenticationState.UNAUTHENTICATED
-        authenticationState.value = AuthenticationState.AUTHENTICATED
+        authenticationState.value =
+            AuthenticationState.UNAUTHENTICATED
+        authenticationState.value =
+            AuthenticationState.AUTHENTICATED
         username = ""
     }
 
     fun refuseAuthentication() {
-        authenticationState.value = AuthenticationState.UNAUTHENTICATED
+        authenticationState.value =
+            AuthenticationState.UNAUTHENTICATED
     }
 
     fun authenticate(username: String, userPhotoUrl: String) {
             this.username = username
             this.userPhotoUrl = userPhotoUrl
-            authenticationState.value = AuthenticationState.AUTHENTICATED
+            authenticationState.value =
+                AuthenticationState.AUTHENTICATED
 
     }
 

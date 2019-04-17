@@ -3,7 +3,7 @@
              xmlns:tools="http://schemas.android.com/tools"
              android:layout_width="match_parent"
              android:layout_height="match_parent"
-             tools:context=".view.NotificationSubscriptionsFragment">
+             tools:context=".view.notification_ui.NotificationSubscriptionsFragment">
     <com.facebook.shimmer.ShimmerFrameLayout
             android:id="@+id/shimmer_view_container_subscriptions"
             android:layout_width="match_parent"

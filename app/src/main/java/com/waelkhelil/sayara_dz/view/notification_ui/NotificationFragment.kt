@@ -1,4 +1,4 @@
-package com.waelkhelil.sayara_dz.view
+package com.waelkhelil.sayara_dz.view.notification_ui
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -34,8 +34,10 @@ class NotificationFragment : Fragment() {
 
     inner class NotificationPagerAdapter(pFragmentManager:FragmentManager) : FragmentStatePagerAdapter(pFragmentManager) {
 
-        private val mFragmentList = mutableListOf(NotificationSubscriptionsFragment(),
-            NotificationBidsFragment())
+        private val mFragmentList = mutableListOf(
+            NotificationSubscriptionsFragment(),
+            NotificationBidsFragment()
+        )
         private val mFragmentTitleList = mutableListOf(resources.getString(R.string.subscriptions),
             resources.getString(R.string.bids))
 

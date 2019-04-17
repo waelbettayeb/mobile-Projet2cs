@@ -14,12 +14,12 @@
     <action android:id="@+id/action_global_to_brandsListFragment" app:destination="@id/brandsListFragment"/>
 
     <fragment android:id="@+id/search_fragment"
-              android:name="com.waelkhelil.sayara_dz.view.SearchFragment"
+              android:name="com.waelkhelil.sayara_dz.view.search_ui.SearchFragment"
               android:label="@string/search"
               tools:layout="@layout/search_fragment"/>
 
     <fragment android:id="@+id/notification_fragment"
-              android:name="com.waelkhelil.sayara_dz.view.NotificationFragment"
+              android:name="com.waelkhelil.sayara_dz.view.notification_ui.NotificationFragment"
               android:label="@string/notification"
               tools:layout="@layout/fragment_notification"/>
 
