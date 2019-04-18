@@ -19,12 +19,12 @@ class ModelVersionsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_notification_bids, container, false)
+        return inflater.inflate(R.layout.fragment_model_versions, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val container:ShimmerFrameLayout = view.findViewById(R.id.shimmer_view_container_bids)
 
     }
+
 }
