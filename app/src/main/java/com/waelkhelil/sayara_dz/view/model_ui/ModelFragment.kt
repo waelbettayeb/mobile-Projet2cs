@@ -73,9 +73,9 @@ class ModelFragment : Fragment() {
         viewModel = ViewModelProviders.of(this).get(ModelViewModel::class.java)
         viewModel.isFavorite.observe(this, Observer<Boolean> {
             if(it)
-                mMenu.getItem(0).setIcon(R.drawable.ic_favorite_black_24dp)
+                mMenu.getItem(0).setIcon(R.drawable.ic_notifications_black_24dp)
             else
-                mMenu.getItem(0).setIcon(R.drawable.ic_favorite_border_black_24dp)
+                mMenu.getItem(0).setIcon(R.drawable.ic_menu_notifications_none_black_24dp)
 
         })
     }
