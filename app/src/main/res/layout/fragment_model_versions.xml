@@ -1,11 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-
 <androidx.constraintlayout.widget.ConstraintLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        tools:context=".view.model_ui.ModelVersionsFragment"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+        android:layout_height="match_parent"
+        xmlns:tools="http://schemas.android.com/tools" xmlns:app="http://schemas.android.com/apk/res-auto"
+        tools:context=".view.model_ui.ModelVersionsFragment">
+    <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
+            android:gravity="center|right" android:layout_marginStart="32dp" android:layout_marginTop="8dp">
+        <TextView
+                android:text="TextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv_country_1"
+                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                android:fontFamily="@font/kollektif_bold"
+                android:textAlignment="viewStart"/>
+        <Space
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:layout_weight="1"/>
+        <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:background="@drawable/price_background"
+                android:layout_centerVertical="true"
+                android:id="@+id/frameLayout"
+                android:paddingStart="24dp" android:paddingLeft="32dp"
+                android:paddingEnd="16dp" android:paddingRight="16dp" android:paddingTop="8dp"
+                android:paddingBottom="8dp">
 
+            <TextSwitcher
+                    android:id="@+id/ts_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+            />
+
+        </FrameLayout>
+    </LinearLayout>
+    <TextSwitcher
+            android:id="@+id/ts_place"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="8dp" app:layout_constraintBottom_toTopOf="@+id/recycler_view_versions"/>
+    <TextSwitcher
+            android:id="@+id/ts_clock"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            app:layout_constraintBottom_toTopOf="@+id/ts_description" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="8dp">
+    </TextSwitcher>
+    <TextSwitcher
+            android:id="@+id/ts_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            app:layout_constraintBottom_toTopOf="@+id/ts_place" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="8dp">
+    </TextSwitcher>
+    <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view_versions"
+            android:layout_width="match_parent"
+            android:layout_height="210dp"
+            android:clipChildren="false"
+            android:overScrollMode="never"
+            app:layoutManager="com.ramotion.cardslider.CardSliderLayoutManager"
+            app:viewUpdater=".view.model_ui.cards.CardsUpdater"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"/>
+    <TextView
+            android:text="TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="13dp"
+            android:id="@+id/tv_country_2"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="8dp" android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/recycler_view_versions"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
