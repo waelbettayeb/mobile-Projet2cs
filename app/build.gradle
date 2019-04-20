@@ -61,5 +61,7 @@ dependencies {
     implementation 'android.arch.navigation:navigation-fragment-ktx:1.0.0'
     implementation 'android.arch.navigation:navigation-ui-ktx:1.0.0'
     implementation 'com.simplecityapps:recyclerview-fastscroll:2.0.0'
+    //Card-slider
+    implementation 'com.ramotion.cardslider:card-slider:0.3.1'
 
 }
