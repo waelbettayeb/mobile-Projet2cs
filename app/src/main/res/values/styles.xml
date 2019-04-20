@@ -29,15 +29,6 @@
         <item name="android:gravity">center</item>
     </style>
 
-    <style name="PlaceTextView">
-        <item name="android:textSize">24sp</item>
-        <item name="android:gravity">center</item>
-    </style>
-
-    <style name="ClockTextView">
-        <item name="android:textSize">15sp</item>
-        <item name="android:gravity">center</item>
-    </style>
 
     <style name="DescriptionTextView">
         <item name="android:textSize">15sp</item>

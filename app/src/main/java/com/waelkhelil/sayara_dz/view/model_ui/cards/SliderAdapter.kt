@@ -6,10 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.waelkhelil.sayara_dz.R
+import com.waelkhelil.sayara_dz.model.Version
 
 class SliderAdapter(
-    private val content: IntArray,
-    private val count: Int,
+    private val content: List<Version>,
     private val listener: View.OnClickListener?
 ) : RecyclerView.Adapter<SliderCard>() {
 
@@ -29,12 +29,8 @@ class SliderAdapter(
         holder.setContent(content[position % content.size])
     }
 
-    override fun onViewRecycled(holder: SliderCard) {
-        holder.clearContent()
-    }
-
     override fun getItemCount(): Int {
-        return count
+        return content.size
     }
 
 }
