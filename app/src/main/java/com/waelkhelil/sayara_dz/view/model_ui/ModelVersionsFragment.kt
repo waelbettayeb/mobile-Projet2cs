@@ -28,8 +28,6 @@ class ModelVersionsFragment : Fragment() {
     }
 
 
-    private val descriptions =
-        intArrayOf(R.string.text1, R.string.text2, R.string.text3)
     private val countries = arrayOf("Zen", "Intens", "RS Line")
     private val prices = arrayOf("2 300 K", "2 700 K", "3 200 K")
     private val list:List<Version> = listOf(
@@ -42,7 +40,6 @@ class ModelVersionsFragment : Fragment() {
     private var layoutManager: CardSliderLayoutManager? = null
     private var recyclerView: RecyclerView? = null
     private var priceSwitcher: TextSwitcher? = null
-    private var descriptionsSwitcher: TextSwitcher? = null
 
     private var country1TextView: TextView? = null
     private var country2TextView: TextView? = null
@@ -91,11 +88,7 @@ class ModelVersionsFragment : Fragment() {
         priceSwitcher?.setFactory(TextViewFactory(R.style.price_textView, true))
         priceSwitcher?.setCurrentText(prices[0])
 
-        descriptionsSwitcher = view?.findViewById(R.id.ts_description)
-        descriptionsSwitcher?.setInAnimation(context, android.R.anim.fade_in)
-        descriptionsSwitcher?.setOutAnimation(context, android.R.anim.fade_out)
-        descriptionsSwitcher?.setFactory(TextViewFactory(R.style.DescriptionTextView, false))
-        descriptionsSwitcher?.setCurrentText(getString(descriptions[0]))
+
 
     }
 
@@ -183,7 +176,6 @@ class ModelVersionsFragment : Fragment() {
         priceSwitcher?.setOutAnimation(context, animH[1])
         priceSwitcher?.setText(prices[pos % prices.size])
 
-        descriptionsSwitcher?.setText(getString(descriptions[pos % descriptions.size]))
 
 
         currentPosition = pos
