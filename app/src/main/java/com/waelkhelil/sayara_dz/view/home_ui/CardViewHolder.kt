@@ -8,8 +8,8 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
-import com.waelkhelil.sayara_dz.model.Brand
 import com.waelkhelil.sayara_dz.R
+import com.waelkhelil.sayara_dz.model.Brand
 
 class CardViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
     RecyclerView.ViewHolder(inflater.inflate(R.layout.horizontal_list_item, parent, false)){
@@ -20,9 +20,11 @@ class CardViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
 
     init {
         mTitleView = itemView.findViewById(R.id.text_card_header)
+
         val bundle = bundleOf("brand_id" to mBrand?.id)
-    
+
         this.itemView.setOnClickListener(
+
             Navigation.createNavigateOnClickListener(R.id.modelsFragment, bundle)
         )
     }
@@ -35,7 +37,7 @@ class CardViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
             .load(brand.url)
             .apply(RequestOptions.circleCropTransform())
             .placeholder(R.drawable.icon_mono)
-            .into(itemView.findViewById(R.id.item_image))
+            .into(itemView.findViewById(R.id.image_brand_logo))
     }
 
 

@@ -1,4 +1,4 @@
-package com.waelkhelil.sayara_dz.view.models_ui
+package com.waelkhelil.sayara_dz.view.brand_ui
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

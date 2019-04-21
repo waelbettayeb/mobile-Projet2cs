@@ -5,7 +5,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        tools:context=".view.brands_ui.BrandsListFragment">
+        tools:context=".view.brands_list_ui.BrandsListFragment">
 
     <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
@@ -32,7 +32,7 @@
                 app:fastScrollThumbColor="@color/colorAccent"
                 app:fastScrollPopupTextSize="20sp"
                 app:fastScrollPopupBackgroundSize="60dp"
-                tools:context=".view.brands_ui.BrandsListFragment"
+                tools:context=".view.brands_list_ui.BrandsListFragment"
                 tools:listitem="@layout/list_item_brand"/>
     </FrameLayout>
 

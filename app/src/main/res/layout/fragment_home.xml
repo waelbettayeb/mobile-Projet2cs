@@ -85,7 +85,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:clipToPadding="false"
-                    tools:context=".view.brands_ui.BrandsListFragment"
+                    tools:context=".view.brands_list_ui.BrandsListFragment"
                     tools:listitem="@layout/list_item_brand"/>
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>

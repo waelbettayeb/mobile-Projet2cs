@@ -1,4 +1,4 @@
-package com.waelkhelil.sayara_dz.view.brands_ui
+package com.waelkhelil.sayara_dz.view.brands_list_ui
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -8,7 +8,6 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
-import com.squareup.picasso.Picasso
 import com.waelkhelil.sayara_dz.R
 import com.waelkhelil.sayara_dz.model.Brand
 

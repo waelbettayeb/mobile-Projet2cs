@@ -11,7 +11,7 @@
     <ImageView
             android:layout_width="50dp"
             android:layout_height="50dp" tools:srcCompat="@mipmap/ic_launcher"
-            android:id="@+id/image_list_item_logo"
+            android:id="@+id/image_brand_logo"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             android:layout_marginTop="8dp" android:layout_marginStart="8dp" android:layout_marginBottom="8dp"
@@ -20,7 +20,7 @@
             android:orientation="vertical"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintStart_toEndOf="@+id/image_list_item_logo"
+            app:layout_constraintStart_toEndOf="@+id/image_brand_logo"
             android:layout_marginStart="24dp"
             app:layout_constraintTop_toTopOf="parent"
             android:id="@+id/linearLayout2"

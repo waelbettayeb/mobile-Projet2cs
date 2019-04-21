@@ -1,4 +1,4 @@
-package com.waelkhelil.sayara_dz.view.models_ui
+package com.waelkhelil.sayara_dz.view.brand_ui
 
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
@@ -14,21 +14,21 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.waelkhelil.sayara_dz.R
 import com.waelkhelil.sayara_dz.model.Model
-import kotlinx.android.synthetic.main.models_fragment.*
+import kotlinx.android.synthetic.main.fragment_brand.*
 
-class ModelsFragment : Fragment() {
+class BrandFragment : Fragment() {
 
     companion object {
-        fun newInstance() = ModelsFragment()
+        fun newInstance() = BrandFragment()
     }
 
-    private lateinit var viewModel: ModelViewModel
+    private lateinit var viewModel: BrandViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.models_fragment, container, false)
+        return inflater.inflate(R.layout.fragment_brand, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -69,7 +69,7 @@ class ModelsFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(ModelViewModel::class.java)
+        viewModel = ViewModelProviders.of(this).get(BrandViewModel::class.java)
         // TODO: Use the ViewModel
     }
 

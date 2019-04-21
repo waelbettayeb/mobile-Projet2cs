@@ -28,13 +28,13 @@
               android:label="@string/title_listing"
               tools:layout="@layout/fragment_user_content"/>
 
-    <fragment android:id="@+id/modelsFragment" android:name="com.waelkhelil.sayara_dz.view.models_ui.ModelsFragment"
-              tools:layout="@layout/models_fragment">
+    <fragment android:id="@+id/modelsFragment" android:name="com.waelkhelil.sayara_dz.view.brand_ui.BrandFragment"
+              tools:layout="@layout/fragment_brand">
         <argument android:name="brandId" app:argType="long"/>
     </fragment>
 
     <fragment android:id="@+id/brandsListFragment"
-              android:name="com.waelkhelil.sayara_dz.view.brands_ui.BrandsListFragment"
+              android:name="com.waelkhelil.sayara_dz.view.brands_list_ui.BrandsListFragment"
               android:label="@string/brands" tools:layout="@layout/fragment_brands_list"/>
 
     <fragment android:id="@+id/modelFragment" android:name="com.waelkhelil.sayara_dz.view.model_ui.ModelFragment"

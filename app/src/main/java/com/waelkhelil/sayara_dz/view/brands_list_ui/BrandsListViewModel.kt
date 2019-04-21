@@ -1,4 +1,4 @@
-package com.waelkhelil.sayara_dz.view.brands_ui
+package com.waelkhelil.sayara_dz.view.brands_list_ui
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
