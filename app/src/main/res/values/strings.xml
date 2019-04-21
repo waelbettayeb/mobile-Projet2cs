@@ -45,4 +45,5 @@
     <string name="follow">suivre</string>
     <string name="command">commander</string>
     <string name="compare">comparer</string>
+    <string name="technical_sheet">Fiche Technique</string>
 </resources>
