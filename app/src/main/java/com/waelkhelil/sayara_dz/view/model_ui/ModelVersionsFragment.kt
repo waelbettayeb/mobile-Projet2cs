@@ -28,7 +28,7 @@ class ModelVersionsFragment : Fragment() {
     }
 
 
-    private val countries = arrayOf("Zen", "Intens", "RS Line")
+    private val versionsNames = arrayOf("Zen", "Intens", "RS Line")
     private val prices = arrayOf("2 300 K", "2 700 K", "3 200 K")
     private val list:List<Version> = listOf(
         Version(0,"Zen", "https://www.cdn.renault.com/content/dam/Renault/FR/personal-cars/clio/CLIO%20V/PackshotsVersions/New_Clio_Zen_Gris_Titanium.jpeg.ximg.l_12_m.smart.jpeg"),
@@ -41,11 +41,11 @@ class ModelVersionsFragment : Fragment() {
     private var recyclerView: RecyclerView? = null
     private var priceSwitcher: TextSwitcher? = null
 
-    private var country1TextView: TextView? = null
-    private var country2TextView: TextView? = null
-    private var countryOffset1: Float = 0F
-    private var countryOffset2: Float = 0F
-    private var countryAnimDuration: Long = 0
+    private var version1TextView: TextView? = null
+    private var version2TextView: TextView? = null
+    private var versionOffset1: Float = 0F
+    private var versionOffset2: Float = 0F
+    private var versionAnimDuration: Long = 0
     private var currentPosition: Int = 0
 
     override fun onCreateView(
@@ -61,7 +61,7 @@ class ModelVersionsFragment : Fragment() {
 
 
         initRecyclerView()
-        initCountryText()
+        initVersionText()
         initSwitchers()
     }
     private fun initRecyclerView() {
@@ -92,56 +92,56 @@ class ModelVersionsFragment : Fragment() {
 
     }
 
-    private fun initCountryText() {
-        countryAnimDuration = resources.getInteger(R.integer.labels_animation_duration).toLong()
-        countryOffset1 = resources.getDimensionPixelSize(R.dimen.left_offset).toFloat()
-        countryOffset2 = resources.getDimensionPixelSize(R.dimen.card_width).toFloat()
+    private fun initVersionText() {
+        versionAnimDuration = resources.getInteger(R.integer.labels_animation_duration).toLong()
+        versionOffset1 = resources.getDimensionPixelSize(R.dimen.left_offset).toFloat()
+        versionOffset2 = resources.getDimensionPixelSize(R.dimen.card_width).toFloat()
 
-        country1TextView = view?.findViewById(R.id.tv_country_1) as TextView
-        country2TextView = view?.findViewById(R.id.tv_country_2) as TextView
+        version1TextView = view?.findViewById(R.id.tv_country_1) as TextView
+        version2TextView = view?.findViewById(R.id.tv_country_2) as TextView
 
-        country1TextView?.x = countryOffset1
-        country2TextView?.x = countryOffset2
+        version1TextView?.x = versionOffset1
+        version2TextView?.x = versionOffset2
 
-        country1TextView?.text = countries[0]
-        country2TextView?.alpha = 0f
+        version1TextView?.text = versionsNames[currentPosition]
+        version2TextView?.alpha = 0f
 
     }
 
 
-    private fun setCountryText(text: String, left2right: Boolean) {
+    private fun setVersionText(text: String, left2right: Boolean) {
         val invisibleText: TextView
         val visibleText: TextView
-        if ((country2TextView != null) && (country1TextView != null)) {
-            val alpha1 = (country1TextView as TextView).alpha
-            val alpha2 = (country2TextView as TextView).alpha
+        if ((version2TextView != null) && (version1TextView != null)) {
+            val alpha1 = (version1TextView as TextView).alpha
+            val alpha2 = (version2TextView as TextView).alpha
             if (alpha1 > alpha2) {
-                visibleText = country1TextView as TextView
-                invisibleText = country2TextView as TextView
+                visibleText = version1TextView as TextView
+                invisibleText = version2TextView as TextView
             } else {
-                visibleText = country2TextView as TextView
-                invisibleText = country1TextView as TextView
+                visibleText = version2TextView as TextView
+                invisibleText = version1TextView as TextView
             }
 
 
             val vOffset: Float
             if (left2right) {
                 invisibleText.x = 0f
-                vOffset = countryOffset2
+                vOffset = versionOffset2
             } else {
-                invisibleText.x = countryOffset2
+                invisibleText.x = versionOffset2
                 vOffset = 0f
             }
             invisibleText.text = text
 
             val iAlpha = ObjectAnimator.ofFloat(invisibleText, "alpha", 1f)
             val vAlpha = ObjectAnimator.ofFloat(visibleText, "alpha", 0f)
-            val iX = ObjectAnimator.ofFloat(invisibleText, "x", countryOffset1)
+            val iX = ObjectAnimator.ofFloat(invisibleText, "x", versionOffset1)
             val vX = ObjectAnimator.ofFloat(visibleText, "x", vOffset)
 
             val animSet = AnimatorSet()
             animSet.playTogether(iAlpha, vAlpha, iX, vX)
-            animSet.duration = countryAnimDuration
+            animSet.duration = versionAnimDuration
             animSet.start()
         }
     }
@@ -170,7 +170,7 @@ class ModelVersionsFragment : Fragment() {
             animV[1] = R.anim.slide_out_top
         }
 
-        setCountryText(countries[pos % countries.size], left2right)
+        setVersionText(versionsNames[pos % versionsNames.size], left2right)
 
         priceSwitcher?.setInAnimation(context, animH[0])
         priceSwitcher?.setOutAnimation(context, animH[1])
