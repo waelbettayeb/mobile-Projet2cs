@@ -46,4 +46,5 @@
     <string name="command">commander</string>
     <string name="compare">comparer</string>
     <string name="technical_sheet">Fiche Technique</string>
+    <string name="images">Images</string>
 </resources>

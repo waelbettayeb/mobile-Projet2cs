@@ -8,7 +8,7 @@
         tools:context=".view.model_ui.ModelInfoFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
-    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+    <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent"
                   android:orientation="vertical"
                   android:showDividers="middle"
                   android:padding="8dp" android:divider="@drawable/empty_divider">
@@ -81,7 +81,6 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
         </com.google.android.material.card.MaterialCardView>
         <com.google.android.material.card.MaterialCardView
-                app:layout_constraintDimensionRatio="1:1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:cardCornerRadius="8dp">
@@ -101,7 +100,7 @@
                 <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/rv_options_list"
                         android:layout_width="0dp"
-                        android:layout_height="0dp"
+                        android:layout_height="match_parent"
                         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                         tools:listitem="@layout/option_list_item"
                         android:layout_marginTop="16dp"

@@ -84,9 +84,12 @@ class ModelFragment : Fragment() {
 
         private val mFragmentList = mutableListOf(
             ModelInfoFragment(),
+            ModelImagesFragment(),
             ModelVersionsFragment()
         )
-        private val mFragmentTitleList = mutableListOf(resources.getString(R.string.information),
+        private val mFragmentTitleList = mutableListOf(
+            resources.getString(R.string.information),
+            resources.getString(R.string.images),
             resources.getString(R.string.versions))
 
         override fun getCount(): Int {
