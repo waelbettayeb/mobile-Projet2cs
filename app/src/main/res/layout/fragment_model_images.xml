@@ -7,7 +7,7 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         tools:context=".view.model_ui.ModelImagesFragment"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" android:padding="8">
+        android:layout_height="match_parent" android:padding="8dp">
     <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_image_list"
             android:layout_width="match_parent"
