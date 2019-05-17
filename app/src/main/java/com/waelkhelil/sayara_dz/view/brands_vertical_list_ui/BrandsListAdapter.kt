@@ -1,13 +1,14 @@
-package com.waelkhelil.sayara_dz.view.brands_list_ui
+package com.waelkhelil.sayara_dz.view.brands_vertical_list_ui
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.RecyclerView
+import androidx.paging.PagedListAdapter
+import androidx.recyclerview.widget.DiffUtil
 import com.simplecityapps.recyclerview_fastscroll.views.FastScrollRecyclerView
-import com.waelkhelil.sayara_dz.model.Brand
+import com.waelkhelil.sayara_dz.database.model.Brand
 
 class BrandsListAdapter(private val list: List<Brand>)
-    : RecyclerView.Adapter<BrandViewHolder>(), FastScrollRecyclerView.SectionedAdapter{
+    : PagedListAdapter<Brand, BrandViewHolder>(Brand_COMPARATOR), FastScrollRecyclerView.SectionedAdapter{
     var brands:MutableList<Brand>
 
     init {
@@ -26,5 +27,15 @@ class BrandsListAdapter(private val list: List<Brand>)
     override fun getItemCount(): Int = list.size
     override fun getSectionName(position: Int): String {
         return brands[position].name[0].toString()
+    }
+
+    companion object {
+        private val Brand_COMPARATOR = object : DiffUtil.ItemCallback<Brand>() {
+            override fun areItemsTheSame(oldItem: Brand, newItem: Brand): Boolean =
+                oldItem.name == newItem.name
+
+            override fun areContentsTheSame(oldItem: Brand, newItem: Brand): Boolean =
+                oldItem == newItem
+        }
     }
 }

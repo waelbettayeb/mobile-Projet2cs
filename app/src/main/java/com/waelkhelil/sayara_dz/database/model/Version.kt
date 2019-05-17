@@ -1,11 +1,11 @@
-package com.waelkhelil.sayara_dz.model
+package com.waelkhelil.sayara_dz.database.model
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "model")
-data class Model(
+@Entity(tableName = "version")
+data class Version(
     @PrimaryKey var id:Long,
     @ColumnInfo var name:String,
     @ColumnInfo var url: String

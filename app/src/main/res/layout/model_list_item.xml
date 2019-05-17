@@ -44,7 +44,8 @@
                     <TextView
                             android:text="Renault"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" android:id="@+id/textView7"/>
+                            android:layout_height="wrap_content"
+                            android:id="@+id/tv_brand_name_card"/>
                     <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" android:id="@+id/text_card_header"

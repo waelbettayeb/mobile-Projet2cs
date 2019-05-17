@@ -26,7 +26,7 @@ import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.Task
 import com.google.android.material.snackbar.Snackbar
 import com.waelkhelil.sayara_dz.R
-import com.waelkhelil.sayara_dz.model.User
+import com.waelkhelil.sayara_dz.database.model.User
 import com.waelkhelil.sayara_dz.view.login_ui.LoginViewModel.AuthenticationState.*
 import java.util.*
 

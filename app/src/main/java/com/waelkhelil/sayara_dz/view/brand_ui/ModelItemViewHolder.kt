@@ -7,26 +7,36 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.waelkhelil.sayara_dz.R
-import com.waelkhelil.sayara_dz.model.Model
-import com.waelkhelil.sayara_dz.model.PaintColor
+import com.waelkhelil.sayara_dz.database.model.Model
+import com.waelkhelil.sayara_dz.database.model.PaintColor
 import com.waelkhelil.sayara_dz.view.model_ui.ColorListAdapter
 
 class ModelItemViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
     RecyclerView.ViewHolder(inflater.inflate(R.layout.model_list_item, parent, false)){
     private var mModel: Model? = null
     private var mTitleView: TextView? = null
+    private var mBrandNameTitleView: TextView? = null
+
 
 
     init {
         mTitleView = itemView.findViewById(R.id.text_card_header)
+        mBrandNameTitleView = itemView.findViewById(R.id.tv_brand_name_card)
         this.itemView.setOnClickListener(
             Navigation.createNavigateOnClickListener(R.id.modelFragment)
         )
     }
 
-    fun bind(model: Model) {
+    fun bind(
+        model: Model,
+        brand_name: String
+    ) {
         mTitleView?.text = model.name
         mModel = model
+        mBrandNameTitleView?.text=brand_name
+
+
+
         val list:List<PaintColor> = listOf(
             PaintColor("red", "#2196F3"),
             PaintColor("red", "#FF6050"),

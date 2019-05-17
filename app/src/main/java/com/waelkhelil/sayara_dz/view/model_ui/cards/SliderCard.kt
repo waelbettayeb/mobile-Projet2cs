@@ -6,8 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.waelkhelil.sayara_dz.R
-import com.waelkhelil.sayara_dz.model.Version
-import com.waelkhelil.sayara_dz.view.model_ui.utils.DecodeBitmapTask
+import com.waelkhelil.sayara_dz.database.model.Version
 
 class SliderCard(itemView: View) : RecyclerView.ViewHolder(itemView) {
 

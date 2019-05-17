@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.waelkhelil.sayara_dz.R
-import com.waelkhelil.sayara_dz.model.Version
+import com.waelkhelil.sayara_dz.database.model.Version
 
 class SliderAdapter(
     private val content: List<Version>,

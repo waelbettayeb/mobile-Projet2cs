@@ -4,9 +4,10 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.simplecityapps.recyclerview_fastscroll.views.FastScrollRecyclerView
-import com.waelkhelil.sayara_dz.model.Model
+import com.waelkhelil.sayara_dz.database.model.Brand
+import com.waelkhelil.sayara_dz.database.model.Model
 
-class ModelsListItemAdapter(private val list: List<Model>)
+class ModelsListItemAdapter(private val list: List<Model>,private val brand_name:String)
     : RecyclerView.Adapter<ModelItemViewHolder>() , FastScrollRecyclerView.SectionedAdapter{
     var models:MutableList<Model>
     init {
@@ -19,7 +20,7 @@ class ModelsListItemAdapter(private val list: List<Model>)
 
     override fun onBindViewHolder(holder: ModelItemViewHolder, position: Int) {
         val model: Model = models[position]
-        holder.bind(model)
+        holder.bind(model,brand_name)
     }
 
     override fun getItemCount(): Int = list.size

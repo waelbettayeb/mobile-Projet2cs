@@ -1,4 +1,4 @@
-package com.waelkhelil.sayara_dz.model
+package com.waelkhelil.sayara_dz.database.model
 
 data class PaintColor(
     val name:String,

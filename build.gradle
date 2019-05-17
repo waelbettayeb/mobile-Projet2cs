@@ -31,4 +31,6 @@ ext {
     roomVersion = '1.1.1'
     archLifecycleVersion = '1.1.1'
     coroutines = '1.0.1'
+    retrofitVersion = "2.3.0"
+    okhttpLoggingInterceptorVersion = "3.9.0"
 }

@@ -17,7 +17,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.ramotion.cardslider.CardSliderLayoutManager
 import com.ramotion.cardslider.CardSnapHelper
 import com.waelkhelil.sayara_dz.R
-import com.waelkhelil.sayara_dz.model.Version
+import com.waelkhelil.sayara_dz.database.model.Version
 import com.waelkhelil.sayara_dz.view.model_ui.cards.SliderAdapter
 
 
@@ -31,9 +31,21 @@ class ModelVersionsFragment : Fragment() {
     private val versionsNames = arrayOf("Zen", "Intens", "RS Line")
     private val prices = arrayOf("2 300 K", "2 700 K", "3 200 K")
     private val list:List<Version> = listOf(
-        Version(0,"Zen", "https://www.cdn.renault.com/content/dam/Renault/FR/personal-cars/clio/CLIO%20V/PackshotsVersions/New_Clio_Zen_Gris_Titanium.jpeg.ximg.l_12_m.smart.jpeg"),
-        Version(0,"Intens", "https://www.cdn.renault.com/content/dam/Renault/FR/personal-cars/clio/CLIO%20V/PackshotsVersions/New_Clio_Intens_Orange_Valencia_Jantes.jpg.ximg.l_12_m.smart.jpg"),
-        Version(0,"RS Line", "https://www.cdn.renault.com/content/dam/Renault/FR/personal-cars/clio/CLIO%20V/PackshotsVersions/New_Clio_RS_Line_Bleu_Iron.jpeg.ximg.l_12_m.smart.jpeg")
+        Version(
+            0,
+            "Zen",
+            "https://www.cdn.renault.com/content/dam/Renault/FR/personal-cars/clio/CLIO%20V/PackshotsVersions/New_Clio_Zen_Gris_Titanium.jpeg.ximg.l_12_m.smart.jpeg"
+        ),
+        Version(
+            0,
+            "Intens",
+            "https://www.cdn.renault.com/content/dam/Renault/FR/personal-cars/clio/CLIO%20V/PackshotsVersions/New_Clio_Intens_Orange_Valencia_Jantes.jpg.ximg.l_12_m.smart.jpg"
+        ),
+        Version(
+            0,
+            "RS Line",
+            "https://www.cdn.renault.com/content/dam/Renault/FR/personal-cars/clio/CLIO%20V/PackshotsVersions/New_Clio_RS_Line_Bleu_Iron.jpeg.ximg.l_12_m.smart.jpeg"
+        )
     )
     private val sliderAdapter = SliderAdapter(list,  OnCardClickListener())
 

@@ -79,14 +79,9 @@
             <fragment android:layout_width="match_parent"
                       android:layout_height="wrap_content"
                       android:name="com.waelkhelil.sayara_dz.view.home_ui.HorizontalListFragment"
-                      android:id="@+id/horizontal_brands_list_fragment"/>
-            <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_models_list"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:clipToPadding="false"
-                    tools:context=".view.brands_list_ui.BrandsListFragment"
-                    tools:listitem="@layout/list_item_brand"/>
+                      android:id="@+id/horizontal_brands_list_fragment"
+                      tools:layout="@layout/horziontal_list_fragment"/>
+
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 

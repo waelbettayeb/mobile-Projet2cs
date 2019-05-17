@@ -54,7 +54,7 @@ dependencies {
     androidTestImplementation 'androidx.test:runner:1.2.0-alpha03'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0-alpha03'
     testImplementation 'junit:junit:4.12'
-// Coroutines
+     // Coroutines
     api "org.jetbrains.kotlinx:kotlinx-coroutines-core:$rootProject.coroutines"
     api "org.jetbrains.kotlinx:kotlinx-coroutines-android:$rootProject.coroutines"
     // Navigation component
@@ -63,5 +63,14 @@ dependencies {
     implementation 'com.simplecityapps:recyclerview-fastscroll:2.0.0'
     //Card-slider
     implementation 'com.ramotion.cardslider:card-slider:0.3.1'
+
+    //retrofit
+    implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
+    implementation"com.squareup.retrofit2:converter-gson:$retrofitVersion"
+    implementation "com.squareup.retrofit2:retrofit-mock:$retrofitVersion"
+    implementation "com.squareup.okhttp3:logging-interceptor:$okhttpLoggingInterceptorVersion"
+    //paging library
+    implementation 'android.arch.paging:runtime:1.0.0'
+
 
 }

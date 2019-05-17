@@ -1,4 +1,4 @@
-package com.waelkhelil.sayara_dz.model
+package com.waelkhelil.sayara_dz.database.model
 
 data class User(val name:String, val photoUrl:String){
     companion object {

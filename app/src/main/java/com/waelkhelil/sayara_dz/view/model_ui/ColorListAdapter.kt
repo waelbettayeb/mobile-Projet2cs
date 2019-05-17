@@ -11,7 +11,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.waelkhelil.sayara_dz.R
-import com.waelkhelil.sayara_dz.model.PaintColor
+import com.waelkhelil.sayara_dz.database.model.PaintColor
 
 class ColorListAdapter(private val list: List<PaintColor>)
     : RecyclerView.Adapter<ColorListAdapter.ColorViewHolder>(){

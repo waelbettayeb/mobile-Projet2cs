@@ -34,7 +34,7 @@
     </fragment>
 
     <fragment android:id="@+id/brandsListFragment"
-              android:name="com.waelkhelil.sayara_dz.view.brands_list_ui.BrandsListFragment"
+              android:name="com.waelkhelil.sayara_dz.view.brands_vertical_list_ui.BrandsListFragment"
               android:label="@string/brands" tools:layout="@layout/fragment_brands_list"/>
 
     <fragment android:id="@+id/modelFragment" android:name="com.waelkhelil.sayara_dz.view.model_ui.ModelFragment"

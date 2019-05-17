@@ -7,9 +7,8 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.waelkhelil.sayara_dz.R
-import com.waelkhelil.sayara_dz.model.PaintColor
+import com.waelkhelil.sayara_dz.database.model.PaintColor
 import kotlinx.android.synthetic.main.fragment_model_info.*
-import androidx.recyclerview.widget.GridLayoutManager
 
 
 class ModelInfoFragment : Fragment() {
