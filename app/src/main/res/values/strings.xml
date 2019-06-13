@@ -37,7 +37,7 @@
     <string name="information">Info</string>
     <string name="versions">Versions</string>
     <string name="bids">Offres</string>
-    <string name="good_morning">Good morning,</string>
+    <string name="good_morning">Good morning, </string>
     <string name="user_profile_image">user profile image</string>
     <string name="model_image">model image</string>
     <string name="subscribe">s\'abonner</string>

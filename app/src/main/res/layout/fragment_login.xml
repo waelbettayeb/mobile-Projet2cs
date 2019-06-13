@@ -5,7 +5,7 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".view.AppIntroActivity">
+        tools:context=".view.login_ui.LoginFragment">
 
     <ImageView
             android:layout_width="200dp"
@@ -22,8 +22,8 @@
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
-            android:fontFamily="@font/kollektif_bold" android:layout_marginBottom="8dp"
-            app:layout_constraintBottom_toTopOf="@+id/textView6"/>
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/textView6" android:textStyle="bold" android:textAllCaps="false"/>
     <TextView
             android:text="@string/msg_sign_in"
             android:layout_width="0dp"

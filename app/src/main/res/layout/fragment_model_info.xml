@@ -20,7 +20,7 @@
                 <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" android:id="@+id/text_card_header"
-                        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+                        android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
                         android:text="Description"
                         app:layout_constraintStart_toStartOf="parent"
                         android:layout_marginStart="16dp" android:layout_marginTop="16dp"
@@ -52,7 +52,7 @@
             <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" android:id="@+id/text_card_header1"
-                    android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
                     android:text="Couleur"
                     app:layout_constraintStart_toStartOf="parent"
                     android:layout_marginStart="16dp" android:layout_marginTop="16dp"
@@ -87,7 +87,7 @@
                 <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" android:id="@+id/text_card_header2"
-                        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+                        android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
                         android:text="Équipements en options"
                         app:layout_constraintStart_toStartOf="parent"
                         android:layout_marginStart="16dp" android:layout_marginTop="16dp"

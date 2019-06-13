@@ -1,27 +1,32 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+    <style name="Theme.Sayara" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:fontFamily">@font/kollektif</item>
+
+        <item name="textAppearanceHeadline4">@style/TextAppearance.Sayara.Headline4</item>
     </style>
+
+    <style name="TextAppearance.Sayara.Headline4" parent="TextAppearance.MaterialComponents.Headline4">
+    </style>
+
     <style name="AppThemeDark" parent="Theme.MaterialComponents">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:fontFamily">@font/kollektif</item>
+        <item name="android:fontFamily">@font/josefin_sans_semibold</item>
     </style>
     <style name="hidden">
         <item name="android:textColor">@android:color/transparent</item>
         <item name="android:visibility">gone</item>
         <item name="android:text">0sp</item>
     </style>
-    <style name="toolbar_collapsedText" parent="AppTheme">
-        <item name="android:fontFamily">@font/kollektif_bold</item>
+    <style name="toolbar_collapsedText" parent="Theme.Sayara">
+        <item name="android:fontFamily">@font/josefin_sans_semibold</item>
     </style>
     <style name="price_textView">
         <item name="android:textSize">20sp</item>
