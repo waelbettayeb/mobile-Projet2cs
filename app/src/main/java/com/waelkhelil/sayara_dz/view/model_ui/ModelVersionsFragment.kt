@@ -8,16 +8,20 @@ import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextSwitcher
 import android.widget.TextView
 import android.widget.ViewSwitcher
 import androidx.annotation.StyleRes
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.ramotion.cardslider.CardSliderLayoutManager
 import com.ramotion.cardslider.CardSnapHelper
 import com.waelkhelil.sayara_dz.R
 import com.waelkhelil.sayara_dz.database.model.Version
+import com.waelkhelil.sayara_dz.view.compare.CompareFragment
 import com.waelkhelil.sayara_dz.view.model_ui.cards.SliderAdapter
 
 
@@ -34,17 +38,20 @@ class ModelVersionsFragment : Fragment() {
         Version(
             0,
             "Zen",
-            "https://www.cdn.renault.com/content/dam/Renault/FR/personal-cars/clio/CLIO%20V/PackshotsVersions/New_Clio_Zen_Gris_Titanium.jpeg.ximg.l_12_m.smart.jpeg"
+            "https://www.cdn.renault.com/content/dam/Renault/FR/personal-cars/clio/CLIO%20V/PackshotsVersions/" +
+                    "New_Clio_Zen_Gris_Titanium.jpeg.ximg.l_12_m.smart.jpeg"
         ),
         Version(
             0,
             "Intens",
-            "https://www.cdn.renault.com/content/dam/Renault/FR/personal-cars/clio/CLIO%20V/PackshotsVersions/New_Clio_Intens_Orange_Valencia_Jantes.jpg.ximg.l_12_m.smart.jpg"
+            "https://www.cdn.renault.com/content/dam/Renault/FR/personal-cars/clio/CLIO%20V/PackshotsVersions/" +
+                    "New_Clio_Intens_Orange_Valencia_Jantes.jpg.ximg.l_12_m.smart.jpg"
         ),
         Version(
             0,
             "RS Line",
-            "https://www.cdn.renault.com/content/dam/Renault/FR/personal-cars/clio/CLIO%20V/PackshotsVersions/New_Clio_RS_Line_Bleu_Iron.jpeg.ximg.l_12_m.smart.jpeg"
+            "https://www.cdn.renault.com/content/dam/Renault/FR/personal-cars/clio/CLIO%20V/PackshotsVersions/" +
+                    "New_Clio_RS_Line_Bleu_Iron.jpeg.ximg.l_12_m.smart.jpeg"
         )
     )
     private val sliderAdapter = SliderAdapter(list,  OnCardClickListener())
@@ -75,6 +82,13 @@ class ModelVersionsFragment : Fragment() {
         initRecyclerView()
         initVersionText()
         initSwitchers()
+        val lButtonSeeAll = getView()!!.
+            findViewById<Button>(R.id.button_compare_button)
+        lButtonSeeAll.setOnClickListener {
+            val lCompareFragment= CompareFragment()
+            lCompareFragment.
+            fragmentManager?.let { it1 -> lCompareFragment.show(it1, CompareFragment.TAG) }
+        }
     }
     private fun initRecyclerView() {
 
