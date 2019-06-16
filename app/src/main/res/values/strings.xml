@@ -37,7 +37,7 @@
     <string name="information">Info</string>
     <string name="versions">Versions</string>
     <string name="bids">Offres</string>
-    <string name="good_morning">Good morning, </string>
+    <string name="good_morning">Bonjour, </string>
     <string name="user_profile_image">user profile image</string>
     <string name="model_image">model image</string>
     <string name="subscribe">s\'abonner</string>
@@ -50,4 +50,6 @@
     <string name="compare">comparer</string>
     <string name="technical_sheet">Fiche Technique</string>
     <string name="images">Images</string>
+    <string name="logout">Se déconnecter</string>
+    <string name="my_cards">Mes cartes</string>
 </resources>
