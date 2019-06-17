@@ -53,6 +53,6 @@
     <string name="logout">Se déconnecter</string>
     <string name="my_cards">Mes cartes</string>
     <string name="msg_added_to_comparison_list">Cette version est ajoutée à la liste de comparaison</string>
-    <string name="compare_list">Liste de comparison</string>
+    <string name="compare_list">Liste de comparaison</string>
     <string name="clear">Vider</string>
 </resources>
