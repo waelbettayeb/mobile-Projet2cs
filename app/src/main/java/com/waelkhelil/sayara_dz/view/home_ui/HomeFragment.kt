@@ -13,7 +13,6 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation
 import androidx.navigation.ui.NavigationUI
-import androidx.transition.Visibility
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.waelkhelil.sayara_dz.R
