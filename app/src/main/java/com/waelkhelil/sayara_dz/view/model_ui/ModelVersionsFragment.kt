@@ -25,6 +25,9 @@ import com.waelkhelil.sayara_dz.SharedViewModel
 import com.waelkhelil.sayara_dz.database.model.Version
 import com.waelkhelil.sayara_dz.view.compare.CompareFragment
 import com.waelkhelil.sayara_dz.view.model_ui.cards.SliderAdapter
+import com.google.android.material.snackbar.Snackbar
+
+
 
 
 class ModelVersionsFragment : Fragment() {
@@ -92,14 +95,21 @@ class ModelVersionsFragment : Fragment() {
         initRecyclerView()
         initVersionText()
         initSwitchers()
+
         val lButtonCompare= getView()!!.
             findViewById<Button>(R.id.button_compare_button)
         lButtonCompare.setOnClickListener {
-
             sharedViewModel.addToCompareList(list[currentPosition])
-//            val lCompareFragment= CompareFragment()
-//            lCompareFragment.
-//            fragmentManager?.let { it1 -> lCompareFragment.show(it1, CompareFragment.TAG) }
+            val contextView : View = view.findViewById(R.id.layout_version)
+
+            if (sharedViewModel.mCompareList.value!!.size > 1)
+                Snackbar.make(contextView, R.string.msg_added_to_comparison_list, Snackbar.LENGTH_LONG)
+                    .setAction(R.string.see_all, View.OnClickListener(){it ->
+                        //TODO
+                    }).show()
+            else
+                Snackbar.make(view, R.string.msg_added_to_comparison_list, Snackbar.LENGTH_SHORT)
+                    .show()
         }
     }
     private fun initRecyclerView() {
@@ -219,8 +229,8 @@ class ModelVersionsFragment : Fragment() {
         currentPosition = pos
     }
 
-  
-//
+
+    //
     private inner class TextViewFactory internal constructor(
         @param:StyleRes @field:StyleRes
         internal val styleId: Int, internal val center: Boolean
