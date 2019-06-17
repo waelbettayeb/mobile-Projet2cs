@@ -103,9 +103,10 @@ class ModelVersionsFragment : Fragment() {
             val contextView : View = view.findViewById(R.id.layout_version)
 
             if (sharedViewModel.mCompareList.value!!.size > 1)
-                Snackbar.make(contextView, R.string.msg_added_to_comparison_list, Snackbar.LENGTH_LONG)
-                    .setAction(R.string.see_all, View.OnClickListener(){it ->
-                        //TODO
+                Snackbar.make(contextView, R.string.msg_added_to_comparison_list, Snackbar.LENGTH_SHORT)
+                    .setAction(R.string.see_all, View.OnClickListener(){
+                        val lCompareFragment= CompareFragment()
+                        fragmentManager?.let { it1 -> lCompareFragment.show(it1, CompareFragment.TAG) }
                     }).show()
             else
                 Snackbar.make(view, R.string.msg_added_to_comparison_list, Snackbar.LENGTH_SHORT)
