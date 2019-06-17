@@ -71,6 +71,7 @@ dependencies {
     implementation "com.squareup.okhttp3:logging-interceptor:$okhttpLoggingInterceptorVersion"
     //paging library
     implementation 'android.arch.paging:runtime:1.0.1'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.0.0'
 
 
 }

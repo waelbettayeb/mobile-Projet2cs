@@ -15,11 +15,13 @@ import android.widget.ViewSwitcher
 import androidx.annotation.StyleRes
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
+import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.ramotion.cardslider.CardSliderLayoutManager
 import com.ramotion.cardslider.CardSnapHelper
 import com.waelkhelil.sayara_dz.R
+import com.waelkhelil.sayara_dz.SharedViewModel
 import com.waelkhelil.sayara_dz.database.model.Version
 import com.waelkhelil.sayara_dz.view.compare.CompareFragment
 import com.waelkhelil.sayara_dz.view.model_ui.cards.SliderAdapter
@@ -31,7 +33,7 @@ class ModelVersionsFragment : Fragment() {
         fun newInstance() = ModelVersionsFragment()
     }
 
-
+    private lateinit var sharedViewModel: SharedViewModel
     private val versionsNames = arrayOf("Zen", "Intens", "RS Line")
     private val prices = arrayOf("2 300 K", "2 700 K", "3 200 K")
     private val list:List<Version> = listOf(
@@ -42,13 +44,13 @@ class ModelVersionsFragment : Fragment() {
                     "New_Clio_Zen_Gris_Titanium.jpeg.ximg.l_12_m.smart.jpeg"
         ),
         Version(
-            0,
+            1,
             "Intens",
             "https://www.cdn.renault.com/content/dam/Renault/FR/personal-cars/clio/CLIO%20V/PackshotsVersions/" +
                     "New_Clio_Intens_Orange_Valencia_Jantes.jpg.ximg.l_12_m.smart.jpg"
         ),
         Version(
-            0,
+            2,
             "RS Line",
             "https://www.cdn.renault.com/content/dam/Renault/FR/personal-cars/clio/CLIO%20V/PackshotsVersions/" +
                     "New_Clio_RS_Line_Bleu_Iron.jpeg.ximg.l_12_m.smart.jpeg"
@@ -67,6 +69,14 @@ class ModelVersionsFragment : Fragment() {
     private var versionAnimDuration: Long = 0
     private var currentPosition: Int = 0
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        // Share data between fragments
+        sharedViewModel = activity?.run {
+            ViewModelProviders.of(this).get(SharedViewModel::class.java)
+        } ?: throw Exception("Invalid Activity")
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -82,12 +92,14 @@ class ModelVersionsFragment : Fragment() {
         initRecyclerView()
         initVersionText()
         initSwitchers()
-        val lButtonSeeAll = getView()!!.
+        val lButtonCompare= getView()!!.
             findViewById<Button>(R.id.button_compare_button)
-        lButtonSeeAll.setOnClickListener {
-            val lCompareFragment= CompareFragment()
-            lCompareFragment.
-            fragmentManager?.let { it1 -> lCompareFragment.show(it1, CompareFragment.TAG) }
+        lButtonCompare.setOnClickListener {
+
+            sharedViewModel.addToCompareList(list[currentPosition])
+//            val lCompareFragment= CompareFragment()
+//            lCompareFragment.
+//            fragmentManager?.let { it1 -> lCompareFragment.show(it1, CompareFragment.TAG) }
         }
     }
     private fun initRecyclerView() {
