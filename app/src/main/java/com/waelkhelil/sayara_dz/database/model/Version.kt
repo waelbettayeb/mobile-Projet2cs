@@ -10,7 +10,7 @@ data class Version(
     @ColumnInfo var name:String,
     @ColumnInfo var url: String,
     @ColumnInfo var price: String,
-    var compatibleOptions:List<Option>
+    var compatibleOptions:Set<Option>
 )
 
 

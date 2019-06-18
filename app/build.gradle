@@ -63,7 +63,6 @@ dependencies {
     implementation 'com.simplecityapps:recyclerview-fastscroll:2.0.0'
     //Card-slider
     implementation 'com.ramotion.cardslider:card-slider:0.3.1'
-
     //retrofit
     implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
     implementation"com.squareup.retrofit2:converter-gson:$retrofitVersion"
