@@ -4,12 +4,10 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "version")
-data class Version(
+@Entity(tableName = "option")
+data class Option(
     @PrimaryKey var id:Long,
-    @ColumnInfo var name:String,
-    @ColumnInfo var url: String,
-    var compatibleOptions:List<Option>
+    @ColumnInfo var name:String
 )
 
 
