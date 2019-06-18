@@ -12,6 +12,7 @@ import android.widget.TableRow
 import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.children
+import androidx.core.view.setPadding
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.google.android.material.bottomsheet.BottomSheetBehavior.STATE_EXPANDED
@@ -77,15 +78,20 @@ class CompareFragment(): BottomSheetDialogFragment() {
     }
     private fun createTable(versionsList:Set<Version>) {
         val optionSet = mutableSetOf<Option>()
+
 //      Create header
         val row = TableRow(context)
         row.layoutParams = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
             ViewGroup.LayoutParams.WRAP_CONTENT)
         var lTextView = TextView(context)
+        lTextView.setPadding(0,0,24,0)
         lTextView.text = getString(R.string.options)
+        lTextView.setTextAppearance(android.R.style.TextAppearance_Material_Medium)
         row.addView(lTextView)
         versionsList.forEach {
             lTextView = TextView(context)
+            lTextView.setPadding(0,0,24,0)
+            lTextView.setTextAppearance(android.R.style.TextAppearance_Material_Medium)
             lTextView.text = it.name
             row.addView(lTextView)
             optionSet.addAll(it.compatibleOptions)

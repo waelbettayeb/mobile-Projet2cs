@@ -20,6 +20,13 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:fontFamily">@font/josefin_sans_semibold</item>
     </style>
+    <style name="Theme.Sayara.table_header" parent="TextAppearance.MaterialComponents.Headline6">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:fontFamily">@font/josefin_sans_semibold</item>
+    </style>
     <style name="hidden">
         <item name="android:textColor">@android:color/transparent</item>
         <item name="android:visibility">gone</item>

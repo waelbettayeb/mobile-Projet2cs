@@ -53,11 +53,11 @@ class HomeFragment : Fragment() {
         NavigationUI.setupWithNavController(toolbar, navController)
 
         sharedViewModel.mCompareList.observe(viewLifecycleOwner, Observer<Set<Version>> {
-//            if (it.size > 1) {
+            if (it.size > 1) {
                 efab_comparison_list.visibility = View.VISIBLE
-//            }else{
-//                efab_comparison_list.visibility = View.GONE
-//            }
+            }else{
+                efab_comparison_list.visibility = View.GONE
+            }
         })
         efab_comparison_list.setOnClickListener {
             val lCompareFragment= CompareFragment()
