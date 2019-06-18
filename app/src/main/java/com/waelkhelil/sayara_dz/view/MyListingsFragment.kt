@@ -1,4 +1,4 @@
-package com.waelkhelil.sayara_dz.view.home_ui
+package com.waelkhelil.sayara_dz.view
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,14 +8,14 @@ import androidx.fragment.app.Fragment
 import com.waelkhelil.sayara_dz.R
 
 
-class ExploreFragment : Fragment() {
+class MyListingsFragment : Fragment() {
 
     companion object {
-        fun newInstance() = ExploreFragment()
+        fun newInstance() = MyListingsFragment()
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_explore, container, false)
+        return inflater.inflate(R.layout.fragment_my_listings, container, false)
 
     }
 }

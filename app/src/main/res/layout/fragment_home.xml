@@ -90,7 +90,7 @@
                       android:layout_height="wrap_content"
                       android:name="com.waelkhelil.sayara_dz.view.home_ui.ExploreFragment"
                       android:id="@+id/explore_fragment"
-                      tools:layout="@layout/explore_fragment"/>
+                      tools:layout="@layout/fragment_explore"/>
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
