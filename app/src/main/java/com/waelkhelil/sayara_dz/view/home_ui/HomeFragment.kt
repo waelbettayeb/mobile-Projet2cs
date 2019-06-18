@@ -63,6 +63,7 @@ class HomeFragment : Fragment() {
             val lCompareFragment= CompareFragment()
             fragmentManager?.let { it1 -> lCompareFragment.show(it1, CompareFragment.TAG) }
         }
+
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
