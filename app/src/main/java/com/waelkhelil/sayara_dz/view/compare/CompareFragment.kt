@@ -18,6 +18,7 @@ import androidx.lifecycle.ViewModelProviders
 import com.google.android.material.bottomsheet.BottomSheetBehavior.STATE_EXPANDED
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import com.google.android.material.chip.Chip
 import com.waelkhelil.sayara_dz.R
 import com.waelkhelil.sayara_dz.SharedViewModel
 import com.waelkhelil.sayara_dz.database.model.Option
@@ -57,14 +58,18 @@ class CompareFragment(): BottomSheetDialogFragment() {
         toolbar.setOnMenuItemClickListener { item: MenuItem ->  this.onOptionsItemSelected(item)}
         tableLayout = view.findViewById(R.id.table_layout)
         sharedViewModel.mCompareList.observe(viewLifecycleOwner, Observer<Set<Version>> {
-            tableLayout.removeAllViews()
-            createTable(it)
+            if (it.size > 1){
+                tableLayout.removeAllViews()
+                createTable(it)
+            }
+            else{
+                dismissAllowingStateLoss()
+            }
         })
     }
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return if (item.itemId == R.id.action_clear) {
             sharedViewModel.freeVersions()
-            dismissAllowingStateLoss()
             true
         } else super.onOptionsItemSelected(item)
     }
@@ -83,6 +88,7 @@ class CompareFragment(): BottomSheetDialogFragment() {
         val row = TableRow(context)
         row.layoutParams = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
             ViewGroup.LayoutParams.WRAP_CONTENT)
+
         var lTextView = TextView(context)
         lTextView.setPadding(0,0,24,0)
         lTextView.text = getString(R.string.options)
@@ -93,7 +99,16 @@ class CompareFragment(): BottomSheetDialogFragment() {
             lTextView.setPadding(0,0,24,0)
             lTextView.setTextAppearance(android.R.style.TextAppearance_Material_Medium)
             lTextView.text = it.name
-            row.addView(lTextView)
+            var lChip = Chip(context).apply {
+                text = it.name
+                isCloseIconVisible = true
+                isClickable = false
+            }
+            lChip.setOnCloseIconClickListener {_ ->
+                sharedViewModel.removeFromCompareList(it)
+            }
+
+                row.addView(lChip)
             optionSet.addAll(it.compatibleOptions)
         }
         tableLayout.addView(row)
@@ -115,4 +130,5 @@ class CompareFragment(): BottomSheetDialogFragment() {
             tableLayout.addView(row)
         }
     }
+
 }

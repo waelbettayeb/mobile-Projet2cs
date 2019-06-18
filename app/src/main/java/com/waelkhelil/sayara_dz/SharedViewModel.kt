@@ -14,6 +14,10 @@ class SharedViewModel : ViewModel() {
         mNewCompareList.addAll(Version)
         mCompareList.postValue(mNewCompareList)
     }
+    fun removeFromCompareList(vararg Version: Version){
+        mNewCompareList.removeAll(Version)
+        mCompareList.postValue(mNewCompareList)
+    }
     fun freeVersions(){
         mNewCompareList.clear()
         mCompareList.postValue(mNewCompareList)
