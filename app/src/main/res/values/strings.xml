@@ -51,11 +51,12 @@
     <string name="technical_sheet">Fiche Technique</string>
     <string name="images">Images</string>
     <string name="logout">Se déconnecter</string>
-    <string name="my_cards">Mes cartes</string>
+    <string name="my_cards">Paiement</string>
     <string name="msg_added_to_comparison_list">Cette version est ajoutée à la liste de comparaison</string>
     <string name="compare_list">Liste de comparaison</string>
     <string name="clear">Vider</string>
     <string name="options">Options</string>
     <string name="yes">Oui</string>
     <string name="no">Non</string>
+    <string name="ajouter_une_annonce">Ajouter une annonce</string>
 </resources>

@@ -77,6 +77,17 @@
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
-
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            android:id="@+id/efab_add_post"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:text="@string/ajouter_une_annonce"
+            app:icon="@drawable/ic_menu_add_black_24dp"
+            app:layout_anchor="@id/settings"
+            app:backgroundTint="@color/colorPrimary"
+            android:textColor="@color/white"
+            app:iconTint="@color/white"
+            app:layout_anchorGravity="bottom|center"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
