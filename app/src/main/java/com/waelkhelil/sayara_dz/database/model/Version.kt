@@ -9,6 +9,7 @@ data class Version(
     @PrimaryKey var id:Long,
     @ColumnInfo var name:String,
     @ColumnInfo var url: String,
+    @ColumnInfo var price: String,
     var compatibleOptions:List<Option>
 )
 
