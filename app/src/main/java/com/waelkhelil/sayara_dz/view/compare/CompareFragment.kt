@@ -1,6 +1,7 @@
 package com.waelkhelil.sayara_dz.view.compare
 
 import android.app.Dialog
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.MenuItem
@@ -54,8 +55,9 @@ class CompareFragment(): BottomSheetDialogFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val toolbar: Toolbar = view.findViewById(R.id.toolbar)
-        toolbar.inflateMenu(R.menu.menu_compare)
         toolbar.setOnMenuItemClickListener { item: MenuItem ->  this.onOptionsItemSelected(item)}
+        toolbar.setNavigationOnClickListener {dismissAllowingStateLoss()}
+
         tableLayout = view.findViewById(R.id.table_layout)
         sharedViewModel.mCompareList.observe(viewLifecycleOwner, Observer<Set<Version>> {
             if (it.size > 1){
