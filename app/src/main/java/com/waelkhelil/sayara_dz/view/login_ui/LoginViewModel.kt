@@ -19,6 +19,7 @@ class LoginViewModel : ViewModel() {
 
         authenticationState.value =
             AuthenticationState.UNAUTHENTICATED
+        //TODO remove this when you add the auth module
         authenticationState.value =
             AuthenticationState.AUTHENTICATED
         username = ""

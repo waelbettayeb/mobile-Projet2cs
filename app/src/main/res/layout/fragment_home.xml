@@ -90,5 +90,18 @@
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 
-
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            android:id="@+id/efab_comparison_list"
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:contentDescription="string/extended_fab_content_desc"
+            android:text="list de comparaison"
+            app:icon="@drawable/ic_two_cars_in_line_black_24dp"
+            app:layout_anchor="@id/settings"
+            app:backgroundTint="@color/black"
+            android:textColor="@color/white"
+            app:iconTint="@color/white"
+            app:layout_anchorGravity="bottom|center"/>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
