@@ -1,5 +1,6 @@
 package com.waelkhelil.sayara_dz.view.model_ui
 
+import android.content.Context
 import android.os.Bundle
 import android.view.*
 import android.widget.Toast
@@ -35,7 +36,7 @@ class ModelFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val viewPager : ViewPager = view.findViewById(R.id.view_pager_model)
+        val viewPager : NoSwipeViewPager = view.findViewById(R.id.view_pager_model)
         val tabs:TabLayout = view.findViewById(R.id.tabs_model)
         tabs.setupWithViewPager(viewPager)
         viewPager.adapter = fragmentManager?.let { ModelPagerAdapter(it) }
