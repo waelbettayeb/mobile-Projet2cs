@@ -58,6 +58,15 @@ class ModelVersionsFragment : Fragment() {
                     "New_Clio_RS_Line_Bleu_Iron.jpeg.ximg.l_12_m.smart.jpeg",
             "3 200 K",
             setOf(Option(0, "option_00"),Option(1, "option_01"),Option(2, "option_02"))
+        ),
+        Version(
+            3,
+            "Initial Paris",
+            "https://www.cdn.renault.com/content/dam/Renault/FR/personal-cars/clio/CLIO%20V/PackshotsVersions/" +
+                    "Nouvelle_CLIO_Initiale_Paris_packshot_grade.jpeg.ximg.l_12_m.smart.jpeg",
+            "3 600 K",
+            setOf(Option(0, "option_00"),Option(1, "option_01"),Option(2, "option_02"),
+                Option(3, "option_03"))
         )
     )
     private val sliderAdapter = SliderAdapter(list,  OnCardClickListener())
