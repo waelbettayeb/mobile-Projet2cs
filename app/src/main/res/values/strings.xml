@@ -61,4 +61,6 @@
     <string name="ajouter_une_annonce">Ajouter une annonce</string>
     <string name="explore">Explorer</string>
     <string name="my_listings">Mes annonces</string>
+    <string name="quipements_en_options">Équipements en options</string>
+    <string name="description">Description</string>
 </resources>
