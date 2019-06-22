@@ -1,23 +1,20 @@
 package com.waelkhelil.sayara_dz.view
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.NavController
-import androidx.navigation.Navigation
 import androidx.navigation.Navigation.findNavController
 import androidx.navigation.ui.NavigationUI
-import com.google.android.material.badge.BadgeDrawable
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.waelkhelil.sayara_dz.R
 import com.waelkhelil.sayara_dz.SharedViewModel
 import com.waelkhelil.sayara_dz.database.model.Version
-import kotlinx.android.synthetic.main.fragment_home.*
-import kotlinx.android.synthetic.main.fragment_main.*
 
 
 class MainFragment : Fragment() {
@@ -61,4 +58,6 @@ class MainFragment : Fragment() {
             }
         })
     }
+
+
 }

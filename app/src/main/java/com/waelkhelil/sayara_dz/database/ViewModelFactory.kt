@@ -30,7 +30,7 @@ class ViewModelFactory(private val repository: BrandsRepository) : ViewModelProv
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(BrandListViewModel::class.java)) {
             @Suppress("UNCHECKED_CAST")
-            return BrandListViewModel(repository) as T
+            return BrandListViewModel() as T
         }
 
         throw IllegalArgumentException("Unknown ViewModel class")

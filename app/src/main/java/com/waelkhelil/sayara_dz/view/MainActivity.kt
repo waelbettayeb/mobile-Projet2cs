@@ -1,7 +1,9 @@
     package com.waelkhelil.sayara_dz.view
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.os.bundleOf
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation
@@ -13,13 +15,6 @@ import com.waelkhelil.sayara_dz.view.login_ui.LoginViewModel
     private val TAG : String = "MainActivity"
 
 
-//    class doAsync(val handler: () -> Unit) : AsyncTask<Void, Void, Void>() {
-//        override fun doInBackground(vararg params: Void?): Void? {
-//            handler()
-//            return null
-//        }
-//    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -30,61 +25,22 @@ import com.waelkhelil.sayara_dz.view.login_ui.LoginViewModel
         viewModel.authenticationState.observe(this,
             Observer<LoginViewModel.AuthenticationState> { authenticationState ->
             when (authenticationState) {
+
+
                 LoginViewModel.AuthenticationState.UNAUTHENTICATED ->
+
                     navController.navigate(R.id.fragment_login)
-//                LoginViewModel.AuthenticationState.AUTHENTICATED ->
-//                    navController.navigate(R.id.action_global_main_nav_graph)
+              LoginViewModel.AuthenticationState.AUTHENTICATED ->{
+                  val bundle = bundleOf("user_name" to viewModel.getUser())
+                  Toast.makeText(this,"logged as ${viewModel.getUser()}", Toast.LENGTH_SHORT).show()
+                   navController.navigate(R.id.fragment_main,bundle)}
             }
         })
 
-//
-//        val sharedPref =  PreferenceManager.getDefaultSharedPreferences(applicationContext)
-//        val defaultValue = false
-//        val isSkipped = sharedPref.getBoolean(getString(R.string.skip_key), defaultValue)
-//        val isConnected = sharedPref.getBoolean("is_connected", defaultValue)
-
-//
-//
-//        if (!isSkipped && !isConnected) {
-//            switchToSignInActivity()
-//        }
-//
-
-//
-////      Adding the home fragment programmatically to R.id.fragment_container
-//        val fragmentManager = supportFragmentManager
-//        val fragmentTransaction = fragmentManager.beginTransaction()
-//
-//        val fragment = HomeFragment()
-////        fragmentTransaction.add(R.id.fragment_container, fragment, "home")
-////        fragmentTransaction.commit()
-    }
-
-    //    fun setFragment(
-//        fragment:Fragment,
-//        tag:String,
-//        backStackTag:String?
-//    ){
-//        val fragmentManager = supportFragmentManager
-//        val fragmentTransaction = fragmentManager.beginTransaction()
-////        fragmentTransaction.replace(R.id.fragment_container, fragment, tag).addToBackStack(backStackTag)
-////        fragmentTransaction.commit()
-//    }
-//    fun setFragment(
-//        fragment:Fragment,
-//        tag:String){
-//        val fragmentManager = supportFragmentManager
-//        val fragmentTransaction = fragmentManager.beginTransaction()
-////        fragmentTransaction.replace(R.id.fragment_container, fragment, tag)
-////        fragmentTransaction.commit()
-//    }
-//    fun switchToSignInActivity(){
-//        val sharedPref = PreferenceManager.getDefaultSharedPreferences(applicationContext).edit()
-//        sharedPref.clear()
-//        val intent = Intent(this, AppIntroActivity::class.java)
-//        startActivity(intent)
-//    }
 
 
 
-}
+
+
+
+}}

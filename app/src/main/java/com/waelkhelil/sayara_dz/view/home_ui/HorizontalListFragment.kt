@@ -1,6 +1,7 @@
 package com.waelkhelil.sayara_dz.view.home_ui
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,12 +12,13 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation
-import androidx.paging.PagedList
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.waelkhelil.sayara_dz.R
 import com.waelkhelil.sayara_dz.database.Injection
 import com.waelkhelil.sayara_dz.database.model.Brand
 import kotlinx.android.synthetic.main.horziontal_list_fragment.*
+
+
 
 
 class HorizontalListFragment : Fragment() {
@@ -30,7 +32,7 @@ class HorizontalListFragment : Fragment() {
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.horziontal_list_fragment, container, false)
+        return inflater.inflate(com.waelkhelil.sayara_dz.R.layout.horziontal_list_fragment, container, false)
 
     }
 
@@ -39,7 +41,7 @@ class HorizontalListFragment : Fragment() {
         //get the view model
         viewModel = ViewModelProviders.of(this, Injection.provideViewModelFactory(this.activity!!))
             .get(BrandListViewModel::class.java)
-        initAdapter()
+
 
         val lBundle: Bundle? = arguments
         if (lBundle != null) {
@@ -48,11 +50,11 @@ class HorizontalListFragment : Fragment() {
                 button_see_all_brands.visibility = TextView.INVISIBLE
         }
         val lButtonSeeAll = getView()!!.
-                findViewById<Button>(R.id.button_see_all_brands)
+                findViewById<Button>(com.waelkhelil.sayara_dz.R.id.button_see_all_brands)
         lButtonSeeAll.setOnClickListener {
-            val fragmentContainer = activity?.findViewById<View>(R.id.nav_main_host_fragment)
+            val fragmentContainer = activity?.findViewById<View>(com.waelkhelil.sayara_dz.R.id.nav_main_host_fragment)
             val navController = fragmentContainer?.let { Navigation.findNavController(it)}
-            navController?.navigate(R.id.action_global_to_brandsListFragment)
+            navController?.navigate(com.waelkhelil.sayara_dz.R.id.action_global_to_brandsListFragment)
         }
 
 
@@ -60,16 +62,23 @@ class HorizontalListFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        initAdapter()
         //viewModel = ViewModelProviders.of(this).get(BrandListViewModel::class.java)
     }
 
     private fun initAdapter() {
-        viewModel.brands.observe(this, Observer<PagedList<Brand>> {
+
+        viewModel.init()
+        viewModel.getNewsRepository()!!.observe(this.activity!!, Observer<List<Brand>>  {
+             if (it!=null){
+
+
 
 
             val lLayoutManager = LinearLayoutManager(activity)
             lLayoutManager.orientation = LinearLayoutManager.HORIZONTAL
             adapter=CardsListItemAdapter(it)
+               if (rv_horizontal_list!=null){
             rv_horizontal_list.adapter=adapter
             rv_horizontal_list.apply {
                 // set a LinearLayoutManager to handle Android
@@ -77,13 +86,15 @@ class HorizontalListFragment : Fragment() {
                 layoutManager = lLayoutManager
                 // set the custom adapter to the RecyclerView
 
-            }
+            }}}
 
-        })
 
-        viewModel.networkErrors.observe(this, Observer<String> {
+
+        viewModel.getNetworkErrors()!!.observe(this.activity!!, Observer<String> {
+            Log.i("errorrr","here")
             Toast.makeText(this.activity, R.string.brands_error, Toast.LENGTH_SHORT).show()
         })
+       });
     }
 
 }
