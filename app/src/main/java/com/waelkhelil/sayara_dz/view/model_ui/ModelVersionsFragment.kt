@@ -15,6 +15,8 @@ import android.widget.ViewSwitcher
 import androidx.annotation.StyleRes
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.Navigation
+import androidx.navigation.ui.NavigationUI
 import androidx.recyclerview.widget.RecyclerView
 import com.ramotion.cardslider.CardSliderLayoutManager
 import com.ramotion.cardslider.CardSnapHelper
@@ -25,6 +27,7 @@ import com.waelkhelil.sayara_dz.view.compare.CompareFragment
 import com.waelkhelil.sayara_dz.view.model_ui.cards.SliderAdapter
 import com.google.android.material.snackbar.Snackbar
 import com.waelkhelil.sayara_dz.database.model.Option
+import kotlinx.android.synthetic.main.fragment_model_versions.*
 
 
 class ModelVersionsFragment : Fragment() {
@@ -121,6 +124,10 @@ class ModelVersionsFragment : Fragment() {
             else
                 Snackbar.make(view, R.string.msg_added_to_comparison_list, Snackbar.LENGTH_SHORT)
                     .show()
+        }
+        button_command_version.setOnClickListener {
+            val navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment)
+            navController.navigate(R.id.configureVersionFragment)
         }
     }
     private fun initRecyclerView() {
