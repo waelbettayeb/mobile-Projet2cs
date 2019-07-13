@@ -47,7 +47,7 @@
     <string name="text3">Tower Bridge is a combined bascule and suspension bridge in London built in 1886–1894.</string>
     <string name="follow">suivre</string>
     <string name="command">commander</string>
-    <string name="compare">comparer</string>
+    <string name="configure">configurer</string>
     <string name="technical_sheet">Fiche Technique</string>
     <string name="images">Images</string>
     <string name="logout">Se déconnecter</string>
@@ -63,4 +63,9 @@
     <string name="my_listings">Mes annonces</string>
     <string name="quipements_en_options">Équipements en options</string>
     <string name="description">Description</string>
+    <string name="exit_conf_confimation_msg">Si vous quitter la configuration toutes vos modifications seront perdues</string>
+    <string name="exit_confguration">Quitter la configuration?</string>
+    <string name="exit">Quitter</string>
+    <string name="cancel">Annuler</string>
+    <string name="configure_it">Configurez</string>
 </resources>

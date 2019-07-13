@@ -156,12 +156,12 @@ class ModelVersionsFragment : Fragment() {
         priceSwitcher?.setFactory(TextViewFactory(R.style.price_textView, true))
         priceSwitcher?.setCurrentText(list[0].price)
 
-
-
     }
+
     private fun currentVersion():Version{
         return list[currentPosition]
     }
+
     private fun initVersionText() {
         versionAnimDuration = resources.getInteger(R.integer.labels_animation_duration).toLong()
         versionOffset1 = resources.getDimensionPixelSize(R.dimen.left_offset).toFloat()
