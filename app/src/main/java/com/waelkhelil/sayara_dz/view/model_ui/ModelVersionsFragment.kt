@@ -127,7 +127,9 @@ class ModelVersionsFragment : Fragment() {
         }
         button_command_version.setOnClickListener {
             val navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment)
-            navController.navigate(R.id.configureVersionFragment)
+            val bundle = Bundle()
+            bundle.putInt("versionId", currentVersion().id)
+            navController.navigate(R.id.configureVersionFragment, bundle)
         }
     }
     private fun initRecyclerView() {
@@ -157,7 +159,9 @@ class ModelVersionsFragment : Fragment() {
 
 
     }
-
+    private fun currentVersion():Version{
+        return list[currentPosition]
+    }
     private fun initVersionText() {
         versionAnimDuration = resources.getInteger(R.integer.labels_animation_duration).toLong()
         versionOffset1 = resources.getDimensionPixelSize(R.dimen.left_offset).toFloat()

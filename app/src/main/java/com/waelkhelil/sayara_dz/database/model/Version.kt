@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "version")
 data class Version(
-    @PrimaryKey var id:Long,
+    @PrimaryKey var id:Int,
     @ColumnInfo var name:String,
     @ColumnInfo var url: String,
     @ColumnInfo var price: String,
