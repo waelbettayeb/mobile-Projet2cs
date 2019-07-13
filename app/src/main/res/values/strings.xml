@@ -46,8 +46,8 @@
     <string name="text2">Gwanghwamun is the main and largest gate of Gyeongbokgung Palace, in Jongno-gu, Seoul, South Korea.</string>
     <string name="text3">Tower Bridge is a combined bascule and suspension bridge in London built in 1886–1894.</string>
     <string name="follow">suivre</string>
-    <string name="command">commander</string>
     <string name="configure">configurer</string>
+    <string name="compare">comparer</string>
     <string name="technical_sheet">Fiche Technique</string>
     <string name="images">Images</string>
     <string name="logout">Se déconnecter</string>
