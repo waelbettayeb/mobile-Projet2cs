@@ -49,7 +49,7 @@ class ModelVersionsFragment : Fragment() {
             "https://www.cdn.renault.com/content/dam/Renault/FR/personal-cars/clio/CLIO%20V/PackshotsVersions/" +
                     "New_Clio_Intens_Orange_Valencia_Jantes.jpg.ximg.l_12_m.smart.jpg",
             "2 700 K",
-            setOf(Option(0, "option_00"),Option(1, "option_01"))
+            setOf(Option(0, "option_00",0),Option(1, "option_01",1))
         ),
         Version(
             2,
@@ -57,7 +57,7 @@ class ModelVersionsFragment : Fragment() {
             "https://www.cdn.renault.com/content/dam/Renault/FR/personal-cars/clio/CLIO%20V/PackshotsVersions/" +
                     "New_Clio_RS_Line_Bleu_Iron.jpeg.ximg.l_12_m.smart.jpeg",
             "3 200 K",
-            setOf(Option(0, "option_00"),Option(1, "option_01"),Option(2, "option_02"))
+            setOf(Option(0, "option_00",0),Option(1, "option_01",1),Option(2, "option_02",2))
         ),
         Version(
             3,
@@ -65,8 +65,8 @@ class ModelVersionsFragment : Fragment() {
             "https://www.cdn.renault.com/content/dam/Renault/FR/personal-cars/clio/CLIO%20V/PackshotsVersions/" +
                     "Nouvelle_CLIO_Initiale_Paris_packshot_grade.jpeg.ximg.l_12_m.smart.jpeg",
             "3 600 K",
-            setOf(Option(0, "option_00"),Option(1, "option_01"),Option(2, "option_02"),
-                Option(3, "option_03"))
+            setOf(Option(0, "option_00",0),Option(1, "option_01",1),Option(2, "option_02",2),
+                Option(3, "option_03",3))
         )
     )
     private val sliderAdapter = SliderAdapter(list,  OnCardClickListener())
