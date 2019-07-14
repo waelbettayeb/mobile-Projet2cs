@@ -35,15 +35,15 @@ class ConfigureVersionFragment : Fragment() {
         NavigationUI.setupWithNavController(toolbar, navController)
         toolbar.subtitle = versionId.toString() // set the subtitle first
         toolbar.title = getString(R.string.configure_it)
-//        callback = object : OnBackPressedCallback(true /** true means that the callback is enabled */) {
-//            override fun handleOnBackPressed() {
-//                context?.let { exitConfirmation(it) }
-//            }
-//        }
-//        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, callback)
-//        toolbar.setNavigationOnClickListener {
-//            context?.let { exitConfirmation(it) }
-//        }
+        callback = object : OnBackPressedCallback(true /** true means that the callback is enabled */) {
+            override fun handleOnBackPressed() {
+                context?.let { exitConfirmation(it) }
+            }
+        }
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, callback)
+        toolbar.setNavigationOnClickListener {
+            context?.let { exitConfirmation(it) }
+        }
     }
     fun exitConfirmation(context:Context){
         MaterialAlertDialogBuilder(context)
