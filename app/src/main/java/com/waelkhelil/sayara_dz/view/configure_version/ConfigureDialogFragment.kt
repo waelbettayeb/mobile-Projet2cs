@@ -22,7 +22,7 @@ import com.waelkhelil.sayara_dz.R
 import com.waelkhelil.sayara_dz.database.model.PaintColor
 import kotlinx.android.synthetic.main.fragment_configure_version.*
 import com.google.android.material.chip.ChipDrawable
-
+import com.waelkhelil.sayara_dz.database.model.Option
 
 
 class ConfigureDialogFragment : DialogFragment() {
@@ -69,31 +69,37 @@ class ConfigureDialogFragment : DialogFragment() {
             PaintColor("yellow", "#839BFD",200),
             PaintColor("white", "#DDE3FE",400)
         )
-        context?.let { initColorsChips(it, colorsList) }
+        val options = setOf(Option(0, "option_00",0),Option(1, "option_01",1),Option(2, "option_02",2),
+            Option(3, "option_03",3))
+        context?.let {
+            initColorsChips(it, colorsList)
+            initOptionsChips(it, options)
+        }
+
     }
     private fun initColorsChips(context: Context, pColors:List<PaintColor>){
-        chip_group.isSingleSelection = true
         for (lColor in pColors){
             val chip = Chip(context)
-//            val chipDrawable =
-//                ChipDrawable.createFromAttributes(context, null, 0, R.style.Widget_MaterialComponents_Chip_Choice)
-//            chip.setChipDrawable(chipDrawable)
             chip.isCheckable = true
 
             val bitmap: Bitmap = Bitmap.createBitmap(500, 500, Bitmap.Config.ARGB_8888)
             val canvas = Canvas(bitmap)
-            val left = 0
-            val top = 0
-            val right = 500
-            val bottom = 500
             val shapeDrawable = ShapeDrawable(OvalShape())
-            shapeDrawable.setBounds( left, top, right, bottom)
+            shapeDrawable.setBounds( 0, 0, 500, 500)
             shapeDrawable.paint.color = Color.parseColor(lColor.hexCode)
             shapeDrawable.draw(canvas)
 
             chip.chipIcon = shapeDrawable
             chip.text = lColor.name
             chip_group.addView(chip)
+        }
+    }
+    private fun initOptionsChips(context: Context, pOptions:Collection<Option>){
+        for (lOption in pOptions){
+            val chip = Chip(context)
+            chip.isCheckable = true
+            chip.text = lOption.name
+            chip_group_options.addView(chip)
         }
     }
 
