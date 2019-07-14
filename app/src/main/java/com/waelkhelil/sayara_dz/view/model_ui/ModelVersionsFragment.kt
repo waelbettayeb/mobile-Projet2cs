@@ -27,6 +27,7 @@ import com.waelkhelil.sayara_dz.view.compare.CompareFragment
 import com.waelkhelil.sayara_dz.view.model_ui.cards.SliderAdapter
 import com.google.android.material.snackbar.Snackbar
 import com.waelkhelil.sayara_dz.database.model.Option
+import com.waelkhelil.sayara_dz.view.configure_version.ConfigureDialogFragment
 import kotlinx.android.synthetic.main.fragment_model_versions.*
 
 
@@ -126,10 +127,14 @@ class ModelVersionsFragment : Fragment() {
                     .show()
         }
         button_command_version.setOnClickListener {
-            val navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment)
             val bundle = Bundle()
             bundle.putInt("versionId", currentVersion().id)
-            navController.navigate(R.id.configureVersionFragment, bundle)
+
+            val dialog = ConfigureDialogFragment()
+            dialog.arguments = bundle
+
+            val ft = fragmentManager!!.beginTransaction()
+            dialog.show(ft, ConfigureDialogFragment.TAG)
         }
     }
     private fun initRecyclerView() {
