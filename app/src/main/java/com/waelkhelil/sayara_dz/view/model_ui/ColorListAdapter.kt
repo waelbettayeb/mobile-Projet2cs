@@ -37,11 +37,11 @@ class ColorListAdapter(private val list: List<PaintColor>)
 
             val bitmap: Bitmap = Bitmap.createBitmap(500, 500, Bitmap.Config.ARGB_8888)
             val canvas = Canvas(bitmap)
-            var left = 0
-            var top = 0
-            var right = 500
-            var bottom = 500
-            var shapeDrawable = ShapeDrawable(OvalShape())
+            val left = 0
+            val top = 0
+            val right = 500
+            val bottom = 500
+            val shapeDrawable = ShapeDrawable(OvalShape())
             shapeDrawable.setBounds( left, top, right, bottom)
             shapeDrawable.paint.color = Color.parseColor(mPaintColor.hexCode)
             shapeDrawable.draw(canvas)

@@ -7,15 +7,10 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.DialogFragment
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentActivity
-import androidx.navigation.Navigation
-import androidx.navigation.ui.NavigationUI
 import androidx.recyclerview.widget.GridLayoutManager
 import com.waelkhelil.sayara_dz.R
 import com.waelkhelil.sayara_dz.database.model.PaintColor
-import kotlinx.android.synthetic.main.fragment_model_images.*
-import kotlinx.android.synthetic.main.fragment_model_info.*
+import kotlinx.android.synthetic.main.dialog_model_info.*
 
 
 class ModelInfoDialogFragment : DialogFragment() {
@@ -75,27 +70,25 @@ class ModelInfoDialogFragment : DialogFragment() {
             PaintColor("red", "#839BFD",200),
             PaintColor("red", "#DDE3FE",400)
         )
-        val ColorsRecyclerView = rv_colors_list
-        ColorsRecyclerView.adapter = ColorListAdapter(colorsList)
+        val lColorsRecyclerView = rv_colors_list
+        lColorsRecyclerView.adapter = ColorListAdapter(colorsList)
 
         //Options
-        val OptionList:List<String> = listOf(
+        val lOptionList:List<String> = listOf(
             "Jantes alliage 16'' Philia diamantée noir",
             "Personnalisation Intérieure Rouge",
             "Pack Attelage escamotable semi-électrique - 13B - avec pré-disposition usine",
             "Roue de secours tôle"
         )
-        val OptionsRecyclerView = rv_options_list
-        OptionsRecyclerView.adapter = OptionListAdapter(OptionList)
+        val lOptionsRecyclerView = rv_options_list
+        lOptionsRecyclerView.adapter = OptionListAdapter(lOptionList)
     }
 
 
     override fun onStart() {
         super.onStart()
-        if (dialog != null) {
             val width = ViewGroup.LayoutParams.MATCH_PARENT
             val height = ViewGroup.LayoutParams.MATCH_PARENT
-            dialog!!.window.setLayout(width, height)
-        }
+            dialog?.window?.setLayout(width, height)
     }
 }
