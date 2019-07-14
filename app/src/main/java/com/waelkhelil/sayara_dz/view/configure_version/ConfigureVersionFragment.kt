@@ -1,7 +1,6 @@
 package com.waelkhelil.sayara_dz.view.configure_version
 
 import android.content.Context
-import android.content.DialogInterface
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -36,22 +35,22 @@ class ConfigureVersionFragment : Fragment() {
         NavigationUI.setupWithNavController(toolbar, navController)
         toolbar.subtitle = versionId.toString() // set the subtitle first
         toolbar.title = getString(R.string.configure_it)
-        callback = object : OnBackPressedCallback(true /** true means that the callback is enabled */) {
-            override fun handleOnBackPressed() {
-                context?.let { exitConfirmation(it) }
-            }
-        }
-        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, callback)
-        toolbar.setNavigationOnClickListener {
-            context?.let { exitConfirmation(it) }
-        }
+//        callback = object : OnBackPressedCallback(true /** true means that the callback is enabled */) {
+//            override fun handleOnBackPressed() {
+//                context?.let { exitConfirmation(it) }
+//            }
+//        }
+//        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, callback)
+//        toolbar.setNavigationOnClickListener {
+//            context?.let { exitConfirmation(it) }
+//        }
     }
     fun exitConfirmation(context:Context){
         MaterialAlertDialogBuilder(context)
                 .setTitle(getString(R.string.exit_confguration))
                 .setMessage(getString(R.string.exit_conf_confimation_msg))
                 .setPositiveButton(getString(R.string.exit)) { _, _ ->
-                    callback.remove()
+                    callback.isEnabled = false
                     requireActivity().onBackPressedDispatcher.onBackPressed()
                 }
                 .setNegativeButton(getString(R.string.cancel), null)
