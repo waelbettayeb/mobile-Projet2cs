@@ -13,4 +13,6 @@
               android:name="com.waelkhelil.sayara_dz.view.login_ui.LoginFragment"
               android:label="brands_list_fragment"
               tools:layout="@layout/fragment_login"/>
+
+
 </navigation>

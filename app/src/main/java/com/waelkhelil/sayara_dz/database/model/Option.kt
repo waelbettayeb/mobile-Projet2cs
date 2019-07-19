@@ -7,7 +7,9 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "option")
 data class Option(
     @PrimaryKey var id:Long,
-    @ColumnInfo var name:String
+    @ColumnInfo var name:String,
+    @ColumnInfo val price:Int
+
 )
 
 

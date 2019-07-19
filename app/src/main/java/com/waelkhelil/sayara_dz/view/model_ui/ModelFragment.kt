@@ -1,19 +1,14 @@
 package com.waelkhelil.sayara_dz.view.model_ui
 
-import android.content.Context
 import android.os.Bundle
 import android.view.*
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentStatePagerAdapter
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation
 import androidx.navigation.ui.NavigationUI
-import androidx.viewpager.widget.ViewPager
-import com.google.android.material.tabs.TabLayout
 import com.waelkhelil.sayara_dz.R
 
 
@@ -36,11 +31,6 @@ class ModelFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val viewPager : NoSwipeViewPager = view.findViewById(R.id.view_pager_model)
-        val tabs:TabLayout = view.findViewById(R.id.tabs_model)
-        tabs.setupWithViewPager(viewPager)
-        viewPager.adapter = fragmentManager?.let { ModelPagerAdapter(it) }
-
         val toolbar: Toolbar = view.findViewById(R.id.toolbar)
         val navController = Navigation.findNavController(requireActivity(), R.id.nav_main_host_fragment)
         NavigationUI.setupWithNavController(toolbar, navController)
@@ -57,16 +47,26 @@ class ModelFragment : Fragment() {
 
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return if (item.itemId == R.id.action_favorite) {
-            if(viewModel.isFavorite.value!!){
-                Toast.makeText(context, "unsubscribed", Toast.LENGTH_SHORT).show()
-                viewModel.setFavorite(false)
-            } else{
-                Toast.makeText(context, "subscribed", Toast.LENGTH_SHORT).show()
-                viewModel.setFavorite(true)
+        return when (item.itemId) {
+            R.id.action_favorite ->
+            {
+                if(viewModel.isFavorite.value!!){
+                    Toast.makeText(context, "unsubscribed", Toast.LENGTH_SHORT).show()
+                    viewModel.setFavorite(false)
+                } else{
+                    Toast.makeText(context, "subscribed", Toast.LENGTH_SHORT).show()
+                    viewModel.setFavorite(true)
+                }
+                true
             }
-            true
-        } else super.onOptionsItemSelected(item)
+            R.id.action_info -> {
+                val dialog = ModelInfoDialogFragment()
+                val ft = fragmentManager!!.beginTransaction()
+                dialog.show(ft, ModelInfoDialogFragment.TAG)
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -80,29 +80,4 @@ class ModelFragment : Fragment() {
 
         })
     }
-
-    inner class ModelPagerAdapter(pFragmentManager: FragmentManager) : FragmentStatePagerAdapter(pFragmentManager) {
-
-        private val mFragmentList = mutableListOf(
-            ModelInfoFragment(),
-            ModelImagesFragment(),
-            ModelVersionsFragment()
-        )
-        private val mFragmentTitleList = mutableListOf(
-            resources.getString(R.string.information),
-            resources.getString(R.string.images),
-            resources.getString(R.string.versions))
-
-        override fun getCount(): Int {
-            return mFragmentList.size
-        }
-
-        override fun getPageTitle(position: Int): CharSequence? {
-            return mFragmentTitleList[position]
-        }
-        override fun getItem(position: Int): Fragment {
-            return mFragmentList[position]
-        }
-    }
-
 }

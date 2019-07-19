@@ -15,6 +15,8 @@ import android.widget.ViewSwitcher
 import androidx.annotation.StyleRes
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.Navigation
+import androidx.navigation.ui.NavigationUI
 import androidx.recyclerview.widget.RecyclerView
 import com.ramotion.cardslider.CardSliderLayoutManager
 import com.ramotion.cardslider.CardSnapHelper
@@ -25,6 +27,8 @@ import com.waelkhelil.sayara_dz.view.compare.CompareFragment
 import com.waelkhelil.sayara_dz.view.model_ui.cards.SliderAdapter
 import com.google.android.material.snackbar.Snackbar
 import com.waelkhelil.sayara_dz.database.model.Option
+import com.waelkhelil.sayara_dz.view.configure_version.ConfigureDialogFragment
+import kotlinx.android.synthetic.main.fragment_model_versions.*
 
 
 class ModelVersionsFragment : Fragment() {
@@ -49,7 +53,7 @@ class ModelVersionsFragment : Fragment() {
             "https://www.cdn.renault.com/content/dam/Renault/FR/personal-cars/clio/CLIO%20V/PackshotsVersions/" +
                     "New_Clio_Intens_Orange_Valencia_Jantes.jpg.ximg.l_12_m.smart.jpg",
             "2 700 K",
-            setOf(Option(0, "option_00"),Option(1, "option_01"))
+            setOf(Option(0, "option_00",0),Option(1, "option_01",1))
         ),
         Version(
             2,
@@ -57,7 +61,7 @@ class ModelVersionsFragment : Fragment() {
             "https://www.cdn.renault.com/content/dam/Renault/FR/personal-cars/clio/CLIO%20V/PackshotsVersions/" +
                     "New_Clio_RS_Line_Bleu_Iron.jpeg.ximg.l_12_m.smart.jpeg",
             "3 200 K",
-            setOf(Option(0, "option_00"),Option(1, "option_01"),Option(2, "option_02"))
+            setOf(Option(0, "option_00",0),Option(1, "option_01",1),Option(2, "option_02",2))
         ),
         Version(
             3,
@@ -65,8 +69,8 @@ class ModelVersionsFragment : Fragment() {
             "https://www.cdn.renault.com/content/dam/Renault/FR/personal-cars/clio/CLIO%20V/PackshotsVersions/" +
                     "Nouvelle_CLIO_Initiale_Paris_packshot_grade.jpeg.ximg.l_12_m.smart.jpeg",
             "3 600 K",
-            setOf(Option(0, "option_00"),Option(1, "option_01"),Option(2, "option_02"),
-                Option(3, "option_03"))
+            setOf(Option(0, "option_00",0),Option(1, "option_01",1),Option(2, "option_02",2),
+                Option(3, "option_03",3))
         )
     )
     private val sliderAdapter = SliderAdapter(list,  OnCardClickListener())
@@ -122,6 +126,16 @@ class ModelVersionsFragment : Fragment() {
                 Snackbar.make(view, R.string.msg_added_to_comparison_list, Snackbar.LENGTH_SHORT)
                     .show()
         }
+        button_command_version.setOnClickListener {
+            val bundle = Bundle()
+            bundle.putInt("versionId", currentVersion().id)
+
+            val dialog = ConfigureDialogFragment()
+            dialog.arguments = bundle
+
+            val ft = fragmentManager!!.beginTransaction()
+            dialog.show(ft, ConfigureDialogFragment.TAG)
+        }
     }
     private fun initRecyclerView() {
 
@@ -147,8 +161,10 @@ class ModelVersionsFragment : Fragment() {
         priceSwitcher?.setFactory(TextViewFactory(R.style.price_textView, true))
         priceSwitcher?.setCurrentText(list[0].price)
 
+    }
 
-
+    private fun currentVersion():Version{
+        return list[currentPosition]
     }
 
     private fun initVersionText() {

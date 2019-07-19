@@ -26,7 +26,7 @@ import com.waelkhelil.sayara_dz.database.model.Option
 import com.waelkhelil.sayara_dz.database.model.Version
 import kotlinx.android.synthetic.main.fragment_home.*
 
-class CompareFragment(): BottomSheetDialogFragment() {
+class CompareFragment: BottomSheetDialogFragment() {
 
     companion object {
         const val TAG = "CompareFragment"

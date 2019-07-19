@@ -38,11 +38,11 @@ class ModelItemViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
 
 
         val list:List<PaintColor> = listOf(
-            PaintColor("red", "#2196F3"),
-            PaintColor("red", "#FF6050"),
-            PaintColor("red", "#FF0E83"),
-            PaintColor("red", "#839BFD"),
-            PaintColor("red", "#DDE3FE")
+            PaintColor("red", "#2196F3",0),
+            PaintColor("red", "#FF6050",100),
+            PaintColor("red", "#FF0E83",200),
+            PaintColor("red", "#839BFD",200),
+            PaintColor("red", "#DDE3FE",400)
         )
         val recyclerView = itemView.findViewById<RecyclerView>(R.id.rv_colors_list)
         recyclerView.adapter = ColorListAdapter(list)

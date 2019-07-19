@@ -47,4 +47,21 @@
         <item name="android:maxLines">2</item>
         <item name="android:ellipsize">end</item>
     </style>
+    <style name="FullScreenDialogStyle" parent="Theme.MaterialComponents.Light.Dialog">
+        <item name="android:windowNoTitle">true</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorPrimary">@color/white</item>
+
+        <!-- Set this to true if you want Full Screen without status bar -->
+        <item name="android:windowFullscreen">false</item>
+
+        <item name="android:windowIsFloating">false</item>
+
+        <!-- This is important! Don't forget to set window background -->
+        <item name="android:windowBackground">@color/white</item>
+
+        <!-- Additionally if you want animations when dialog opening -->
+        <item name="android:windowEnterAnimation">@anim/slide_in_top</item>
+        <item name="android:windowExitAnimation">@anim/slide_out_top</item>
+    </style>
 </resources>

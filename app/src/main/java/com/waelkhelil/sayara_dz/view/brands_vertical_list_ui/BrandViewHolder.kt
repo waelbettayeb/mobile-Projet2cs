@@ -34,8 +34,7 @@ class BrandViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
          bundle = bundleOf("brand_name" to brand.name,"brand_id" to brand.id,"brand_logo" to brand.url)
 
         this.itemView.setOnClickListener(
-
-            Navigation.createNavigateOnClickListener(R.id.modelsFragment,bundle)
+            Navigation.createNavigateOnClickListener(R.id.modelsFragment, bundle)
         )
     }
 
