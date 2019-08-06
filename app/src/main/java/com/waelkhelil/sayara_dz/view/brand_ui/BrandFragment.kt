@@ -29,9 +29,9 @@ class BrandFragment : Fragment() {
 
     private lateinit var viewModel: ModelViewModel
     private  lateinit var adapter: ModelsListItemAdapter
-    private  lateinit var brand_id: String
-    private  lateinit var brand_logo: String
-    private  lateinit var brand_name: String
+    private  lateinit var pBrandId: String
+    private  lateinit var pBrandLogoUrl: String
+    private  lateinit var pBrandName: String
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,18 +42,18 @@ class BrandFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-         brand_name = arguments!!.getString("brand_name")
-         brand_id = arguments!!.getString("brand_id")
-         brand_logo = arguments!!.getString("brand_logo")
+         pBrandName = arguments!!.getString("brand_name").toString()
+         pBrandId = arguments!!.getString("brand_id").toString()
+         pBrandLogoUrl = arguments!!.getString("brand_logo").toString()
         val toolbar: Toolbar = view.findViewById(R.id.toolbar)
         val navController = Navigation.findNavController(requireActivity(), R.id.nav_main_host_fragment)
         NavigationUI.setupWithNavController(toolbar, navController)
 
-        toolbar.title = brand_name
-        tv_brand_name.text = brand_name
+        toolbar.title = pBrandName
+        tv_brand_name.text = pBrandName
         Glide
             .with(view)
-            .load(brand_logo)
+            .load(pBrandLogoUrl)
             .apply(RequestOptions.circleCropTransform())
             .placeholder(R.drawable.icon_mono)
             .into(view.findViewById(R.id.image_brand_logo))
@@ -67,7 +67,7 @@ class BrandFragment : Fragment() {
         override fun onActivityCreated(savedInstanceState: Bundle?) {
             super.onActivityCreated(savedInstanceState)
             //get the view model
-            viewModel = ViewModelProviders.of(this, Injection.provideModelViewModelFactory(this.activity!!,brand_id))
+            viewModel = ViewModelProviders.of(this, Injection.provideModelViewModelFactory(this.activity!!,pBrandId))
                 .get(ModelViewModel::class.java)
             initAdapter()
         }
@@ -79,7 +79,7 @@ class BrandFragment : Fragment() {
                 tv_models_nb.text=it.size.toString()
                 val lLayoutManager = LinearLayoutManager(activity)
                 lLayoutManager.orientation = LinearLayoutManager.VERTICAL
-                adapter = ModelsListItemAdapter(it,brand_name)
+                adapter = ModelsListItemAdapter(it,pBrandName)
                 rv_models_list.adapter = adapter
                 rv_models_list.apply {
                     // set a LinearLayoutManager to handle Android

@@ -52,10 +52,10 @@ class MainFragment : Fragment() {
         navController = findNavController(requireActivity(), R.id.nav_main_host_fragment)
         NavigationUI.setupWithNavController(lBottomNavigationView, navController)
 
-        lBottomNavigationView.showBadge(R.id.notification_fragment)
+        lBottomNavigationView.getOrCreateBadge(R.id.notification_fragment)
         sharedViewModel.mCompareList.observe(viewLifecycleOwner, Observer<Set<Version>> {
             if (it.size > 1) {
-                lBottomNavigationView.showBadge(R.id.home_fragment)
+                lBottomNavigationView.getOrCreateBadge(R.id.home_fragment)
             }else{
                 lBottomNavigationView.removeBadge(R.id.home_fragment)
             }

@@ -63,10 +63,11 @@
     <string name="my_listings">Mes annonces</string>
     <string name="quipements_en_options">Équipements en options</string>
     <string name="description">Description</string>
-    <string name="exit_conf_confimation_msg">Si vous quitter la configuration toutes vos modifications seront perdues</string>
+    <string name="exit_conf_confimation_msg">Si vous quittez la configuration, toutes vos modifications seront perdues</string>
     <string name="exit_confguration">Quitter la configuration?</string>
     <string name="exit">Quitter</string>
     <string name="cancel">Annuler</string>
     <string name="configure_it">Configurez</string>
     <string name="colors">Couleurs</string>
+    <string name="commander">commander</string>
 </resources>
