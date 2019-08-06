@@ -4,7 +4,6 @@ import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.Color
-import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.ShapeDrawable
 import android.graphics.drawable.shapes.OvalShape
 import android.os.Bundle
@@ -12,17 +11,14 @@ import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import androidx.appcompat.widget.Toolbar
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.DialogFragment
 import com.google.android.material.chip.Chip
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.waelkhelil.sayara_dz.R
+import com.waelkhelil.sayara_dz.database.model.Option
 import com.waelkhelil.sayara_dz.database.model.PaintColor
 import kotlinx.android.synthetic.main.fragment_configure_version.*
-import com.google.android.material.chip.ChipDrawable
-import com.waelkhelil.sayara_dz.database.model.Option
 
 
 class ConfigureDialogFragment : DialogFragment() {
@@ -47,10 +43,10 @@ class ConfigureDialogFragment : DialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val versionId = arguments?.getInt("versionId")
-
+        val versionName = "version " + versionId.toString()
         val toolbar: Toolbar = view.findViewById(R.id.toolbar)
         toolbar.setNavigationIcon(R.drawable.ic_clear_black_24dp)
-        toolbar.subtitle = versionId.toString() // set the subtitle first
+        toolbar.subtitle = versionName // set the subtitle first
         toolbar.title = getString(R.string.configure_it)
 
         dialog?.setOnKeyListener { _, i, keyEvent ->
