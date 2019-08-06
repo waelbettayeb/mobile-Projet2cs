@@ -114,14 +114,15 @@
                     android:text="Prix: "
                     android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"/>
             <TextView
+                    android:id="@+id/tv_config_price"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="1500000 "
+                    android:text="0 "
                     android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"/>
             <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="DZD"
+                    android:text=" DZD"
                     android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"/>
         </LinearLayout>
         <com.google.android.material.button.MaterialButton
@@ -130,7 +131,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/colorPrimary"
-                android:text="drgdrgdr"
+                android:text="@string/commander"
         />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
