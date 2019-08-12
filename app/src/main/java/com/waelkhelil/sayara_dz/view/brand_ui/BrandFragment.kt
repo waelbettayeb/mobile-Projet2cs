@@ -2,6 +2,7 @@ package com.waelkhelil.sayara_dz.view.brand_ui
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,7 +13,6 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation
 import androidx.navigation.ui.NavigationUI
-import androidx.paging.PagedList
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
@@ -42,9 +42,15 @@ class BrandFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+<<<<<<< HEAD
          pBrandName = arguments!!.getString("brand_name").toString()
          pBrandId = arguments!!.getString("brand_id").toString()
          pBrandLogoUrl = arguments!!.getString("brand_logo").toString()
+=======
+        brand_name = arguments!!.getString("brand_name")
+        brand_id = arguments!!.getString("brand_id")
+        brand_logo = arguments!!.getString("brand_logo")
+>>>>>>> f6ea8887d08420c0b77e50d02bbb2ec7b586d325
         val toolbar: Toolbar = view.findViewById(R.id.toolbar)
         val navController = Navigation.findNavController(requireActivity(), R.id.nav_main_host_fragment)
         NavigationUI.setupWithNavController(toolbar, navController)
@@ -58,25 +64,30 @@ class BrandFragment : Fragment() {
             .placeholder(R.drawable.icon_mono)
             .into(view.findViewById(R.id.image_brand_logo))
 
-
     }
-
 
 
 
         override fun onActivityCreated(savedInstanceState: Bundle?) {
             super.onActivityCreated(savedInstanceState)
             //get the view model
+<<<<<<< HEAD
             viewModel = ViewModelProviders.of(this, Injection.provideModelViewModelFactory(this.activity!!,pBrandId))
+=======
+            viewModel = ViewModelProviders.of(this, Injection.provideModelViewModelFactory(brand_id))
+>>>>>>> f6ea8887d08420c0b77e50d02bbb2ec7b586d325
                 .get(ModelViewModel::class.java)
             initAdapter()
         }
 
         @SuppressLint("WrongConstant")
         private fun initAdapter() {
-            viewModel.models.observe(this, Observer<PagedList<Model>> {
 
+
+            viewModel.init()
+            viewModel.getRepository()!!.observe(this.activity!!, Observer<List<Model>>  {
                 tv_models_nb.text=it.size.toString()
+<<<<<<< HEAD
                 val lLayoutManager = LinearLayoutManager(activity)
                 lLayoutManager.orientation = LinearLayoutManager.VERTICAL
                 adapter = ModelsListItemAdapter(it,pBrandName)
@@ -94,9 +105,31 @@ class BrandFragment : Fragment() {
             viewModel.networkErrors.observe(this, Observer<String> {
                 Toast.makeText(this.activity, R.string.models_error, Toast.LENGTH_SHORT).show()
             })
+=======
+                    val lLayoutManager = LinearLayoutManager(activity)
+                    lLayoutManager.orientation = LinearLayoutManager.VERTICAL
+                    adapter= ModelsListItemAdapter(it,brand_name)
+                    if (rv_models_list!=null){
+                        rv_models_list.adapter=adapter
+                        rv_models_list.apply {
+                            // set a LinearLayoutManager to handle Android
+                            // RecyclerView behavior
+                            layoutManager = lLayoutManager
+                            // set the custom adapter to the RecyclerView
+
+                        }}
+
+
+
+                viewModel.getNetworkErrors()!!.observe(this.activity!!, Observer<String> {
+                    Log.i("errorrr","here")
+                    Toast.makeText(this.activity, R.string.brands_error, Toast.LENGTH_SHORT).show()
+                })
+            });
+>>>>>>> f6ea8887d08420c0b77e50d02bbb2ec7b586d325
         }
 
-    }
+        }
 
 
 

@@ -18,7 +18,6 @@ package com.waelkhelil.sayara_dz.database
 
 import android.content.Context
 import androidx.lifecycle.ViewModelProvider
-import com.waelkhelil.sayara_dz.database.api.SayaraDzService
 import com.waelkhelil.sayara_dz.database.data.BrandsRepository
 import com.waelkhelil.sayara_dz.database.db.AppDb
 import com.waelkhelil.sayara_dz.database.db.LocalCache
@@ -44,7 +43,7 @@ object Injection {
      * [LocalCache]
      */
     private fun provideBrandRepository(context: Context): BrandsRepository {
-        return BrandsRepository(SayaraDzService.create(), provideCache(context))
+        return BrandsRepository()
     }
 
     /**
@@ -54,8 +53,8 @@ object Injection {
     fun provideViewModelFactory(context: Context): ViewModelProvider.Factory {
         return ViewModelFactory(provideBrandRepository(context))
     }
-    fun provideModelViewModelFactory(context: Context,id:String): ViewModelProvider.Factory {
-        return ModelViewModelFactory(provideBrandRepository(context),id)
+    fun provideModelViewModelFactory(id:String): ViewModelProvider.Factory {
+        return ModelViewModelFactory(id)
     }
 
 }
