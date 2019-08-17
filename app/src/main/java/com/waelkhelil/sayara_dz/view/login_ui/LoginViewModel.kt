@@ -74,7 +74,8 @@ class LoginViewModel : ViewModel() {
             .Callback() {
                 fun onCompleted( graphResponse:GraphResponse) {
 
-                    LoginManager.getInstance().logOut();
+                    LoginManager.getInstance().logOut()
+
 
                 }
         }).executeAsync();

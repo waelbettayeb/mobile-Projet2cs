@@ -7,11 +7,12 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.waelkhelil.sayara_dz.R
-import com.waelkhelil.sayara_dz.database.model.PaintColor
 import kotlinx.android.synthetic.main.fragment_model_info.*
 
 
 class ModelInfoFragment : Fragment() {
+
+   lateinit  var colorList:List<String>
 
     companion object {
         fun newInstance() = ModelInfoFragment()
@@ -31,16 +32,11 @@ class ModelInfoFragment : Fragment() {
         //Description
         view?.findViewById<TextView>(R.id.tv_description)!!.text = "Nouvelle CLIO propose un niveau de qualité des matériaux inédit dans la catégorie, avec notamment le Smart cockpit immersif avec sa console haute"
 
-        //Colors
-        val colorsList:List<PaintColor> = listOf(
-            PaintColor("red", "#2196F3"),
-            PaintColor("red", "#FF6050"),
-            PaintColor("red", "#FF0E83"),
-            PaintColor("red", "#839BFD"),
-            PaintColor("red", "#DDE3FE")
-        )
+
         val ColorsRecyclerView = rv_colors_list
-        ColorsRecyclerView.adapter = ColorListAdapter(colorsList)
+        ColorsRecyclerView.adapter = ColorListAdapter(colorList)
+
+
 
         //Options
         val OptionList:List<String> = listOf(

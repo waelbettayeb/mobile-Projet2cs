@@ -2,7 +2,6 @@ package com.waelkhelil.sayara_dz.view.brand_ui
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -73,13 +72,17 @@ class BrandFragment : Fragment() {
         @SuppressLint("WrongConstant")
         private fun initAdapter() {
 
-
+              var list :ArrayList<Model> = ArrayList<Model>()
             viewModel.init()
             viewModel.getRepository()!!.observe(this.activity!!, Observer<List<Model>>  {
+
+
+
                 tv_models_nb.text=it.size.toString()
                     val lLayoutManager = LinearLayoutManager(activity)
                     lLayoutManager.orientation = LinearLayoutManager.VERTICAL
-                    adapter= ModelsListItemAdapter(it,brand_name)
+
+                    adapter= ModelsListItemAdapter(it,brand_name,this,viewModel)
                     if (rv_models_list!=null){
                         rv_models_list.adapter=adapter
                         rv_models_list.apply {
@@ -93,7 +96,6 @@ class BrandFragment : Fragment() {
 
 
                 viewModel.getNetworkErrors()!!.observe(this.activity!!, Observer<String> {
-                    Log.i("errorrr","here")
                     Toast.makeText(this.activity, R.string.brands_error, Toast.LENGTH_SHORT).show()
                 })
             });
@@ -103,30 +105,3 @@ class BrandFragment : Fragment() {
 
 
 
-/* val list:List<Model> = listOf(
-     Model(
-         0,
-         "Clio",
-         "https://www.renault.fr/content/dam/Renault/master/vehicules/clio-bja/reveal/renault-clio-reveal-022.jpg"
-     ),
-     Model(1, "Mégane", ""),
-     Model(
-         2,
-         "Kadjar",
-         "https://www.cdn.renault.com/content/dam/Renault/FR/personal-cars/Kadjar/hfe-kadjar/hfe-phase2/plan-produit/Campagne%20janvier%2019/renault_nouveau_kadjar_5.jpg.ximg.l_8_m.smart.jpg"
-     ),
-     Model(3, "Renault", ""),
-     Model(4, "Renault", ""),
-     Model(5, "Renault", ""),
-     Model(6, "Mini", "")
- )
-//        rv_horizontal_list?. adapter = CardsListItemAdapter(list)
- val lLayoutManager = LinearLayoutManager(activity)
- rv_models_list.apply {
-     // set a LinearLayoutManager to handle Android
-     // RecyclerView behavior
-     layoutManager = lLayoutManager
-     // set the custom adapter to the RecyclerView
-     adapter = ModelsListItemAdapter(list)
- }
-}*/

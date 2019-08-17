@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.ui.NavigationUI
 import com.waelkhelil.sayara_dz.R
@@ -15,7 +16,7 @@ import com.waelkhelil.sayara_dz.view.login_ui.LoginViewModel
 
 
 class UserContentFragment : Fragment() {
-
+     lateinit var navController:NavController
     companion object {
         fun newInstance() = UserContentFragment()
     }
@@ -30,11 +31,12 @@ class UserContentFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val toolbar: Toolbar = view.findViewById(com.waelkhelil.sayara_dz.R.id.toolbar)
-        val navController = Navigation.findNavController(requireActivity(), com.waelkhelil.sayara_dz.R.id.nav_main_host_fragment)
+         navController = Navigation.findNavController(requireActivity(), com.waelkhelil.sayara_dz.R.id.nav_main_host_fragment)
         NavigationUI.setupWithNavController(toolbar, navController)
         toolbar.inflateMenu(com.waelkhelil.sayara_dz.R.menu.menu_user)
         toolbar.menu.getItem(1).setOnMenuItemClickListener {
             onOptionsItemSelected(it)
+
 
         }
 
@@ -48,6 +50,8 @@ class UserContentFragment : Fragment() {
         R.id.action_logout-> {
 
                 viewModel.logOut()
+
+
 
 
 

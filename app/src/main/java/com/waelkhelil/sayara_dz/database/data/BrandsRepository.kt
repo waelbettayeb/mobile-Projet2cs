@@ -4,8 +4,7 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.waelkhelil.sayara_dz.database.api.SayaraDzService
 import com.waelkhelil.sayara_dz.database.api.SayaraDzService.RetrofitService
-import com.waelkhelil.sayara_dz.database.model.Brand
-import com.waelkhelil.sayara_dz.database.model.Model
+import com.waelkhelil.sayara_dz.database.model.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -16,95 +15,18 @@ import retrofit2.Response
 */
 
 
-/*class BrandsRepository(private val service: SayaraDzService) {
-
-    companion object {
-        private const val DATABASE_PAGE_SIZE =25
-    }
-    private val _networkErrors = MutableLiveData<String>()
-    val networkErrors : LiveData<String>
-        get() = _networkErrors
-
-    // avoid triggering multiple requests in the same time
-    private var isRequestInProgress = false
-
-    fun searchBrands(): BrandSearchResult {
-
-
-        /* Get data source factory from the local cache
-        val dataSourceFactory = cache.allBrands()
-
-        // Construct the boundary callback
-        val boundaryCallback = BrandBoundaryCallBack( service, cache)
-        val networkErrors = boundaryCallback.networkErrors
-
-        // Get the paged list
-        val data = LivePagedListBuilder(dataSourceFactory, DATABASE_PAGE_SIZE)
-            .setBoundaryCallback(boundaryCallback)
-            .build()*/
-
-        // Get the network errors exposed by the boundary callback
-        return BrandSearchResult(requestAndSaveData(), networkErrors)
-    }
-     fun requestAndSaveData():List<Brand> {
-         val  list:ArrayList<Brand> = ArrayList<Brand>()
-         loadAllBrands(service,   { brands ->
-
-
-                list.addAll(brands)
-
-
-        }, { error ->
-            _networkErrors.postValue(error)
-
-        })
-         Log.i("infooo","${list.size}")
-        return list
-    }
-
-
-    /*fun searchModels(id_marque :String ): ModelSearchResult {
-
-
-        /*Get data source factory from the local cache
-        val dataSourceFactory = cache.allModels(id_marque)
-
-        // Construct the boundary callback
-        val boundaryCallback = ModelBoundaryCallBack( service, cache,id_marque )
-        val networkErrors = boundaryCallback.networkErrors
-
-        // Get the paged list
-        val data = LivePagedListBuilder(dataSourceFactory, DATABASE_PAGE_SIZE)
-            .setBoundaryCallback(boundaryCallback)
-            .build()*/
-        var data :LiveData<Model> = null
-
-        // Get the network errors exposed by the boundary callback
-        return ModelSearchResult(data, networkErrors)
-    }*/
-    }
-
-
-
-
-*/
-
-
-
-
-
 class BrandsRepository {
 
-    private val newsApi: SayaraDzService
+    private val SayaraDzApi: SayaraDzService
 
     init {
-        newsApi = RetrofitService.create()
+        SayaraDzApi = RetrofitService.create()
     }
 
 
     fun getBrands(onError: (error: String) -> Unit): MutableLiveData<List<Brand>> {
         val newsData = MutableLiveData<List<Brand>>()
-        newsApi.getBrands().enqueue( object : Callback<List<Brand>> {
+        SayaraDzApi.getBrands().enqueue( object : Callback<List<Brand>> {
             override fun onResponse(call: Call<List<Brand>>, response: Response<List<Brand>>) {
                 Log.i("response", "answered")
                 if (response.isSuccessful()) {
@@ -141,11 +63,12 @@ class BrandsRepository {
     fun getModels(id_marque:String,onError: (error: String) -> Unit): MutableLiveData<List<Model>> {
 
         val modelData = MutableLiveData<List<Model>>()
-        newsApi.getModels(id_marque).enqueue( object : Callback<List<Model>> {
+        SayaraDzApi.getModels(id_marque).enqueue( object : Callback<List<Model>> {
             override fun onResponse(call: Call<List<Model>>, response: Response<List<Model>>) {
                 Log.i("response", "answered")
                 if (response.isSuccessful()) {
                     modelData.setValue(response.body()!!)
+
 
 
                     Log.i("success", "success")
@@ -171,10 +94,268 @@ class BrandsRepository {
 
 
         })
-        return modelData
+        return modelData}
+
+
+
+    fun getModelColors(id_modele:String,onError: (error: String) -> Unit): MutableLiveData<List<PaintColor>> {
+
+        val colorData = MutableLiveData<List<PaintColor>>()
+        SayaraDzApi.getModelColors(id_modele).enqueue( object : Callback<List<PaintColor>> {
+            override fun onResponse(call: Call<List<PaintColor>>, response: Response<List<PaintColor>>) {
+                Log.i("response color ", "answered")
+                if (response.isSuccessful()) {
+                    colorData.setValue(response.body()!!)
+
+
+                    Log.i("success color ", "success")
+                } else {
+
+
+                    onError(response.errorBody()?.string() ?: "Unknown error")
+                }
+            }
+            override fun onFailure(call: Call<List<PaintColor>>, t: Throwable) {
+
+
+                Log.i("failure", "failed")
+                onError(t.message ?: "Unknown error")
+            }
+
+
+
+
+
+
+
+
+
+        })
+        return colorData}
+
+        fun getVersions(id_modele:String, onError: (error: String) -> Unit): MutableLiveData<List<Version>> {
+
+            val versionData = MutableLiveData<List<Version>>()
+            SayaraDzApi.getVersions(id_modele).enqueue( object : Callback<List<Version>> {
+                override fun onResponse(call: Call<List<Version>>, response: Response<List<Version>>) {
+                    Log.i("response", "answered")
+                    if (response.isSuccessful()) {
+                        versionData.setValue(response.body()!!)
+
+
+
+                        Log.i("success", "success")
+                    } else {
+
+
+                        onError(response.errorBody()?.string() ?: "Unknown error")
+                    }
+                }
+                override fun onFailure(call: Call<List<Version>>, t: Throwable) {
+
+
+                    Log.i("failure", "failed")
+                    onError(t.message ?: "Unknown error")
+                }
+
+
+
+
+
+
+
+
+
+            })
+            return versionData
     }
 
-companion object {
+    fun getVersionPrice(id_version:String, onError: (error: String) -> Unit): MutableLiveData<List<VersionPrice>> {
+
+        val versionData = MutableLiveData<List<VersionPrice>>()
+        SayaraDzApi.getVersionPrice(id_version).enqueue( object : Callback<List<VersionPrice>> {
+            override fun onResponse(call: Call<List<VersionPrice>>, response: Response<List<VersionPrice>>) {
+                Log.i("response", "answered")
+                if (response.isSuccessful()) {
+                    versionData.setValue(response.body()!!)
+                    
+
+                    Log.i("success", "success")
+                } else {
+
+
+                    onError(response.errorBody()?.string() ?: "Unknown error")
+                }
+            }
+            override fun onFailure(call: Call<List<VersionPrice>>, t: Throwable) {
+
+
+                Log.i("failure", "failed")
+                onError(t.message ?: "Unknown error")
+            }
+
+
+
+
+
+
+
+
+
+        })
+        return versionData
+    }
+
+    fun getVersionOptions(id_version:String, onError: (error: String) -> Unit): MutableLiveData<List<Option>> {
+
+        val versionData = MutableLiveData<List<Option>>()
+        SayaraDzApi.getVersionOptions(id_version).enqueue( object : Callback<List<Option>> {
+            override fun onResponse(call: Call<List<Option>>, response: Response<List<Option>>) {
+                Log.i("response", "answered")
+                if (response.isSuccessful()) {
+                    versionData.setValue(response.body()!!)
+
+
+                    Log.i("success", "success")
+                } else {
+
+
+                    onError(response.errorBody()?.string() ?: "Unknown error")
+                }
+            }
+            override fun onFailure(call: Call<List<Option>>, t: Throwable) {
+
+
+                Log.i("failure", "failed")
+                onError(t.message ?: "Unknown error")
+            }
+
+
+
+
+
+
+
+
+
+        })
+        return versionData
+    }
+
+    fun getUserOrders(user_email:String, onError: (error: String) -> Unit): MutableLiveData<List<reservation>> {
+
+        val userOrdersList = MutableLiveData<List<reservation>>()
+        SayaraDzApi.getUserOrders(user_email).enqueue( object : Callback<List<reservation>> {
+            override fun onResponse(call: Call<List<reservation>>, response: Response<List<reservation>>) {
+                Log.i("response", "answered")
+                if (response.isSuccessful()) {
+                    userOrdersList.setValue(response.body()!!)
+
+
+                    Log.i("success", "success")
+                } else {
+
+
+                    onError(response.errorBody()?.string() ?: "Unknown error")
+                }
+            }
+            override fun onFailure(call: Call<List<reservation>>, t: Throwable) {
+
+
+                Log.i("failure", "failed")
+                onError(t.message ?: "Unknown error")
+            }
+
+
+
+
+
+
+
+
+
+        })
+        return userOrdersList
+    }
+
+
+    fun getOptionPrice(id_Option:String, onError: (error: String) -> Unit): MutableLiveData<List<OptionPrice>> {
+
+        val OptionPriceData = MutableLiveData<List<OptionPrice>>()
+        SayaraDzApi.getOptionPrice(id_Option).enqueue( object : Callback<List<OptionPrice>> {
+            override fun onResponse(call: Call<List<OptionPrice>>, response: Response<List<OptionPrice>>) {
+                Log.i("response", "answered")
+                if (response.isSuccessful()) {
+                    OptionPriceData.setValue(response.body()!!)
+
+
+                    Log.i("success", "success")
+                } else {
+
+
+                    onError(response.errorBody()?.string() ?: "Unknown error")
+                }
+            }
+            override fun onFailure(call: Call<List<OptionPrice>>, t: Throwable) {
+
+
+                Log.i("failure", "failed")
+                onError(t.message ?: "Unknown error")
+            }
+
+
+
+
+
+
+
+
+
+        })
+        return OptionPriceData
+    }
+
+
+
+    fun getColorPrice(id_Color:String, onError: (error: String) -> Unit): MutableLiveData<List<ColorPrice>> {
+
+        val colorPriceData = MutableLiveData<List<ColorPrice>>()
+        SayaraDzApi.getColorPrice(id_Color).enqueue( object : Callback<List<ColorPrice>> {
+            override fun onResponse(call: Call<List<ColorPrice>>, response: Response<List<ColorPrice>>) {
+                Log.i("response", "answered")
+                if (response.isSuccessful()) {
+                    colorPriceData.setValue(response.body()!!)
+
+
+                    Log.i("success", "success")
+                } else {
+
+
+                    onError(response.errorBody()?.string() ?: "Unknown error")
+                }
+            }
+            override fun onFailure(call: Call<List<ColorPrice>>, t: Throwable) {
+
+
+                Log.i("failure", "failed")
+                onError(t.message ?: "Unknown error")
+            }
+
+
+
+
+
+
+
+
+
+        })
+        return colorPriceData
+    }
+
+
+
+    companion object {
 
 
     var instance: BrandsRepository? = null

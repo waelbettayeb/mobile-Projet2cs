@@ -24,7 +24,12 @@ class ModelFragment : Fragment() {
 
     private lateinit var viewModel: ModelViewModel
     private lateinit var mMenu: Menu
+    private lateinit var modele_name: String
+    private lateinit var brand_name: String
+    private lateinit var modele_id: String
+    private lateinit var brand_id: String
 
+    private lateinit var colorsList: ArrayList<String>
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -34,11 +39,14 @@ class ModelFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        modele_id = arguments!!.getString("modele_id")
+        brand_id = arguments!!.getString("brand_id")
+        colorsList = arguments!!.getStringArrayList("colors")
 
         val viewPager : ViewPager = view.findViewById(R.id.view_pager_model)
         val tabs:TabLayout = view.findViewById(R.id.tabs_model)
         tabs.setupWithViewPager(viewPager)
-        viewPager.adapter = fragmentManager?.let { ModelPagerAdapter(it) }
+        viewPager.adapter = fragmentManager?.let { ModelPagerAdapter(it,modele_id,brand_id) }
 
         val toolbar: Toolbar = view.findViewById(R.id.toolbar)
         val navController = Navigation.findNavController(requireActivity(), R.id.nav_main_host_fragment)
@@ -47,10 +55,13 @@ class ModelFragment : Fragment() {
         toolbar.inflateMenu(R.menu.model_menu)
         mMenu = toolbar.menu
 
+        modele_name = arguments!!.getString("modele_name")
+        brand_name = arguments!!.getString("brand_name")
+
         toolbar.setOnMenuItemClickListener { item: MenuItem ->  this.onOptionsItemSelected(item)}
 
-        toolbar.subtitle = "Renault" // set the subtitle first
-        toolbar.title = "Clio"
+        toolbar.subtitle = brand_name
+        toolbar.title = modele_name
 
     }
 
@@ -80,19 +91,28 @@ class ModelFragment : Fragment() {
         })
     }
 
-    inner class ModelPagerAdapter(pFragmentManager: FragmentManager) : FragmentStatePagerAdapter(pFragmentManager) {
+    inner class ModelPagerAdapter(pFragmentManager: FragmentManager, modele_id: String,brand_id:String) : FragmentStatePagerAdapter(pFragmentManager) {
+        var  modelVersionsFragment = ModelVersionsFragment()
+        var   modelInfoFragment= ModelInfoFragment()
+        private var  mFragmentList:MutableList<Fragment>
+        init{
+            modelVersionsFragment.modele_id=modele_id
+            modelVersionsFragment.brand_id=brand_id
+            modelInfoFragment.colorList=colorsList
+            mFragmentList = mutableListOf(
+                modelInfoFragment,
+                ModelImagesFragment(),
+                modelVersionsFragment
 
-        private val mFragmentList = mutableListOf(
-            ModelInfoFragment(),
-            ModelImagesFragment(),
-            ModelVersionsFragment()
-        )
+            )
+        }
         private val mFragmentTitleList = mutableListOf(
             resources.getString(R.string.information),
             resources.getString(R.string.images),
             resources.getString(R.string.versions))
 
         override fun getCount(): Int {
+
             return mFragmentList.size
         }
 

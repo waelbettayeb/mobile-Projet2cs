@@ -31,7 +31,7 @@ class BrandViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
             .apply(RequestOptions.circleCropTransform())
             .placeholder(R.drawable.icon_mono)
             .into(itemView.findViewById(R.id.image_brand_logo))
-         bundle = bundleOf("brand_name" to brand.name,"brand_id" to brand.id,"brand_logo" to brand.url)
+         bundle = bundleOf("brand_name" to brand.name,"brand_logo" to brand.url)
 
         this.itemView.setOnClickListener(
 
