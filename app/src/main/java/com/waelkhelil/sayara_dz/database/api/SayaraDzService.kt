@@ -13,7 +13,7 @@ import retrofit2.http.Path
 
 
 /**
- * sayraDz brands  API communication setup via Retrofit.
+ * sayraDz brands  API communication sssetup via Retrofit.
  *
  */
 
