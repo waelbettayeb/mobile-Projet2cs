@@ -1,10 +1,14 @@
 package com.waelkhelil.sayara_dz.view
 
+import android.annotation.SuppressLint
+import android.app.Dialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import android.view.Window
+import android.widget.Button
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -15,6 +19,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.waelkhelil.sayara_dz.R
 import com.waelkhelil.sayara_dz.SharedViewModel
 import com.waelkhelil.sayara_dz.database.model.Version
+import com.waelkhelil.sayara_dz.database.model.reservation
 
 
 class MainFragment : Fragment() {
@@ -57,6 +62,36 @@ class MainFragment : Fragment() {
                 lBottomNavigationView.removeBadge(R.id.home_fragment)
             }
         })
+
+        sharedViewModel.getUserOrders("fm_bourouais@esi.dz")!!.observe(this, Observer<List<reservation>>
+        {
+            if ( it.size!=0) {
+                showUserOrdersDialog("vous avez ${it.size} commandes acceptées")
+            }
+        })
+    }
+
+
+    @SuppressLint("ResourceType")
+    private fun showUserOrdersDialog(message:String) {
+        var dialogs = Dialog(this.activity!!)
+
+
+
+        dialogs.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialogs.setCancelable(false)
+        dialogs.setContentView(com.waelkhelil.sayara_dz.R.layout.order_notification)
+        val yesBtn = dialogs.findViewById(com.waelkhelil.sayara_dz.R.id.btn_ok) as Button
+        val closeBtn = dialogs.findViewById(com.waelkhelil.sayara_dz.R.id.btn_close) as Button
+        val alertMessage = dialogs.findViewById(com.waelkhelil.sayara_dz.R.id.tv_notification_message) as TextView
+
+        alertMessage.text=message
+
+        closeBtn.setOnClickListener {
+            dialogs.hide()
+        }
+        dialogs.show()
+
     }
 
 

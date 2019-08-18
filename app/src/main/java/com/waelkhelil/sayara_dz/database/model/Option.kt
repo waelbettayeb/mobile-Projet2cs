@@ -1,14 +1,14 @@
 package com.waelkhelil.sayara_dz.database.model
 
 import androidx.room.ColumnInfo
-import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.google.gson.annotations.SerializedName
 
-@Entity(tableName = "option")
+
 data class Option(
-    @PrimaryKey var id:Long,
-    @ColumnInfo var name:String,
-    @ColumnInfo val price:Int
+
+    @PrimaryKey @field:SerializedName("Code_Option") internal var id: String,
+    @ColumnInfo @field:SerializedName("Nom_Option")var name:String
 
 )
 

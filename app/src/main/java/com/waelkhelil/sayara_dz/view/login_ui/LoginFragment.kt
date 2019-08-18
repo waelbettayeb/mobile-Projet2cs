@@ -23,8 +23,11 @@ import com.facebook.*
 import com.facebook.login.LoginResult
 import com.facebook.login.widget.LoginButton
 import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.common.api.ApiException
+import com.google.android.gms.tasks.Task
 import com.google.android.material.snackbar.Snackbar
 import com.waelkhelil.sayara_dz.R
 import com.waelkhelil.sayara_dz.database.model.User
@@ -45,7 +48,7 @@ class LoginFragment : Fragment() {
     private val TAG : String = "LoginFragment"
     private lateinit var mGoogleSignInClient: GoogleSignInClient
     private lateinit var viewModel: LoginViewModel
-    val RC_SIGN_IN: Int = 1
+    val RC_SIGN_IN: Int = 101
     val callbackManager = CallbackManager.Factory.create()
 
     override fun onCreateView(
@@ -95,7 +98,7 @@ class LoginFragment : Fragment() {
 
                 // save accessToken to SharedPreference
 
-
+                                                Log.i("Login","${accessToken}")
                var  request : GraphRequest= GraphRequest.newMeRequest(
                         loginResult.getAccessToken(),
                         GraphRequest.GraphJSONObjectCallback() {
@@ -104,6 +107,7 @@ class LoginFragment : Fragment() {
 
 
                             //Getting FB User Data
+
                              var facebookData :   Bundle = getFacebookData(jsonObject)!!
                             Log.i("userinfooo","${facebookData.getString("last_name")}")
 
@@ -189,8 +193,24 @@ class LoginFragment : Fragment() {
 
     override
     fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-    super.onActivityResult(requestCode, resultCode, data);
-        callbackManager.onActivityResult(requestCode, resultCode, data);
+    super.onActivityResult(requestCode, resultCode, data)
+        callbackManager.onActivityResult(requestCode, resultCode, data)
+        // Result returned from launching the Intent from GoogleSignInClient.getSignInIntent(...);
+        if (requestCode == RC_SIGN_IN) {
+            // The Task returned from this call is always completed, no need to attach
+            // a listener.
+            val task = GoogleSignIn.getSignedInAccountFromIntent(data)
+            handleSignInResult(task)
+        }
+
+        callbackManager?.onActivityResult(requestCode, resultCode, data)
+        val accessToken = AccessToken.getCurrentAccessToken()
+        val isLoggedIn = accessToken != null && !accessToken.isExpired
+
+        if (isLoggedIn) {
+            val profile = Profile.getCurrentProfile()
+            setUser(profile.firstName, profile.getProfilePictureUri(100, 100))
+        }
 
     }
 
@@ -243,30 +263,14 @@ class LoginFragment : Fragment() {
         editor.putString("fb_profileURL",photo_url );
         editor.commit() // This line is IMPORTANT !!!
     }
-   /* override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        // Result returned from launching the Intent from GoogleSignInClient.getSignInIntent(...);
-        if (requestCode == RC_SIGN_IN) {
-            // The Task returned from this call is always completed, no need to attach
-            // a listener.
-            val task = GoogleSignIn.getSignedInAccountFromIntent(data)
-            handleSignInResult(task)
-        }
 
-        callbackManager?.onActivityResult(requestCode, resultCode, data)
-        val accessToken = AccessToken.getCurrentAccessToken()
-        val isLoggedIn = accessToken != null && !accessToken.isExpired
-
-        if (isLoggedIn) {
-            val profile = Profile.getCurrentProfile()
-            setUser(profile.firstName, profile.getProfilePictureUri(100, 100))
-        }
-    }
     private fun handleSignInResult(completedTask: Task<GoogleSignInAccount>) {
         try {
             val account = completedTask.getResult(ApiException::class.java)
 
             setUser(account?.getGivenName()!!, account?.getPhotoUrl()!!)
+
+            Log.i("info","logged as ${account?.getGivenName()}")
             // Signed in successfully, show authenticated UI.
         } catch (e: ApiException) {
             // The ApiException status code indicates the detailed failure reason.
@@ -276,4 +280,4 @@ class LoginFragment : Fragment() {
         }
 
     }
-}*/}
+}

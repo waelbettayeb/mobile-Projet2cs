@@ -29,14 +29,14 @@ class ConfigureDialogFragment : DialogFragment() {
         fun newInstance() = ConfigureDialogFragment()
     }
     val colorsList:List<PaintColor> = listOf(
-        PaintColor("red", "#2196F3",0),
-        PaintColor("blue", "#FF6050",100),
-        PaintColor("green", "#FF0E83",200),
-        PaintColor("yellow", "#839BFD",200),
-        PaintColor("white", "#DDE3FE",400)
+        PaintColor("red", "#2196F3","m",listOf("1","2")),
+        PaintColor("blue", "#FF6050","m",listOf("1","2")),
+        PaintColor("green", "#FF0E83","m",listOf("1","2")),
+        PaintColor("yellow", "#839BFD","m",listOf("1","2")),
+        PaintColor("white", "#DDE3FE","m",listOf("1","2"))
     )
-    val optionsList = setOf(Option(0, "option_00",0),Option(1, "option_01",1),Option(2, "option_02",2),
-        Option(3, "option_03",3))
+    val optionsList = setOf(Option("0", "option_00"),Option("1", "option_01"),Option("2", "option_02"),
+        Option("3", "option_03"))
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setStyle(STYLE_NORMAL, R.style.FullScreenDialogStyle)
@@ -127,7 +127,8 @@ class ConfigureDialogFragment : DialogFragment() {
         val colorChip: Chip? = colorSequence.filter { view:Chip ->  view.isChecked}.elementAtOrNull(0)
         if (colorChip!= null){
             val color = colorsList.filter { paintColor -> paintColor.name == colorChip.text }
-            lPrice += color.first().price
+          //TODO : get real price here
+            lPrice += 100//color.first().price
         }
         return lPrice
     }
@@ -137,7 +138,8 @@ class ConfigureDialogFragment : DialogFragment() {
         val optionsChiplist = colorSequence.filter { view:Chip ->  view.isChecked}
         optionsChiplist.forEach { chip ->
                 val lOption = optionsList.filter { option -> option.name == chip.text }
-                lPrice += lOption.first().price
+             //TODO : get real price here
+                lPrice += 150//lOption.first().price
         }
         return lPrice
     }

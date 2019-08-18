@@ -16,6 +16,7 @@
     <string name="skip">Passer</string>
     <string name="facebook_app_id">473074459902362</string>
     <string name="brands_error">Erreur lors du chargement des marques</string>
+    <string name="order_error">Erreur lors du de lenvoi de la commande </string>
 
     <string name="models_error">Erreur lors du chargement des madeles</string>
     <string name="fb_login_protocol_scheme">fb410978659654516</string>

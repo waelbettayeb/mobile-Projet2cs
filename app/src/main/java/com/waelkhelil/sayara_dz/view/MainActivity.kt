@@ -1,7 +1,6 @@
     package com.waelkhelil.sayara_dz.view
 
 import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.os.bundleOf
 import androidx.lifecycle.Observer
@@ -32,7 +31,7 @@ import com.waelkhelil.sayara_dz.view.login_ui.LoginViewModel
                     navController.navigate(R.id.fragment_login)
               LoginViewModel.AuthenticationState.AUTHENTICATED ->{
                   val bundle = bundleOf("user_name" to viewModel.getUser())
-                  Toast.makeText(this,"logged as ${viewModel.getUser()}", Toast.LENGTH_SHORT).show()
+
                    navController.navigate(R.id.fragment_main,bundle)}
             }
         })

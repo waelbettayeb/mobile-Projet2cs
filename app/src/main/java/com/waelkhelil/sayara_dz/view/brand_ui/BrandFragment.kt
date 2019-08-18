@@ -76,14 +76,17 @@ class BrandFragment : Fragment() {
         @SuppressLint("WrongConstant")
         private fun initAdapter() {
 
-
+              var list :ArrayList<Model> = ArrayList<Model>()
             viewModel.init()
             viewModel.getRepository()!!.observe(this.activity!!, Observer<List<Model>>  {
+
+
+
                 tv_models_nb.text=it.size.toString()
 
                 val lLayoutManager = LinearLayoutManager(activity)
                 lLayoutManager.orientation = LinearLayoutManager.VERTICAL
-                adapter = ModelsListItemAdapter(it,pBrandName)
+                adapter = ModelsListItemAdapter(it,pBrandName,this,viewModel)
                 rv_models_list.adapter = adapter
                 rv_models_list.apply {
                     // set a LinearLayoutManager to handle Android
@@ -101,7 +104,8 @@ class BrandFragment : Fragment() {
 
                   /*  val lLayoutManager = LinearLayoutManager(activity)
                     lLayoutManager.orientation = LinearLayoutManager.VERTICAL
-                    adapter= ModelsListItemAdapter(it,brand_name)
+
+                    adapter= ModelsListItemAdapter(it,brand_name,this,viewModel)
                     if (rv_models_list!=null){
                         rv_models_list.adapter=adapter
                         rv_models_list.apply {
@@ -115,7 +119,6 @@ class BrandFragment : Fragment() {
 
 
                 viewModel.getNetworkErrors()!!.observe(this.activity!!, Observer<String> {
-                    Log.i("errorrr","here")
                     Toast.makeText(this.activity, R.string.brands_error, Toast.LENGTH_SHORT).show()
                 })
             });
@@ -123,5 +126,4 @@ class BrandFragment : Fragment() {
         }
 
         }
-
 

@@ -2,133 +2,143 @@ package com.waelkhelil.sayara_dz.view.model_ui
 
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
+import android.annotation.SuppressLint
+import android.app.Dialog
 import android.os.Build
 import android.os.Bundle
-import android.view.Gravity
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.Button
-import android.widget.TextSwitcher
-import android.widget.TextView
-import android.widget.ViewSwitcher
+import android.util.Log
+import android.view.*
+import android.widget.*
 import androidx.annotation.StyleRes
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation
 import androidx.navigation.ui.NavigationUI
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.snackbar.Snackbar
 import com.ramotion.cardslider.CardSliderLayoutManager
 import com.ramotion.cardslider.CardSnapHelper
-import com.waelkhelil.sayara_dz.R
 import com.waelkhelil.sayara_dz.SharedViewModel
-import com.waelkhelil.sayara_dz.database.model.Version
+import com.waelkhelil.sayara_dz.database.Injection
+import com.waelkhelil.sayara_dz.database.model.*
+import com.waelkhelil.sayara_dz.view.brand_ui.ModelViewModel
 import com.waelkhelil.sayara_dz.view.compare.CompareFragment
 import com.waelkhelil.sayara_dz.view.model_ui.cards.SliderAdapter
-import com.google.android.material.snackbar.Snackbar
+
 import com.waelkhelil.sayara_dz.database.model.Option
 import com.waelkhelil.sayara_dz.view.configure_version.ConfigureDialogFragment
 import kotlinx.android.synthetic.main.fragment_model_versions.*
 
 
+
+
+
+
 class ModelVersionsFragment : Fragment() {
 
     companion object {
-        fun newInstance() = ModelVersionsFragment()
+        fun newInstance(modele_id:String,brand_id:String) = ModelVersionsFragment().apply {
+                   this.modele_id = modele_id
+                   this.brand_id = brand_id
+
+        }
     }
 
+    private lateinit var versionViewModel: ModelVersionsViewModel
     private lateinit var sharedViewModel: SharedViewModel
-    private val list:List<Version> = listOf(
-        Version(
-            0,
-            "Zen",
-            "https://www.cdn.renault.com/content/dam/Renault/FR/personal-cars/clio/CLIO%20V/PackshotsVersions/" +
-                    "New_Clio_Zen_Gris_Titanium.jpeg.ximg.l_12_m.smart.jpeg",
-            "2 300 K",
-            setOf()
-        ),
-        Version(
-            1,
-            "Intens",
-            "https://www.cdn.renault.com/content/dam/Renault/FR/personal-cars/clio/CLIO%20V/PackshotsVersions/" +
-                    "New_Clio_Intens_Orange_Valencia_Jantes.jpg.ximg.l_12_m.smart.jpg",
-            "2 700 K",
-            setOf(Option(0, "option_00",0),Option(1, "option_01",1))
-        ),
-        Version(
-            2,
-            "RS Line",
-            "https://www.cdn.renault.com/content/dam/Renault/FR/personal-cars/clio/CLIO%20V/PackshotsVersions/" +
-                    "New_Clio_RS_Line_Bleu_Iron.jpeg.ximg.l_12_m.smart.jpeg",
-            "3 200 K",
-            setOf(Option(0, "option_00",0),Option(1, "option_01",1),Option(2, "option_02",2))
-        ),
-        Version(
-            3,
-            "Initial Paris",
-            "https://www.cdn.renault.com/content/dam/Renault/FR/personal-cars/clio/CLIO%20V/PackshotsVersions/" +
-                    "Nouvelle_CLIO_Initiale_Paris_packshot_grade.jpeg.ximg.l_12_m.smart.jpeg",
-            "3 600 K",
-            setOf(Option(0, "option_00",0),Option(1, "option_01",1),Option(2, "option_02",2),
-                Option(3, "option_03",3))
-        )
-    )
-    private val sliderAdapter = SliderAdapter(list,  OnCardClickListener())
+    private lateinit var viewModel: ModelViewModel
+     private lateinit  var modele_id: String
+     private lateinit var brand_id: String
+    private lateinit var sliderAdapter: SliderAdapter
 
     private var layoutManager: CardSliderLayoutManager? = null
     private var recyclerView: RecyclerView? = null
     private var priceSwitcher: TextSwitcher? = null
-
+    private lateinit var colorList: ArrayList<PaintColor>
+    private var optionsList: ArrayList<Option> = ArrayList<Option>()
+    private lateinit var versionList: List<Version>
     private var version1TextView: TextView? = null
     private var version2TextView: TextView? = null
     private var versionOffset1: Float = 0F
     private var versionOffset2: Float = 0F
     private var versionAnimDuration: Long = 0
     private var currentPosition: Int = 0
+    private var orderTotalPrice: Float = 0F
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         // Share data between fragments
+
+
         sharedViewModel = activity?.run {
             ViewModelProviders.of(this).get(SharedViewModel::class.java)
         } ?: throw Exception("Invalid Activity")
+        versionViewModel = ViewModelProviders.of(this, Injection.provideModelViewModelFactory(modele_id))
+            .get(ModelVersionsViewModel::class.java)
+
+        initAdapter()
+
+        //getting colors
+        viewModel = ViewModelProviders.of(this, Injection.provideModelViewModelFactory("1"))
+            .get(ModelViewModel::class.java)
+        viewModel.init()
+        viewModel.initColor(modele_id)
+
+        viewModel.getModelColors()!!.observe(this, Observer<List<PaintColor>>
+        {
+
+            colorList = it as ArrayList<PaintColor>
+        })
+
+
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_model_versions, container, false)
+        return inflater.inflate(com.waelkhelil.sayara_dz.R.layout.fragment_model_versions, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         layoutManager = context?.let { CardSliderLayoutManager(it) }
-
-
-        initRecyclerView()
-        initVersionText()
         initSwitchers()
 
-        val lButtonCompare= getView()!!.
-            findViewById<Button>(R.id.button_compare_button)
+
+
+
+        button_command_version.setOnClickListener {
+            showColorsDialog(colorList, optionsList)
+        }
+        val lButtonCompare = getView()!!.findViewById<Button>(com.waelkhelil.sayara_dz.R.id.button_compare_button)
         lButtonCompare.setOnClickListener {
-            sharedViewModel.addToCompareList(list[currentPosition])
-            val contextView : View = view.findViewById(R.id.layout_version)
+            sharedViewModel.addToCompareList(versionList[currentPosition])
+            val contextView: View = view.findViewById(com.waelkhelil.sayara_dz.R.id.layout_version)
 
             if (sharedViewModel.mCompareList.value!!.size > 1)
-                Snackbar.make(contextView, R.string.msg_added_to_comparison_list, Snackbar.LENGTH_SHORT)
-                    .setAction(R.string.see_all) {
-                        val lCompareFragment= CompareFragment()
+                Snackbar.make(
+                    contextView,
+                    com.waelkhelil.sayara_dz.R.string.msg_added_to_comparison_list,
+                    Snackbar.LENGTH_SHORT
+                )
+                    .setAction(com.waelkhelil.sayara_dz.R.string.see_all) {
+                        val lCompareFragment = CompareFragment()
                         fragmentManager?.let { it1 -> lCompareFragment.show(it1, CompareFragment.TAG) }
                     }.show()
             else
-                Snackbar.make(view, R.string.msg_added_to_comparison_list, Snackbar.LENGTH_SHORT)
+                Snackbar.make(
+                    view,
+                    com.waelkhelil.sayara_dz.R.string.msg_added_to_comparison_list,
+                    Snackbar.LENGTH_SHORT
+                )
                     .show()
         }
         button_command_version.setOnClickListener {
             val bundle = Bundle()
-            bundle.putInt("versionId", currentVersion().id)
+            bundle.putString("versionId", versionList[currentPosition].id)
 
             val dialog = ConfigureDialogFragment()
             dialog.arguments = bundle
@@ -137,9 +147,31 @@ class ModelVersionsFragment : Fragment() {
             dialog.show(ft, ConfigureDialogFragment.TAG)
         }
     }
-    private fun initRecyclerView() {
 
-        recyclerView = view?.findViewById(R.id.recycler_view_versions) as RecyclerView
+    private fun initAdapter() {
+
+        versionViewModel.init()
+        versionViewModel.getRepository()!!.observe(this.activity!!, Observer<List<Version>> {
+            sliderAdapter = SliderAdapter(it, OnCardClickListener())
+            if (it.size != 0) {
+
+                initRecyclerView(it)
+                initVersionText(it)
+
+            }
+
+            versionViewModel.getNetworkErrors()!!.observe(this.activity!!, Observer<String> {
+                Log.i("errorrr", "here")
+                Toast.makeText(this.activity, com.waelkhelil.sayara_dz.R.string.brands_error, Toast.LENGTH_SHORT).show()
+            })
+        })
+
+
+    }
+
+    private fun initRecyclerView(list: List<Version>) {
+        this.versionList = list
+        recyclerView = view?.findViewById(com.waelkhelil.sayara_dz.R.id.recycler_view_versions) as RecyclerView
         recyclerView?.adapter = sliderAdapter
         recyclerView?.layoutManager = layoutManager
         recyclerView?.setHasFixedSize(true)
@@ -156,24 +188,27 @@ class ModelVersionsFragment : Fragment() {
 
         CardSnapHelper().attachToRecyclerView(recyclerView)
     }
+
     private fun initSwitchers() {
-        priceSwitcher = view?.findViewById(R.id.ts_price)
-        priceSwitcher?.setFactory(TextViewFactory(R.style.price_textView, true))
-        priceSwitcher?.setCurrentText(list[0].price)
+        priceSwitcher = view?.findViewById(com.waelkhelil.sayara_dz.R.id.ts_price)
+        priceSwitcher?.setFactory(TextViewFactory(com.waelkhelil.sayara_dz.R.style.price_textView, true))
+        priceSwitcher?.background = resources.getDrawable(com.waelkhelil.sayara_dz.R.color.white)
+
 
     }
 
-    private fun currentVersion():Version{
+    /*private fun currentVersion():Version{
         return list[currentPosition]
-    }
+    }*/
 
-    private fun initVersionText() {
-        versionAnimDuration = resources.getInteger(R.integer.labels_animation_duration).toLong()
-        versionOffset1 = resources.getDimensionPixelSize(R.dimen.left_offset).toFloat()
-        versionOffset2 = resources.getDimensionPixelSize(R.dimen.card_width).toFloat()
+    private fun initVersionText(list: List<Version>) {
+        versionAnimDuration =
+            resources.getInteger(com.waelkhelil.sayara_dz.R.integer.labels_animation_duration).toLong()
+        versionOffset1 = resources.getDimensionPixelSize(com.waelkhelil.sayara_dz.R.dimen.left_offset).toFloat()
+        versionOffset2 = resources.getDimensionPixelSize(com.waelkhelil.sayara_dz.R.dimen.card_width).toFloat()
 
-        version1TextView = view?.findViewById(R.id.tv_country_1) as TextView
-        version2TextView = view?.findViewById(R.id.tv_country_2) as TextView
+        version1TextView = view?.findViewById(com.waelkhelil.sayara_dz.R.id.tv_country_1) as TextView
+        version2TextView = view?.findViewById(com.waelkhelil.sayara_dz.R.id.tv_country_2) as TextView
 
         version1TextView?.x = versionOffset1
         version2TextView?.x = versionOffset2
@@ -228,28 +263,67 @@ class ModelVersionsFragment : Fragment() {
         }
 
         if (pos != null) {
+
+
             onActiveCardChange(pos)
         }
     }
 
+
     private fun onActiveCardChange(pos: Int) {
-        val animH = intArrayOf(R.anim.slide_in_right, R.anim.slide_out_left)
-        val animV = intArrayOf(R.anim.slide_in_top, R.anim.slide_out_bottom)
+        val animH =
+            intArrayOf(com.waelkhelil.sayara_dz.R.anim.slide_in_right, com.waelkhelil.sayara_dz.R.anim.slide_out_left)
+        val animV =
+            intArrayOf(com.waelkhelil.sayara_dz.R.anim.slide_in_top, com.waelkhelil.sayara_dz.R.anim.slide_out_bottom)
 
         val left2right = pos < currentPosition
         if (left2right) {
-            animH[0] = R.anim.slide_in_left
-            animH[1] = R.anim.slide_out_right
+            animH[0] = com.waelkhelil.sayara_dz.R.anim.slide_in_left
+            animH[1] = com.waelkhelil.sayara_dz.R.anim.slide_out_right
 
-            animV[0] = R.anim.slide_in_bottom
-            animV[1] = R.anim.slide_out_top
+            animV[0] = com.waelkhelil.sayara_dz.R.anim.slide_in_bottom
+            animV[1] = com.waelkhelil.sayara_dz.R.anim.slide_out_top
         }
 
-        setVersionText(list[pos % list.size].name, left2right)
+
 
         priceSwitcher?.setInAnimation(context, animH[0])
         priceSwitcher?.setOutAnimation(context, animH[1])
-        priceSwitcher?.setText(list[pos % list.size].price)
+        setVersionText(versionList[pos % versionList.size].name, left2right)
+
+
+        var price = ""
+        versionViewModel.getVersionPrice(versionList[pos % versionList.size].id)!!.observe(
+            this.activity!!,
+            Observer<List<VersionPrice>> {
+
+                if (it.size != 0) {
+
+                    price = it.get(0).price
+                    Log.i("price", "${price}")
+
+
+                } else {
+                    price = "notloaded"
+                }
+
+
+
+                priceSwitcher?.setCurrentText(price)
+
+                versionViewModel.getNetworkErrors()!!.observe(this.activity!!, Observer<String> {
+
+                    Toast.makeText(this.activity, com.waelkhelil.sayara_dz.R.string.brands_error, Toast.LENGTH_SHORT)
+                        .show()
+                })
+            })
+        versionViewModel.getVersionOptions((versionList[pos % versionList.size]).id)
+            .observe(this, Observer<List<Option>>
+            {
+
+                optionsList = it as ArrayList<Option>
+            })
+
 
 
 
@@ -279,6 +353,7 @@ class ModelVersionsFragment : Fragment() {
 
     }
 
+
     private inner class OnCardClickListener : View.OnClickListener {
         override fun onClick(view: View) {
             val lm = recyclerView?.layoutManager as CardSliderLayoutManager?
@@ -296,9 +371,182 @@ class ModelVersionsFragment : Fragment() {
             if ((clickedPosition != activeCardPosition) && (clickedPosition != null)) {
                 if (clickedPosition > activeCardPosition) {
                     recyclerView?.smoothScrollToPosition(clickedPosition)
+
                     onActiveCardChange(clickedPosition)
                 }
             }
         }
+    }
+
+
+    @SuppressLint("ResourceType")
+    private fun showColorsDialog(colorList: ArrayList<PaintColor>, optionsList: ArrayList<Option>) {
+        orderTotalPrice = 0.0f
+        var dialogs = this.context?.let { Dialog(it) }
+        var selectedOPtions: ArrayList<String> = ArrayList<String>()
+        dialogs!!.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialogs.setCancelable(false)
+
+        dialogs.setContentView(com.waelkhelil.sayara_dz.R.layout.order_alert)
+
+        val yesBtn = dialogs.findViewById(com.waelkhelil.sayara_dz.R.id.btn_ok) as Button
+        val filterSpinner = dialogs.findViewById(com.waelkhelil.sayara_dz.R.id.filtres) as Spinner
+        val cb = arrayOfNulls<CheckBox>(optionsList.size)
+
+
+        // Creating adapter forf spinner
+        val dataAdapter = ArrayAdapter<PaintColor>(this.context!!, android.R.layout.simple_spinner_item, colorList!!)
+
+
+        // attaching data adapter to spinne
+        filterSpinner.setAdapter(dataAdapter)
+
+        //adding options check boxes dynamically
+        var i = 0
+        val ll = dialogs.findViewById(com.waelkhelil.sayara_dz.R.id.options_layout) as LinearLayout
+        if (optionsList.size != 0) {
+
+            for (j in optionsList) {
+                cb[i] = CheckBox(this.activity!!)
+                ll.addView(cb[i])
+                cb[i]!!.setText(optionsList[i].name)
+                cb[i]!!.setId(i)
+                i++
+            }
+
+        } else {
+            (dialogs.findViewById(com.waelkhelil.sayara_dz.R.id.tv_choose_option) as TextView).visibility =
+                View.INVISIBLE
+        }
+
+        yesBtn.setOnClickListener {
+
+            i = 0
+            for (j in optionsList) {
+                if (cb[i]!!.isChecked) {
+
+                    selectedOPtions.add(optionsList[i].id)
+                    i++
+                }
+
+            }
+/*
+versionViewModel.getColorPrice((colorList[filterSpinner.selectedItemPosition].code).toString()).observe(this, Observer<List<ColorPrice>>
+ {
+
+     if (it.isNotEmpty()){
+
+         Log.i("color",it[0].price.toString())
+     }
+
+
+ })*/
+
+
+            // Log.i("color",getVersionPrice(  colorList[filterSpinner.selectedItemPosition].code).toString())
+
+            OrderCar(
+                selectedOPtions,
+                versionList[currentPosition].id,
+                colorList[filterSpinner.selectedItemPosition].code
+            )
+
+
+
+            dialogs.hide()
+        }
+        dialogs.show()
+
+    }
+
+
+    fun getVersionPrice(id_version: String): Float {
+        var version_price: Float = 0.0F
+        versionViewModel.getVersionPrice(id_version).observe(this, Observer<List<VersionPrice>>
+        {
+
+            if (it.isNotEmpty()) {
+                version_price = it[0].price.toFloat()
+
+            }
+
+
+        })
+        return version_price
+    }
+
+    fun OrderCar(neededOptions: List<String>, id_version: String, id_color: String) {
+
+
+        var options_price: MutableLiveData<Float>? = MutableLiveData(0.0f)
+        var price_color: MutableLiveData<Float>? = MutableLiveData(0.0f)
+        var price_version: Float = 0.0f
+
+
+        versionViewModel.getVersionPrice(id_version).observe(this.activity!!, Observer<List<VersionPrice>>
+        {
+
+            if (it.isNotEmpty()) {
+                orderTotalPrice = orderTotalPrice + it[0].price.toFloat()
+
+                Log.i("versionprrice", "${it[0].price.toFloat()}")
+
+
+            }
+
+            for (item in neededOptions) {
+                versionViewModel.getOptionPrice(item).observe(this, Observer<List<OptionPrice>>
+                {
+
+                    if (it.size != 0) {
+
+                        orderTotalPrice = orderTotalPrice + it[0].price.toFloat()
+                    }
+
+                    Log.i("optionsprice", "${orderTotalPrice}")
+
+
+
+                })}
+            versionViewModel.getColorPrice(id_color).observe(this, Observer<List<ColorPrice>>
+            {
+
+                if (it.isNotEmpty()) {
+                    orderTotalPrice = orderTotalPrice + it[0].price.toFloat()
+
+                }
+
+                versionViewModel.checkAvailable(
+                    brand_id, modele_id, versionList[currentPosition].id, id_color,
+                    neededOptions
+                    , orderTotalPrice
+                )
+
+
+                //Toast.makeText(this.activity,"${msg}",Toast.LENGTH_SHORT).show()
+                versionViewModel.getOrderMessage()!!.observe(this.activity!!, Observer<String> {
+
+                    Toast.makeText(this.activity, it, Toast.LENGTH_SHORT).show()
+
+                })
+            })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        })
+
+
     }
 }

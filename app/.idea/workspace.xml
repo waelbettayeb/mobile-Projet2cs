@@ -2,13 +2,49 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="31db24d6-7ea0-43f7-a13e-b1f7ae45d53d" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/waelkhelil/sayara_dz/database/model/ColorPrice.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/waelkhelil/sayara_dz/database/model/OptionPrice.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/waelkhelil/sayara_dz/database/model/Vehicule.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/waelkhelil/sayara_dz/database/model/VersionPrice.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/waelkhelil/sayara_dz/database/model/reservation.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/waelkhelil/sayara_dz/view/model_ui/ModelVersionsViewModel.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/res/layout/order_alert.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/res/layout/order_notification.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../.idea/codeStyles/Project.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/codeStyles/Project.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../.idea/encodings.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/waelkhelil/sayara_dz/database/Injection.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/waelkhelil/sayara_dz/database/Injection.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/waelkhelil/sayara_dz/SharedViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/waelkhelil/sayara_dz/SharedViewModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/waelkhelil/sayara_dz/database/ModelViewModelFactory.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/waelkhelil/sayara_dz/database/ModelViewModelFactory.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/waelkhelil/sayara_dz/database/ViewModelFactory.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/waelkhelil/sayara_dz/database/ViewModelFactory.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/waelkhelil/sayara_dz/database/api/SayaraDzService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/waelkhelil/sayara_dz/database/api/SayaraDzService.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/waelkhelil/sayara_dz/database/data/BrandsRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/waelkhelil/sayara_dz/database/data/BrandsRepository.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/waelkhelil/sayara_dz/database/model/Brand.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/waelkhelil/sayara_dz/database/model/Brand.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/waelkhelil/sayara_dz/database/model/Model.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/waelkhelil/sayara_dz/database/model/Model.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/waelkhelil/sayara_dz/database/model/Option.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/waelkhelil/sayara_dz/database/model/Option.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/waelkhelil/sayara_dz/database/model/PaintColor.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/waelkhelil/sayara_dz/database/model/PaintColor.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/waelkhelil/sayara_dz/database/model/Version.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/waelkhelil/sayara_dz/database/model/Version.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/waelkhelil/sayara_dz/view/MainActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/waelkhelil/sayara_dz/view/MainActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/waelkhelil/sayara_dz/view/MainFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/waelkhelil/sayara_dz/view/MainFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/waelkhelil/sayara_dz/view/UserContentFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/waelkhelil/sayara_dz/view/UserContentFragment.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/waelkhelil/sayara_dz/view/brand_ui/BrandFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/waelkhelil/sayara_dz/view/brand_ui/BrandFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/waelkhelil/sayara_dz/view/brand_ui/ModelItemViewHolder.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/waelkhelil/sayara_dz/view/brand_ui/ModelItemViewHolder.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/waelkhelil/sayara_dz/view/brand_ui/ModelViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/waelkhelil/sayara_dz/view/brand_ui/ModelViewModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/waelkhelil/sayara_dz/view/brand_ui/ModelsListItemAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/waelkhelil/sayara_dz/view/brand_ui/ModelsListItemAdapter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/waelkhelil/sayara_dz/view/brands_vertical_list_ui/BrandViewHolder.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/waelkhelil/sayara_dz/view/brands_vertical_list_ui/BrandViewHolder.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/waelkhelil/sayara_dz/view/compare/CompareFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/waelkhelil/sayara_dz/view/compare/CompareFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/waelkhelil/sayara_dz/view/configure_version/ConfigureDialogFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/waelkhelil/sayara_dz/view/configure_version/ConfigureDialogFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/waelkhelil/sayara_dz/view/login_ui/LoginFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/waelkhelil/sayara_dz/view/login_ui/LoginFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/waelkhelil/sayara_dz/view/login_ui/LoginViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/waelkhelil/sayara_dz/view/login_ui/LoginViewModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/waelkhelil/sayara_dz/view/model_ui/ColorListAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/waelkhelil/sayara_dz/view/model_ui/ColorListAdapter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/waelkhelil/sayara_dz/view/model_ui/ModelFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/waelkhelil/sayara_dz/view/model_ui/ModelFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/waelkhelil/sayara_dz/view/model_ui/ModelInfoDialogFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/waelkhelil/sayara_dz/view/model_ui/ModelInfoDialogFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/waelkhelil/sayara_dz/view/model_ui/ModelInfoFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/waelkhelil/sayara_dz/view/model_ui/ModelInfoFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/waelkhelil/sayara_dz/view/model_ui/ModelVersionsFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/waelkhelil/sayara_dz/view/model_ui/ModelVersionsFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/waelkhelil/sayara_dz/view/model_ui/cards/SliderCard.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/waelkhelil/sayara_dz/view/model_ui/cards/SliderCard.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/res/layout/fragment_model.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/fragment_model.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/values/strings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/res/values/styles.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/values/styles.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -27,6 +63,7 @@
     <session id="332616423">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
+          <entry key="project.closed" value="1" />
           <entry key="project.open.time.5" value="1" />
           <entry key="project.opened" value="1" />
         </counts>
@@ -92,7 +129,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="-8" />
     <option name="width" value="1382" />
     <option name="height" value="784" />
@@ -217,7 +254,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="784" extended-state="6" />
+    <frame x="-8" y="-8" width="1382" height="784" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" visible="true" weight="0.32980332" />
