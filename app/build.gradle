@@ -72,6 +72,8 @@ dependencies {
     implementation 'android.arch.paging:runtime:1.0.1'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.0.0'
     implementation 'androidx.viewpager2:viewpager2:1.0.0-beta03'
+    // Colorpicker
+    implementation "dev.sasikanth:colorsheet:1.0.1"
 
 
 }

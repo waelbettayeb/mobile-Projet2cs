@@ -9,13 +9,20 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import android.widget.TextView
+import androidx.annotation.ColorInt
 import androidx.appcompat.widget.Toolbar
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.DialogFragment
+import com.google.android.material.button.MaterialButton
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.waelkhelil.sayara_dz.R
+import dev.sasikanth.colorsheet.ColorSheet
+import dev.sasikanth.colorsheet.utils.ColorSheetUtils
+import kotlinx.android.synthetic.main.fragment_add_listing.*
 import kotlinx.android.synthetic.main.fragment_add_listing.view.*
+import kotlinx.android.synthetic.main.fragment_add_listing.view.button_color
 
 
 class AddListingDialogFragment : DialogFragment() {
@@ -67,6 +74,20 @@ class AddListingDialogFragment : DialogFragment() {
             false
         })
 
+        val colors = resources.getIntArray(R.array.colors)
+        context?.let { it1 -> setColor(it1, colors.first()) }
+        button_color.setOnClickListener {
+            fragmentManager?.let {
+                ColorSheet().colorPicker(
+                    colors = colors,
+                    selectedColor = colors.first(),
+                    listener = { color ->
+                        context?.let { it1 -> setColor(it1, color) }
+                    })
+                    .show(it)
+            }
+        }
+
     }
 
     override fun onStart() {
@@ -104,6 +125,16 @@ class AddListingDialogFragment : DialogFragment() {
             val chipObj = chipGroup.getChildAt(i) as Chip
             Log.d("Chips text :: " , chipObj.text.toString())
 
+        }
+    }
+    private fun setColor(context: Context, @ColorInt color: Int) {
+        if (color != ColorSheet.NO_COLOR) {
+            button_color.setBackgroundColor(color)
+            button_color.text = ColorSheetUtils.colorToHex(color)
+        } else {
+            val primaryColor = ContextCompat.getColor(context, R.color.colorPrimary)
+            button_color.setBackgroundColor(primaryColor)
+            button_color.text = getString(R.string.no_color)
         }
     }
 }

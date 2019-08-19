@@ -76,4 +76,6 @@
     <string name="title">Titre</string>
     <string name="price">Prix</string>
     <string name="add_option">Ajouter une option</string>
+    <string name="color">Couleur</string>
+    <string name="no_color">Aucune couleur</string>
 </resources>
