@@ -2,14 +2,20 @@ package com.waelkhelil.sayara_dz.view.add_listing
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
+import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.DialogFragment
+import com.google.android.material.chip.Chip
+import com.google.android.material.chip.ChipGroup
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.waelkhelil.sayara_dz.R
+import kotlinx.android.synthetic.main.fragment_add_listing.view.*
 
 
 class AddListingDialogFragment : DialogFragment() {
@@ -47,6 +53,20 @@ class AddListingDialogFragment : DialogFragment() {
         toolbar.setNavigationOnClickListener {
             context?.let { exitConfirmation(it) }
         }
+        // Options view
+        view.etValue.setOnEditorActionListener(TextView.OnEditorActionListener { v, actionId, _ ->
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
+                val txtVal = v.text
+                if(!txtVal.isNullOrEmpty()) {
+                    addChipToGroup(txtVal.toString(), view.chipGroup2)
+                    view.etValue.setText("")
+                }
+
+                return@OnEditorActionListener true
+            }
+            false
+        })
+
     }
 
     override fun onStart() {
@@ -64,5 +84,26 @@ class AddListingDialogFragment : DialogFragment() {
             }
             .setNegativeButton(getString(R.string.cancel), null)
             .show()
+    }
+    private fun addChipToGroup(txt: String, chipGroup: ChipGroup) {
+        val chip = Chip(context)
+        chip.text = txt
+//        chip.chipIcon = ContextCompat.getDrawable(requireContext(), baseline_person_black_18)
+
+        // necessary to get single selection working
+        chip.isClickable = false
+        chip.isCloseIconVisible = true
+        chip.isCheckable = false
+        chipGroup.addView(chip as View)
+        chip.setOnCloseIconClickListener { chipGroup.removeView(chip as View) }
+        printChipsValue(chipGroup)
+    }
+
+    private fun printChipsValue(chipGroup: ChipGroup) {
+        for (i in 0 until chipGroup.childCount) {
+            val chipObj = chipGroup.getChildAt(i) as Chip
+            Log.d("Chips text :: " , chipObj.text.toString())
+
+        }
     }
 }
