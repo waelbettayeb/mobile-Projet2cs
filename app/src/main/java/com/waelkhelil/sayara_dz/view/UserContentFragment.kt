@@ -1,14 +1,17 @@
 package com.waelkhelil.sayara_dz.view
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.Toolbar
+import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import androidx.navigation.ui.NavigationUI
 import com.waelkhelil.sayara_dz.R
+import com.waelkhelil.sayara_dz.view.add_listing.AddListingDialogFragment
+import com.waelkhelil.sayara_dz.view.configure_version.ConfigureDialogFragment
+import kotlinx.android.synthetic.main.fragment_user_content.*
 
 
 class UserContentFragment : Fragment() {
@@ -30,5 +33,15 @@ class UserContentFragment : Fragment() {
         val navController = Navigation.findNavController(requireActivity(), R.id.nav_main_host_fragment)
         NavigationUI.setupWithNavController(toolbar, navController)
         toolbar.inflateMenu(R.menu.menu_user)
+
+        efab_add_post.setOnClickListener {
+            val bundle = Bundle()
+
+            val dialog = AddListingDialogFragment()
+            dialog.arguments = bundle
+
+            val ft = fragmentManager!!.beginTransaction()
+            dialog.show(ft, ConfigureDialogFragment.TAG)
+        }
     }
 }

@@ -64,10 +64,15 @@
     <string name="quipements_en_options">Équipements en options</string>
     <string name="description">Description</string>
     <string name="exit_conf_confimation_msg">Si vous quittez la configuration, toutes vos modifications seront perdues</string>
+    <string name="exit_add_listing_confimation_msg">Si vous quittez l\'annonce, toutes vos modifications seront perdues</string>
     <string name="exit_confguration">Quitter la configuration?</string>
+    <string name="exit_add_listing">Quitter la création d\'annonce?</string>
     <string name="exit">Quitter</string>
     <string name="cancel">Annuler</string>
     <string name="configure_it">Configurez</string>
     <string name="colors">Couleurs</string>
     <string name="commander">commander</string>
+    <string name="new_listing">Nouvelle annonce</string>
+    <string name="title">Titre</string>
+    <string name="price">Prix</string>
 </resources>
