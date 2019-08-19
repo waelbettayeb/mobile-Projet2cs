@@ -9,13 +9,11 @@ import android.net.Uri
 import android.os.AsyncTask
 import android.os.Bundle
 import android.util.Log
-import android.view.KeyEvent
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.view.inputmethod.EditorInfo
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.annotation.ColorInt
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
@@ -28,7 +26,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.android.material.snackbar.Snackbar
 import com.waelkhelil.sayara_dz.R
+import com.waelkhelil.sayara_dz.view.model_ui.ModelInfoDialogFragment
 import dev.sasikanth.colorsheet.ColorSheet
 import dev.sasikanth.colorsheet.utils.ColorSheetUtils
 import kotlinx.android.synthetic.main.fragment_add_listing.*
@@ -43,6 +43,7 @@ class AddListingDialogFragment : DialogFragment() {
         fun newInstance() = AddListingDialogFragment()
         const val RESULT_LOAD_IMG = 0
     }
+
     private lateinit var viewModel: AddListingViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -80,7 +81,7 @@ class AddListingDialogFragment : DialogFragment() {
         view.etValue.setOnEditorActionListener(TextView.OnEditorActionListener { v, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_DONE) {
                 val txtVal = v.text
-                if(!txtVal.isNullOrEmpty()) {
+                if (!txtVal.isNullOrEmpty()) {
                     addChipToGroup(txtVal.toString(), view.chipGroup2)
                     view.etValue.setText("")
                 }
@@ -107,9 +108,10 @@ class AddListingDialogFragment : DialogFragment() {
 
         lButtonAddImage.setOnClickListener { pickPhotos() }
     }
+
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        val layoutManager = GridLayoutManager(context,3)
+        val layoutManager = GridLayoutManager(context, 3)
         val recyclerView = view?.findViewById(R.id.rv_image) as RecyclerView
         recyclerView.layoutManager = layoutManager
         viewModel.mBitmaps.observe(viewLifecycleOwner, Observer<List<Bitmap>> {
@@ -119,6 +121,7 @@ class AddListingDialogFragment : DialogFragment() {
         })
         recyclerView.addItemDecoration(DividerItemDecoration(context, layoutManager.orientation))
     }
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (requestCode == RESULT_LOAD_IMG) {
             if (resultCode == RESULT_OK) {
@@ -137,13 +140,15 @@ class AddListingDialogFragment : DialogFragment() {
             }
         }
     }
+
     override fun onStart() {
         super.onStart()
         val width = ViewGroup.LayoutParams.MATCH_PARENT
         val height = ViewGroup.LayoutParams.MATCH_PARENT
         dialog?.window?.setLayout(width, height)
     }
-    private fun exitConfirmation(context: Context){
+
+    private fun exitConfirmation(context: Context) {
         MaterialAlertDialogBuilder(context)
             .setTitle(getString(R.string.exit_add_listing))
             .setMessage(getString(R.string.exit_add_listing_confimation_msg))
@@ -154,6 +159,7 @@ class AddListingDialogFragment : DialogFragment() {
             .setNegativeButton(getString(R.string.cancel), null)
             .show()
     }
+
     private fun addChipToGroup(txt: String, chipGroup: ChipGroup) {
         val chip = Chip(context)
         chip.text = txt
@@ -171,10 +177,11 @@ class AddListingDialogFragment : DialogFragment() {
     private fun printChipsValue(chipGroup: ChipGroup) {
         for (i in 0 until chipGroup.childCount) {
             val chipObj = chipGroup.getChildAt(i) as Chip
-            Log.d("Chips text :: " , chipObj.text.toString())
+            Log.d("Chips text :: ", chipObj.text.toString())
 
         }
     }
+
     private fun setColor(context: Context, @ColorInt color: Int) {
         if (color != ColorSheet.NO_COLOR) {
             button_color.setBackgroundColor(color)
@@ -186,7 +193,8 @@ class AddListingDialogFragment : DialogFragment() {
             button_color.text = getString(R.string.no_color)
         }
     }
-    private fun pickPhotos(){
+
+    private fun pickPhotos() {
         val photoPickerIntent = Intent(Intent.ACTION_GET_CONTENT)
         photoPickerIntent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true)
         photoPickerIntent.type = "image/*"
@@ -217,6 +225,16 @@ class AddListingDialogFragment : DialogFragment() {
 
         override fun onPostExecute(result: Bitmap) {
             viewModel.addBitmaps(result)
+        }
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.action_save -> {
+
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
         }
     }
 }

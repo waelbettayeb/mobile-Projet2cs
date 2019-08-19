@@ -79,4 +79,5 @@
     <string name="color">Couleur</string>
     <string name="no_color">Aucune couleur</string>
     <string name="add">Ajouter</string>
+    <string name="create">créer</string>
 </resources>
