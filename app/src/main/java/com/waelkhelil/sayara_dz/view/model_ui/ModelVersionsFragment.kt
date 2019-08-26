@@ -14,8 +14,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import androidx.navigation.Navigation
-import androidx.navigation.ui.NavigationUI
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import com.ramotion.cardslider.CardSliderLayoutManager
@@ -25,15 +23,10 @@ import com.waelkhelil.sayara_dz.database.Injection
 import com.waelkhelil.sayara_dz.database.model.*
 import com.waelkhelil.sayara_dz.view.brand_ui.ModelViewModel
 import com.waelkhelil.sayara_dz.view.compare.CompareFragment
-import com.waelkhelil.sayara_dz.view.model_ui.cards.SliderAdapter
-
-import com.waelkhelil.sayara_dz.database.model.Option
 import com.waelkhelil.sayara_dz.view.configure_version.ConfigureDialogFragment
+import com.waelkhelil.sayara_dz.view.model_ui.cards.SliderAdapter
 import kotlinx.android.synthetic.main.fragment_model_versions.*
-
-
-
-
+import java.lang.Double.parseDouble
 
 
 class ModelVersionsFragment : Fragment() {
@@ -52,7 +45,7 @@ class ModelVersionsFragment : Fragment() {
      private lateinit  var modele_id: String
      private lateinit var brand_id: String
     private lateinit var sliderAdapter: SliderAdapter
-
+     lateinit var price:String
     private var layoutManager: CardSliderLayoutManager? = null
     private var recyclerView: RecyclerView? = null
     private var priceSwitcher: TextSwitcher? = null
@@ -137,15 +130,130 @@ class ModelVersionsFragment : Fragment() {
                     .show()
         }
         button_command_version.setOnClickListener {
+
+            var option_list = getOptionList()
+            var color_list = getColorList()
+
+            color_list.observe(this.activity!!,Observer<List<PaintColor>>{
+                for (item:PaintColor in it)
+
+
+                {
+                    versionViewModel.getColorPrice(item.code).observe(this.activity!!, Observer<List<ColorPrice>> {
+                        if (it.size!=0){
+                            item.price= parseDouble(it.get(0).price)
+                            }
+                    })
+
+
+
+                }
+
+
+
+            })
+            option_list.observe(this.activity!!,Observer<List<Option>>{
+
+
+                for (item:Option in it)
+
+
+                {
+                    versionViewModel.getOptionPrice(item.id).observe(this.activity!!, Observer<List<OptionPrice>> {
+                        if (it.size!=0){
+                            item.price= parseDouble(it.get(0).price)
+                        }
+                    })
+
+
+
+                }
+
+            })
+
             val bundle = Bundle()
-            bundle.putString("versionId", versionList[currentPosition].id)
+            bundle.putString("versionName", versionList[currentPosition].name)
+            if(price!=null){
+            bundle.putString("versionPrice", price)}
+
+
+
+
 
             val dialog = ConfigureDialogFragment()
             dialog.arguments = bundle
+            dialog.colorsList=color_list
+            dialog.optionsList=option_list
+
 
             val ft = fragmentManager!!.beginTransaction()
             dialog.show(ft, ConfigureDialogFragment.TAG)
         }
+    }
+
+    private fun getColorList():MutableLiveData<List<PaintColor>> {
+        var color_list: MutableLiveData<List<PaintColor>> =     MutableLiveData()
+        viewModel.initColor(modele_id)
+        viewModel.getModelColors()!!.observe(this.activity!!, Observer<List<PaintColor>> {
+
+            if (it.size != 0) {
+
+
+//                color_list.postValue(setColorPrices(ArrayList(it)))
+                for (item:PaintColor in it)
+
+                //for (item:PaintColor in it.iterator())
+                {
+                    Log.i("item_name",item.name)
+                    //item.price =  java.lang.Long.parseLong(versionViewModel.getColorPrice(item.code).value!!.get(0).price)
+                    versionViewModel.getColorPrice(item.code).observe(this.activity!!, Observer<List<ColorPrice>> {
+                        if (it.size!=0){
+                            item.price= parseDouble(it.get(0).price)
+
+                            }
+                    })
+
+
+            }
+
+                color_list.postValue(it)
+
+
+
+
+
+
+            viewModel.getNetworkErrors()!!.observe(this.activity!!, Observer<String> {
+                Toast.makeText(this.activity, com.waelkhelil.sayara_dz.R.string.brands_error, Toast.LENGTH_SHORT).show()
+            })
+        }})
+
+       return color_list
+    }
+
+
+
+
+    private fun getOptionList():MutableLiveData<List<Option>> {
+        var option_list: MutableLiveData<List<Option>> =     MutableLiveData()
+        //viewModel.initColor(modele_id)
+        versionViewModel.getVersionOptions(versionList[currentPosition].id)!!.observe(this.activity!!, Observer<List<Option>> {
+
+            if (it.size != 0) {
+
+
+                option_list.postValue(it)
+
+
+
+
+
+                viewModel.getNetworkErrors()!!.observe(this.activity!!, Observer<String> {
+                    Toast.makeText(this.activity, com.waelkhelil.sayara_dz.R.string.brands_error, Toast.LENGTH_SHORT).show()
+                })
+            }})
+
+        return option_list
     }
 
     private fun initAdapter() {
@@ -161,7 +269,7 @@ class ModelVersionsFragment : Fragment() {
             }
 
             versionViewModel.getNetworkErrors()!!.observe(this.activity!!, Observer<String> {
-                Log.i("errorrr", "here")
+
                 Toast.makeText(this.activity, com.waelkhelil.sayara_dz.R.string.brands_error, Toast.LENGTH_SHORT).show()
             })
         })
@@ -197,9 +305,6 @@ class ModelVersionsFragment : Fragment() {
 
     }
 
-    /*private fun currentVersion():Version{
-        return list[currentPosition]
-    }*/
 
     private fun initVersionText(list: List<Version>) {
         versionAnimDuration =
@@ -232,6 +337,7 @@ class ModelVersionsFragment : Fragment() {
                 visibleText = version2TextView as TextView
                 invisibleText = version1TextView as TextView
             }
+
 
 
             val vOffset: Float
@@ -292,7 +398,7 @@ class ModelVersionsFragment : Fragment() {
         setVersionText(versionList[pos % versionList.size].name, left2right)
 
 
-        var price = ""
+        price = ""
         versionViewModel.getVersionPrice(versionList[pos % versionList.size].id)!!.observe(
             this.activity!!,
             Observer<List<VersionPrice>> {
@@ -300,7 +406,7 @@ class ModelVersionsFragment : Fragment() {
                 if (it.size != 0) {
 
                     price = it.get(0).price
-                    Log.i("price", "${price}")
+
 
 
                 } else {
@@ -489,7 +595,7 @@ versionViewModel.getColorPrice((colorList[filterSpinner.selectedItemPosition].co
             if (it.isNotEmpty()) {
                 orderTotalPrice = orderTotalPrice + it[0].price.toFloat()
 
-                Log.i("versionprrice", "${it[0].price.toFloat()}")
+
 
 
             }
@@ -503,7 +609,7 @@ versionViewModel.getColorPrice((colorList[filterSpinner.selectedItemPosition].co
                         orderTotalPrice = orderTotalPrice + it[0].price.toFloat()
                     }
 
-                    Log.i("optionsprice", "${orderTotalPrice}")
+
 
 
 

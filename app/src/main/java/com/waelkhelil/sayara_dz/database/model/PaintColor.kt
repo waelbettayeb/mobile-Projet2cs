@@ -13,7 +13,7 @@ data class PaintColor(
     @ColumnInfo @field:SerializedName("Nom_Couleur") val name:String,
     @ColumnInfo @field:SerializedName("Colore") val modele_id:List<String>
 )
-{
+{   var price: Double =0.0
     override fun toString(): String {
         return this.name
     }
