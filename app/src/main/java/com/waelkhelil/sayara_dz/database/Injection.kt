@@ -18,11 +18,7 @@ package com.waelkhelil.sayara_dz.database
 
 import android.content.Context
 import androidx.lifecycle.ViewModelProvider
-import com.waelkhelil.sayara_dz.database.api.SayaraDzService
 import com.waelkhelil.sayara_dz.database.data.BrandsRepository
-import com.waelkhelil.sayara_dz.database.db.AppDb
-import com.waelkhelil.sayara_dz.database.db.LocalCache
-import java.util.concurrent.Executors
 
 /**
  * Class that handles object creation.
@@ -31,20 +27,9 @@ import java.util.concurrent.Executors
  */
 object Injection {
 
-    /**
-     * Creates an instance of [LocalCache] based on the database DAO.
-     */
-     fun provideCache(context: Context): LocalCache {
-        val database = AppDb.getInstance(context)
-        return LocalCache(database.brandsDao(), database.modelsDao(),Executors.newSingleThreadExecutor())
-    }
 
-    /**
-     * Creates an instance of [BrandRepository] based on the [SayaraDZService] and a
-     * [LocalCache]
-     */
     private fun provideBrandRepository(context: Context): BrandsRepository {
-        return BrandsRepository(SayaraDzService.create(), provideCache(context))
+        return BrandsRepository()
     }
 
     /**
@@ -54,8 +39,9 @@ object Injection {
     fun provideViewModelFactory(context: Context): ViewModelProvider.Factory {
         return ViewModelFactory(provideBrandRepository(context))
     }
-    fun provideModelViewModelFactory(context: Context,id:String): ViewModelProvider.Factory {
-        return ModelViewModelFactory(provideBrandRepository(context),id)
+    fun provideModelViewModelFactory(id:String): ViewModelProvider.Factory {
+        return ModelViewModelFactory(id)
     }
+
 
 }

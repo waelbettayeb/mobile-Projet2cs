@@ -1,7 +1,13 @@
 package com.waelkhelil.sayara_dz.view.login_ui
 
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel;
+import androidx.lifecycle.ViewModel
+import com.facebook.AccessToken
+import com.facebook.GraphRequest
+import com.facebook.GraphResponse
+import com.facebook.HttpMethod
+import com.facebook.login.LoginManager
+
 
 class LoginViewModel : ViewModel() {
     enum class AuthenticationState {
@@ -14,20 +20,32 @@ class LoginViewModel : ViewModel() {
     var username = ""
     var userPhotoUrl = ""
 
-    init {
-        // In this example, the user is always unauthenticated when MainActivity is launched
 
-        authenticationState.value =
-            AuthenticationState.UNAUTHENTICATED
-        //TODO remove this when you add the auth module
-        authenticationState.value =
-            AuthenticationState.AUTHENTICATED
-        username = ""
+    init {
+
+        initAuthenticationState()
+
     }
 
     fun refuseAuthentication() {
         authenticationState.value =
             AuthenticationState.UNAUTHENTICATED
+    }
+
+    fun initAuthenticationState()
+    {
+        val token: AccessToken?
+        token = AccessToken.getCurrentAccessToken()
+
+        if (token == null) {
+            authenticationState.value =
+                AuthenticationState.UNAUTHENTICATED
+            username = "Default"
+        }
+        else {
+            authenticationState.value =
+                AuthenticationState.AUTHENTICATED
+        }
     }
 
     fun authenticate(username: String, userPhotoUrl: String) {
@@ -36,7 +54,38 @@ class LoginViewModel : ViewModel() {
             authenticationState.value =
                 AuthenticationState.AUTHENTICATED
 
+
+    }
+
+    fun getUser():String{
+
+        return this.username}
+    fun logOut()
+    {
+
+
+            if (AccessToken.getCurrentAccessToken() == null) {
+
+                return; // already logged out
+            }
+
+            GraphRequest(AccessToken.getCurrentAccessToken(), "/me/permissions/", null,
+                HttpMethod.DELETE,  GraphRequest
+            .Callback() {
+                fun onCompleted( graphResponse:GraphResponse) {
+
+                    LoginManager.getInstance().logOut()
+
+
+                }
+        }).executeAsync();
+
+
     }
 
 
-}
+    }
+
+
+
+

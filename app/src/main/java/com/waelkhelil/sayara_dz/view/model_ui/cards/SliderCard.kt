@@ -15,7 +15,7 @@ class SliderCard(itemView: View) : RecyclerView.ViewHolder(itemView) {
     internal fun setContent(pVersion: Version) {
         Glide
             .with(itemView)
-            .load(pVersion.url)
+            .load("https://www.automobile-magazine.fr/asset/cms/650x407/153411/config/106932/plutot-conservatrice-a-lexterieur-la-renault-clio-5-change-en-revanche-totalement-dans-lhabitacle.jpg")
             .apply(RequestOptions.circleCropTransform())
             .placeholder(R.drawable.icon_mono)
             .into(imageView)

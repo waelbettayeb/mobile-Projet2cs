@@ -14,29 +14,33 @@ import android.view.ViewGroup
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.children
 import androidx.fragment.app.DialogFragment
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Observer
 import com.google.android.material.chip.Chip
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.waelkhelil.sayara_dz.R
 import com.waelkhelil.sayara_dz.database.model.Option
 import com.waelkhelil.sayara_dz.database.model.PaintColor
 import kotlinx.android.synthetic.main.fragment_configure_version.*
+import java.lang.Double.parseDouble
 
 
 class ConfigureDialogFragment : DialogFragment() {
 
+
     companion object {
         const val TAG: String = "ConfigureDialogFragment"
         fun newInstance() = ConfigureDialogFragment()
+
     }
-    val colorsList:List<PaintColor> = listOf(
-        PaintColor("red", "#2196F3",0),
-        PaintColor("blue", "#FF6050",100),
-        PaintColor("green", "#FF0E83",200),
-        PaintColor("yellow", "#839BFD",200),
-        PaintColor("white", "#DDE3FE",400)
-    )
-    val optionsList = setOf(Option(0, "option_00",0),Option(1, "option_01",1),Option(2, "option_02",2),
-        Option(3, "option_03",3))
+    lateinit  var colorsList: MutableLiveData<List<PaintColor>>
+    lateinit  var optionsList:MutableLiveData<List<Option>>
+    private  var versionPrice:String?="0"
+    private var totalPrice:Int?=0
+
+
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setStyle(STYLE_NORMAL, R.style.FullScreenDialogStyle)
@@ -51,11 +55,17 @@ class ConfigureDialogFragment : DialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val versionId = arguments?.getInt("versionId")
-        val versionName = "version " + versionId.toString()
+
+        val versionName = arguments?.getString("versionName")
+         versionPrice = arguments?.getString("versionPrice")
+        totalPrice = parseDouble(versionPrice!!).toInt()
+        tv_config_price.text=versionPrice
+
+
+
         val toolbar: Toolbar = view.findViewById(R.id.toolbar)
         toolbar.setNavigationIcon(R.drawable.ic_clear_black_24dp)
-        toolbar.subtitle = versionName // set the subtitle first
+        toolbar.subtitle = "Version "+versionName
         toolbar.title = getString(R.string.configure_it)
 
         dialog?.setOnKeyListener { _, i, keyEvent ->
@@ -69,8 +79,18 @@ class ConfigureDialogFragment : DialogFragment() {
         }
 
         context?.let {
-            initColorsChips(it, colorsList)
-            initOptionsChips(it, optionsList)
+
+            var context:Context = it
+
+             colorsList.observe(this.activity!!, Observer<List<PaintColor>>{
+                 initColorsChips(context, it)
+            })
+            optionsList.observe(this.activity!!, Observer<List<Option>>{
+                initOptionsChips(context, it)
+
+            })
+
+
         }
 
     }
@@ -83,14 +103,17 @@ class ConfigureDialogFragment : DialogFragment() {
             val canvas = Canvas(bitmap)
             val shapeDrawable = ShapeDrawable(OvalShape())
             shapeDrawable.setBounds( 0, 0, 500, 500)
-            shapeDrawable.paint.color = Color.parseColor(lColor.hexCode)
+            shapeDrawable.paint.color = Color.parseColor("#"+lColor.hexCode)
             shapeDrawable.draw(canvas)
             chip.chipIcon = shapeDrawable
             chip.text = lColor.name
             chip_group.addView(chip)
         }
         chip_group.setOnCheckedChangeListener { _, _ ->
-            tv_config_price.text = (calculateColorPrice() + calculateOptionsPrice()).toString()
+            totalPrice = parseDouble(versionPrice!!).toInt().plus(calculateColorPrice() + calculateOptionsPrice())
+            //tv_config_price.text = (/*parseDouble(tv_config_price.text.toString()).toInt()+*/calculateColorPrice() + calculateOptionsPrice()).toString()
+            tv_config_price.text = totalPrice.toString()
+
         }
     }
     private fun initOptionsChips(context: Context, pOptions:Collection<Option>){
@@ -100,7 +123,9 @@ class ConfigureDialogFragment : DialogFragment() {
             chip.text = lOption.name
             chip_group_options.addView(chip)
             chip.setOnCheckedChangeListener { _, _ ->
-                tv_config_price.text = (calculateColorPrice() + calculateOptionsPrice()).toString()
+                totalPrice = parseDouble(versionPrice!!).toInt().plus(calculateColorPrice() + calculateOptionsPrice())
+                //tv_config_price.text = (/*parseDouble(tv_config_price.text.toString()).toInt()+*/calculateColorPrice() + calculateOptionsPrice()).toString()
+                tv_config_price.text = totalPrice.toString()
             }
         }
     }
@@ -126,8 +151,8 @@ class ConfigureDialogFragment : DialogFragment() {
         val colorSequence = chip_group.children as Sequence<Chip>
         val colorChip: Chip? = colorSequence.filter { view:Chip ->  view.isChecked}.elementAtOrNull(0)
         if (colorChip!= null){
-            val color = colorsList.filter { paintColor -> paintColor.name == colorChip.text }
-            lPrice += color.first().price
+            val color = colorsList.value!!.filter { paintColor -> paintColor.name == colorChip.text }
+            lPrice += color.first().price.toInt()
         }
         return lPrice
     }
@@ -136,8 +161,9 @@ class ConfigureDialogFragment : DialogFragment() {
         val colorSequence = chip_group_options.children as Sequence<Chip>
         val optionsChiplist = colorSequence.filter { view:Chip ->  view.isChecked}
         optionsChiplist.forEach { chip ->
-                val lOption = optionsList.filter { option -> option.name == chip.text }
-                lPrice += lOption.first().price
+                val lOption = optionsList.value!!.filter { option -> option.name == chip.text }
+
+                lPrice += lOption.first().price.toInt()
         }
         return lPrice
     }
