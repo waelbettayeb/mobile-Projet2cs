@@ -18,5 +18,22 @@
     <color name="mediumBlue">#839BFD</color>
     <color name="lightBlue">#DDE3FE</color>
 
-
+    <array name="colors">
+        <item name="black">#000000</item>
+        <item>#F0F0F0</item>
+        <item>#F44336</item>
+        <item>#E91E63</item>
+        <item>#9C27B0</item>
+        <item>#673AB7</item>
+        <item>#3F51B5</item>
+        <item>#03A9F4</item>
+        <item>#00BCD4</item>
+        <item>#009688</item>
+        <item>#4CAF50</item>
+        <item>#8BC34A</item>
+        <item>#CDDC39</item>
+        <item>#FFEB3B</item>
+        <item>#FF9800</item>
+        <item>#FF5722</item>
+    </array>
 </resources>
