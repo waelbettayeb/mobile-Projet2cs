@@ -17,6 +17,9 @@
     <color name="blackGrape">#341539</color>
     <color name="mediumBlue">#839BFD</color>
     <color name="lightBlue">#DDE3FE</color>
+    <color name="green"> #009688</color>
+    <color name="red"> #E8D50000</color>
+
 
     <array name="colors">
         <item name="black">#000000</item>

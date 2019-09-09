@@ -175,6 +175,11 @@ class ModelVersionsFragment : Fragment() {
             bundle.putString("versionName", versionList[currentPosition].name)
             if(price!=null){
             bundle.putString("versionPrice", price)}
+            bundle.putString("versionId", versionList[currentPosition].id)
+            bundle.putString("modeleId", versionList[currentPosition].id_modele)
+            bundle.putString("brandId", brand_id)
+
+
 
 
 

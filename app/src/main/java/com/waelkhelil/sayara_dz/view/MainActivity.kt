@@ -28,7 +28,7 @@ import com.waelkhelil.sayara_dz.view.login_ui.LoginViewModel
 
                 LoginViewModel.AuthenticationState.UNAUTHENTICATED ->
 
-                    navController.navigate(R.id.fragment_main)
+                    navController.navigate(R.id.fragment_login)
               LoginViewModel.AuthenticationState.AUTHENTICATED ->{
                   val bundle = bundleOf("user_name" to viewModel.getUser())
 

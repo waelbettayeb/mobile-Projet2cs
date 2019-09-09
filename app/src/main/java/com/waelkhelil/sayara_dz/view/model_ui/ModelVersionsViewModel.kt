@@ -77,8 +77,10 @@ class ModelVersionsViewModel (var id_modele:String) : ViewModel() {
 
 
 
-    fun reserver (user_email:String,car_id:String,price:Float)
-        {    // pick current system date
+    fun reserver (user_email:String,car_id:String,price:Float):MutableLiveData<String>
+        {
+            var result :MutableLiveData<String> = MutableLiveData("")
+            // pick current system date
             var dt:Date  = Date();
 
             // set format for date
@@ -101,14 +103,14 @@ class ModelVersionsViewModel (var id_modele:String) : ViewModel() {
                 enqueue(
                     object : Callback<reservation> {
                         override fun onResponse(call: Call<reservation>, response: Response<reservation>) {
-                            Log.i("response color ", "answered")
+
                             if (response.isSuccessful()) {
-
-
-                                Log.i("success res responded ", "success")
+                                result.postValue("votre demande a bien été envoyée vous serez notifiés pour" +
+                                        "une eventuelle confirmation")
+                                Log.i("info","responded")
                             } else {
 
-                                Log.i("fail res  responded", "success")
+
                                 if (response.code() == 400) {
                                     Log.v("Error code 400",response.errorBody()!!.string())
                                 }
@@ -117,91 +119,18 @@ class ModelVersionsViewModel (var id_modele:String) : ViewModel() {
                         }
                         override fun onFailure(call: Call<reservation>, t: Throwable) {
 
-
-                            Log.i("failure", "failed")
-
                         }
-
-
-
-
-
-           /* userCall.enqueue(this.)
-        } catch (e: JSONException) {
-            e.printStackTrace()
-        }*/
 
 
     })
-
+                  return result
         }
 
-   /* fun checkAvailable (brand_id:String,modele_id:String,version_id:String,color_id:String,options:List<String>):Int
-    {
 
 
-        var answer:Int=0
-        val paramObject = JsonObject()
-        val critere = JsonObject()
-        var optionsList:JsonArray = JsonArray()
-        var it: Iterator<String> = options.listIterator()
-        while(it.hasNext()){
-        optionsList.add(it.next())}
-
-        paramObject.addProperty( "marque", brand_id)
-        paramObject.addProperty( "modele", modele_id)
-        paramObject.addProperty( "version",version_id)
-        paramObject.addProperty( "couleur",color_id)
-        paramObject.add(  "option", optionsList)
-
-
-
-
-         SayaraDzService.create().checkAvailable(paramObject.toString()).
-            enqueue(
-                object : Callback<List<Vehicule>> {
-                    override fun onResponse(call: Call<List<Vehicule>>, response: Response<List<Vehicule>>) {
-                        if (response.isSuccessful()) {
-
-
-                            Log.i("success res responded ", "success")
-                            if (response.body()!!.size!=0)
-                            {answer = 1
-
-
-                                reserver ("fm_bourouais@esi.dz", response.body()!!.get(0).car_id, 10.22F)
-                            }
-                            else
-                            {
-                                answer= 2
-                            }
-                        } else {
-
-                            Log.i("fail res  responded", "${paramObject.toString()}")
-
-                                Log.v("Error code ",response.message())
-
-
-                        }
-                    }
-                    override fun onFailure(call: Call<List<Vehicule>>, t: Throwable) {
-
-
-                        Log.i("failure", "failed")
-
-                    }
-
-
-
-
-                })
-
-        return answer
-
-    }*/
-
-     fun checkAvailable (brand_id:String,modele_id:String,version_id:String,color_id:String,options:List<String>,price:Float)
-    {
+     fun checkAvailable (brand_id:String,modele_id:String,version_id:String,color_id:String,options:List<String>,price:Float):MutableLiveData<String>
+    {  var result :MutableLiveData<String> = MutableLiveData("")
+        var found:Boolean = false
         SayaraDzService.create().checkAvailable().enqueue(
                 object : Callback<List<Vehicule>> {
                     override fun onResponse(call: Call<List<Vehicule>>, response: Response<List<Vehicule>>) {
@@ -211,7 +140,29 @@ class ModelVersionsViewModel (var id_modele:String) : ViewModel() {
 
                                 carsList!!.value=response.body()
 
-                                orderMessage.postValue( reserve(brand_id,modele_id,version_id,color_id,options,price))
+                                var i=carsList!!.value!!.size
+                                var j:Int=0
+                                var item:Vehicule?
+                                while (j<i && !found)
+                                {   item= carsList.value!![j]
+                                    if (( item.brand_id ==brand_id)&&(item.color_id==color_id)&&(item.modele_id==modele_id)
+                                        &&(item.version_id==version_id)
+
+                                        && optionsEqual(item.options,options))
+                                    {
+                                        //reserver("fm_bourouais@esi.dz",item.car_id,price)
+                                        Log.i("in",optionsEqual(item.options,options).toString())
+                                        result.postValue(item.car_id)
+                                        found=true
+
+                                    }
+
+                                    j++
+                                }
+
+
+
+
 
                             }
 
@@ -234,7 +185,7 @@ class ModelVersionsViewModel (var id_modele:String) : ViewModel() {
 
 
                 })
-
+                  return result
 
 
     }
@@ -254,10 +205,10 @@ class ModelVersionsViewModel (var id_modele:String) : ViewModel() {
 
                 && optionsEqual(item.options,options))
             {
-                reserver("fm_bourouais@esi.dz",item.car_id,price)
+                //reserver("fm_bourouais@esi.dz",item.car_id,price)
 
 
-                message = "demande envoyée "
+                //message = "demande envoyée "
                 found=true
             }
 
@@ -265,7 +216,7 @@ class ModelVersionsViewModel (var id_modele:String) : ViewModel() {
         }
         if ( !found)
         {
-            message = "Non disponible "
+           // message = "Non disponible "
         }
 
         return message
@@ -275,15 +226,17 @@ class ModelVersionsViewModel (var id_modele:String) : ViewModel() {
     fun optionsEqual (carOptions: String,neededOptions : List<String>):Boolean
     {   var isEqual:Boolean = false
         var sum:Int=0
-        if (neededOptions.size==0){}
-        else{
+        if (neededOptions.size!=0){
 
+             Log.i("car",carOptions)
         for ( item in neededOptions)
-        {
+        {   Log.i("optionnedded",item)
             if (carOptions.contains(item))
-            {sum++}
+            {sum=sum+item.length}
         }
-        if ( sum==neededOptions.size){isEqual=true}
+            Log.i("len1",(sum+(neededOptions.size*2+2*neededOptions.size-1)+4).toString())
+            Log.i("len2",carOptions.length.toString())
+        if ( (sum+(neededOptions.size*2+2*(neededOptions.size-1))+4)==carOptions.length){isEqual=true}
 
 
     }

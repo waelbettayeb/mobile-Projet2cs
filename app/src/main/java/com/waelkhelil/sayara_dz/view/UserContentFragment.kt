@@ -17,9 +17,7 @@ import kotlinx.android.synthetic.main.fragment_user_content.*
 
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.NavController
-import androidx.navigation.Navigation
-import androidx.navigation.ui.NavigationUI
-import com.waelkhelil.sayara_dz.R
+
 import com.waelkhelil.sayara_dz.view.login_ui.LoginViewModel
 
 

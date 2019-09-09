@@ -94,12 +94,19 @@ class CompareFragment: BottomSheetDialogFragment() {
         var lTextView = TextView(context)
         lTextView.setPadding(0,0,24,0)
         lTextView.text = getString(R.string.options)
-        lTextView.setTextAppearance(android.R.style.TextAppearance_Material_Medium)
+        if(Build.VERSION.SDK_INT < 23){
+        lTextView.setTextAppearance(this.activity,android.R.style.TextAppearance_Material_Medium)}
+        else{  lTextView.setTextAppearance(android.R.style.TextAppearance_Material_Medium)}
         row.addView(lTextView)
         versionsList.forEach {
             lTextView = TextView(context)
             lTextView.setPadding(0,0,24,0)
-            lTextView.setTextAppearance(android.R.style.TextAppearance_Material_Medium)
+
+
+            if(Build.VERSION.SDK_INT < 23){
+                lTextView.setTextAppearance(this.activity,android.R.style.TextAppearance_Material_Medium)}
+            else{  lTextView.setTextAppearance(android.R.style.TextAppearance_Material_Medium)}
+
             lTextView.text = it.name
             var lChip = Chip(context).apply {
                 text = it.name

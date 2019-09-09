@@ -19,7 +19,6 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.waelkhelil.sayara_dz.R
 import com.waelkhelil.sayara_dz.SharedViewModel
 import com.waelkhelil.sayara_dz.database.model.Version
-import com.waelkhelil.sayara_dz.database.model.reservation
 
 
 class MainFragment : Fragment() {
@@ -63,21 +62,18 @@ class MainFragment : Fragment() {
             }
         })
 
-        sharedViewModel.getUserOrders("fm_bourouais@esi.dz")!!.observe(this, Observer<List<reservation>>
+       /* sharedViewModel.getUserOrders("fm_bourouais@esi.dz")!!.observe(this, Observer<List<reservation>>
         {
             if ( it.size!=0) {
                 showUserOrdersDialog("vous avez ${it.size} commandes acceptées")
             }
-        })
+        })*/
     }
 
 
     @SuppressLint("ResourceType")
     private fun showUserOrdersDialog(message:String) {
         var dialogs = Dialog(this.activity!!)
-
-
-
         dialogs.requestWindowFeature(Window.FEATURE_NO_TITLE)
         dialogs.setCancelable(false)
         dialogs.setContentView(com.waelkhelil.sayara_dz.R.layout.order_notification)
