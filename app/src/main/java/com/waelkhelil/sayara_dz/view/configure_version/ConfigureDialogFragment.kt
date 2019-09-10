@@ -71,7 +71,7 @@ class ConfigureDialogFragment : DialogFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val versionName = arguments?.getString("versionName")
-         versionPrice = arguments?.getString("versionPrice")
+        versionPrice = arguments?.getString("versionPrice")
         versionId = arguments?.getString("versionId")!!
         brandId = arguments?.getString("brandId")!!
         modeleId = arguments?.getString("modeleId")!!
@@ -101,8 +101,8 @@ class ConfigureDialogFragment : DialogFragment() {
 
             var context:Context = it
 
-             colorsList.observe(this.activity!!, Observer<List<PaintColor>>{
-                 initColorsChips(context, it)
+            colorsList.observe(this.activity!!, Observer<List<PaintColor>>{
+                initColorsChips(context, it)
             })
             optionsList.observe(this.activity!!, Observer<List<Option>>{
                 initOptionsChips(context, it)
@@ -114,18 +114,22 @@ class ConfigureDialogFragment : DialogFragment() {
         button_command_version.isClickable=false
         button_command_version.setTextColor(getResources().getColor(R.color.grey))
         button_command_version.setOnClickListener {
-            //TODO : change email when authentification is fixed
-            versionViewModel.reserver("fm_bourouais@esi.dz",carId, totalPrice!!.toFloat()).observe(this.activity!!,
-                            Observer<String> {
-                                if (!(it.equals(""))){
-                                    Toast.makeText(this.activity,it,Toast.LENGTH_SHORT).show()
-                                }
+            MaterialAlertDialogBuilder(context)
+                .setTitle("Confirm your command")
+                .setMessage("Are you sure?")
+                .setPositiveButton("yes") { _, _ ->
+                    //TODO : change email when authentification is fixed
+                    versionViewModel.reserver("fm_bourouais@esi.dz",carId, totalPrice!!.toFloat()).observe(this.activity!!,
+                        Observer<String> {
+                            if (!(it.equals(""))){
+                                Toast.makeText(this.activity,it,Toast.LENGTH_SHORT).show()
+                            }
 
-                            })
-
-
+                        })
+                }
+                .setNegativeButton(getString(R.string.cancel), null)
+                .show()
         }
-
     }
     private fun initColorsChips(context: Context, pColors:List<PaintColor>){
         for (lColor in pColors){
@@ -146,7 +150,7 @@ class ConfigureDialogFragment : DialogFragment() {
             totalPrice = parseDouble(versionPrice!!).toInt().plus(calculateColorPrice() + calculateOptionsPrice())
             //tv_config_price.text = (/*parseDouble(tv_config_price.text.toString()).toInt()+*/calculateColorPrice() + calculateOptionsPrice()).toString()
             tv_config_price.text = totalPrice.toString()
-             checkAvailable()
+            checkAvailable()
 
         }
 
@@ -197,17 +201,17 @@ class ConfigureDialogFragment : DialogFragment() {
         return lPrice
     }
     private fun calculateOptionsPrice():Int{
-       //chosenColor=""
+        //chosenColor=""
         tv_availability.text = ""
         chosenOptions.clear()
         var lPrice = 0
         val colorSequence = chip_group_options.children as Sequence<Chip>
         val optionsChiplist = colorSequence.filter { view:Chip ->  view.isChecked}
         optionsChiplist.forEach { chip ->
-                val lOption = optionsList.value!!.filter { option -> option.name == chip.text }
+            val lOption = optionsList.value!!.filter { option -> option.name == chip.text }
 
-                lPrice += lOption.first().price.toInt()
-                chosenOptions.add(lOption.first().id)
+            lPrice += lOption.first().price.toInt()
+            chosenOptions.add(lOption.first().id)
         }
         return lPrice
     }
@@ -227,15 +231,15 @@ class ConfigureDialogFragment : DialogFragment() {
 
 
 
-       }
-        else{
+            }
+            else{
                 tv_availability.setTextColor(getResources().getColor(R.color.red));
                 tv_availability.text = "Non Disponible"
                 button_command_version.isClickable=false
                 button_command_version.setTextColor(getResources().getColor(R.color.grey))
-        }
+            }
 
-    })
+        })
 
 
-}}
+    }}
