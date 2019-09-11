@@ -20,7 +20,6 @@ class BrandViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
 
     init {
         mTitleView = itemView.findViewById(R.id.text_list_item_name)
-
     }
 
     fun bind(brand: Brand) {
