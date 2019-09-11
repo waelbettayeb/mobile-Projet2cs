@@ -16,6 +16,13 @@ class ModelViewModel (var id_marque:String) : ViewModel() {
     private var networkErrors = MutableLiveData<String>()
 
 
+    companion object {
+        private const val VISIBLE_THRESHOLD = 5
+    }
+    val models: LiveData<PagedList<Model>> = repository.searchModels(id).data
+    val networkErrors: LiveData<String> = repository.searchModels(id).networkErrors
+}
+
     fun init() {
         if (mutableLiveData != null) {
             return

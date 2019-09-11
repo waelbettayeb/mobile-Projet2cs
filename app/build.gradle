@@ -31,33 +31,37 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    buildToolsVersion = '29.0.0'
+
     compileOptions {
         sourceCompatibility = '1.8'
         targetCompatibility = '1.8'
     }
+
 
 }
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation 'androidx.appcompat:appcompat:1.1.0-rc01'
-    implementation 'androidx.core:core-ktx:1.2.0-alpha03'
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.core:core-ktx:1.2.0-alpha04'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
-    implementation 'com.google.android.material:material:1.1.0-alpha09'
-    implementation 'androidx.vectordrawable:vectordrawable:1.1.0-rc01'
+    implementation 'com.google.android.material:material:1.1.0-alpha10'
+    implementation 'androidx.vectordrawable:vectordrawable:1.1.0'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'androidx.recyclerview:recyclerview:1.0.0'
-    implementation 'androidx.fragment:fragment:1.0.0'
-    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0-alpha03'
-    implementation 'androidx.lifecycle:lifecycle-viewmodel:2.2.0-alpha03'
-    kapt 'androidx.lifecycle:lifecycle-compiler:2.2.0-alpha03'
+    implementation 'androidx.fragment:fragment:1.1.0'
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0-alpha04'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel:2.2.0-alpha04'
+    kapt 'androidx.lifecycle:lifecycle-compiler:2.2.0-alpha04'
     implementation 'androidx.room:room-common:2.1.0'
     implementation 'androidx.room:room-runtime:2.1.0'
     kapt 'androidx.room:room-compiler:2.1.0'
     androidTestImplementation 'androidx.room:room-testing:2.1.0'
     implementation 'com.google.android.gms:play-services-auth:17.0.0'
-    implementation 'com.facebook.android:facebook-login:4.42.0'
+    implementation 'com.facebook.android:facebook-login:5.0.0'
     implementation 'com.facebook.shimmer:shimmer:0.4.0'
     implementation 'com.github.bumptech.glide:glide:4.9.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
@@ -85,8 +89,8 @@ dependencies {
     implementation "com.squareup.okhttp3:logging-interceptor:$okhttpLoggingInterceptorVersion"
     //paging library
     implementation 'android.arch.paging:runtime:1.0.1'
-    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.0.0'
-    implementation 'androidx.viewpager2:viewpager2:1.0.0-beta03'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.1.0'
+    implementation 'androidx.viewpager2:viewpager2:1.0.0-beta04'
     // Colorpicker
     implementation "dev.sasikanth:colorsheet:1.0.1"
     testImplementation 'org.mockito:mockito-inline:2.8.47'

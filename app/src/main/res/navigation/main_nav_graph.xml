@@ -39,5 +39,9 @@
 
     <fragment android:id="@+id/modelFragment" android:name="com.waelkhelil.sayara_dz.model_ui.ModelFragment"
               android:label="fragment_model" tools:layout="@layout/fragment_model"/>
+    <fragment
+            android:id="@+id/listingFragment"
+            android:name="com.waelkhelil.sayara_dz.view.home_ui.ListingFragment"
+            android:label="ListingFragment" />
 
 </navigation>

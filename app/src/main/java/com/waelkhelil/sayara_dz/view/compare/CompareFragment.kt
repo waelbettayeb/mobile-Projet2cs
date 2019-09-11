@@ -1,6 +1,7 @@
 package com.waelkhelil.sayara_dz.view.compare
 
 import android.app.Dialog
+
 import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -29,7 +30,7 @@ class CompareFragment: BottomSheetDialogFragment() {
         const val TAG = "CompareFragment"
         fun newInstance() = CompareFragment()
     }
-    private lateinit var dialog : BottomSheetDialog
+    private lateinit var mDialog : BottomSheetDialog
     private lateinit var sharedViewModel: SharedViewModel
     private lateinit var tableLayout: TableLayout
 
@@ -74,12 +75,12 @@ class CompareFragment: BottomSheetDialogFragment() {
         } else super.onOptionsItemSelected(item)
     }
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        dialog = super.onCreateDialog(savedInstanceState) as BottomSheetDialog
-        return dialog
+        mDialog = super.onCreateDialog(savedInstanceState) as BottomSheetDialog
+        return mDialog
     }
     override fun onStart() {
         super.onStart()
-        dialog.behavior.state = STATE_EXPANDED
+        mDialog.behavior.state = STATE_EXPANDED
     }
     @RequiresApi(Build.VERSION_CODES.M)
     private fun createTable(versionsList:Set<Version>) {

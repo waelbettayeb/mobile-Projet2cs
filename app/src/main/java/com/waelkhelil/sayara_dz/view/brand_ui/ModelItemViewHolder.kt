@@ -21,8 +21,6 @@ class ModelItemViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
     private lateinit var bundle : Bundle
 
 
-
-
     init {
         mTitleView = itemView.findViewById(R.id.text_card_header)
         mBrandNameTitleView = itemView.findViewById(R.id.tv_brand_name_card)

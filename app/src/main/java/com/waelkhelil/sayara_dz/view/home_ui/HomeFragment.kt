@@ -28,7 +28,6 @@ class HomeFragment( ) : Fragment() {
         fun newInstance() = HomeFragment()
     }
 
-
     private lateinit var viewModel: HomeViewModel
     private lateinit var sharedViewModel: SharedViewModel
     private lateinit  var user:String
