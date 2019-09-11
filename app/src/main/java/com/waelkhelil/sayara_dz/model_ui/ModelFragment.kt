@@ -1,6 +1,5 @@
-package com.waelkhelil.sayara_dz.view.model_ui
+package com.waelkhelil.sayara_dz.model_ui
 
-import android.content.res.Resources
 import android.os.Bundle
 import android.view.*
 import android.widget.Toast
@@ -12,8 +11,6 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation
 import androidx.navigation.ui.NavigationUI
-import androidx.viewpager.widget.ViewPager
-import com.google.android.material.tabs.TabLayout
 import com.waelkhelil.sayara_dz.R
 
 

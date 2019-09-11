@@ -1,4 +1,4 @@
-package com.waelkhelil.sayara_dz.view.model_ui
+package com.waelkhelil.sayara_dz.model_ui
 
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
@@ -21,10 +21,10 @@ import com.ramotion.cardslider.CardSnapHelper
 import com.waelkhelil.sayara_dz.SharedViewModel
 import com.waelkhelil.sayara_dz.database.Injection
 import com.waelkhelil.sayara_dz.database.model.*
+import com.waelkhelil.sayara_dz.model_ui.cards.SliderAdapter
 import com.waelkhelil.sayara_dz.view.brand_ui.ModelViewModel
 import com.waelkhelil.sayara_dz.view.compare.CompareFragment
 import com.waelkhelil.sayara_dz.view.configure_version.ConfigureDialogFragment
-import com.waelkhelil.sayara_dz.view.model_ui.cards.SliderAdapter
 import kotlinx.android.synthetic.main.fragment_model_versions.*
 import java.lang.Double.parseDouble
 

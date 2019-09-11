@@ -13,7 +13,6 @@ import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.children
 import androidx.fragment.app.DialogFragment
@@ -26,7 +25,7 @@ import com.waelkhelil.sayara_dz.R
 import com.waelkhelil.sayara_dz.database.Injection
 import com.waelkhelil.sayara_dz.database.model.Option
 import com.waelkhelil.sayara_dz.database.model.PaintColor
-import com.waelkhelil.sayara_dz.view.model_ui.ModelVersionsViewModel
+import com.waelkhelil.sayara_dz.model_ui.ModelVersionsViewModel
 import kotlinx.android.synthetic.main.fragment_configure_version.*
 import java.lang.Double.parseDouble
 
@@ -115,14 +114,18 @@ class ConfigureDialogFragment : DialogFragment() {
         button_command_version.setTextColor(getResources().getColor(R.color.grey))
         button_command_version.setOnClickListener {
             MaterialAlertDialogBuilder(context)
-                .setTitle("Confirm your command")
-                .setMessage("Are you sure?")
-                .setPositiveButton("yes") { _, _ ->
+                .setTitle("Confirmation")
+                .setMessage("Etes vous sur de vouloir passer cette commande ?")
+                .setPositiveButton("Continuer") { _, _ ->
                     //TODO : change email when authentification is fixed
                     versionViewModel.reserver("fm_bourouais@esi.dz",carId, totalPrice!!.toFloat()).observe(this.activity!!,
                         Observer<String> {
                             if (!(it.equals(""))){
-                                Toast.makeText(this.activity,it,Toast.LENGTH_SHORT).show()
+                                MaterialAlertDialogBuilder(context)
+                                    .setTitle("Information")
+                                    .setMessage(it)
+                                    .setPositiveButton("OK", null).show()
+
                             }
 
                         })
@@ -219,7 +222,8 @@ class ConfigureDialogFragment : DialogFragment() {
     @SuppressLint("ResourceAsColor")
     private  fun checkAvailable()
     {
-        versionViewModel.checkAvailable(brandId,modeleId,versionId,chosenColor,chosenOptions,0.0F).observe(this, Observer<String>
+        versionViewModel.checkAvailable(brandId,modeleId,versionId,chosenColor,chosenOptions,0.0F)
+            .observe(this, Observer<String>
         {
             if ( it.length!=0){
                 //used get ressources to handle Api lower than 23
@@ -228,9 +232,6 @@ class ConfigureDialogFragment : DialogFragment() {
                 button_command_version.isClickable=true
                 button_command_version.setTextColor(getResources().getColor(R.color.colorPrimary))
                 carId=it
-
-
-
             }
             else{
                 tv_availability.setTextColor(getResources().getColor(R.color.red));

@@ -11,7 +11,7 @@ import com.bumptech.glide.Glide
 import com.waelkhelil.sayara_dz.R
 import com.waelkhelil.sayara_dz.database.model.Model
 import com.waelkhelil.sayara_dz.database.model.PaintColor
-import com.waelkhelil.sayara_dz.view.model_ui.ColorListAdapter
+import com.waelkhelil.sayara_dz.model_ui.ColorListAdapter
 
 class ModelItemViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
     RecyclerView.ViewHolder(inflater.inflate(R.layout.model_list_item, parent, false)){

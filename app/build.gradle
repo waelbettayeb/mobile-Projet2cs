@@ -21,6 +21,10 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
     }
+
+    testOptions {
+        unitTests.returnDefaultValues = true
+    }
     buildTypes {
         release {
             minifyEnabled false
@@ -60,6 +64,10 @@ dependencies {
     implementation 'com.squareup.picasso:picasso:2.5.0'
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    androidTestImplementation "androidx.arch.core:core-testing:2.0.0"
+    //androidTestImplementation "android.arch.core:core-testing:1.0.0"
+
+    testImplementation "android.arch.core:core-testing:1.0.0"
     testImplementation 'junit:junit:4.12'
      // Coroutines
     api "org.jetbrains.kotlinx:kotlinx-coroutines-core:$rootProject.coroutines"
@@ -81,6 +89,9 @@ dependencies {
     implementation 'androidx.viewpager2:viewpager2:1.0.0-beta03'
     // Colorpicker
     implementation "dev.sasikanth:colorsheet:1.0.1"
+    testImplementation 'org.mockito:mockito-inline:2.8.47'
+    testImplementation 'com.nhaarman.mockitokotlin2:mockito-kotlin:2.0.0-RC3'
+    testCompile "org.mockito:mockito-core:2.6.8"
 
 
 }

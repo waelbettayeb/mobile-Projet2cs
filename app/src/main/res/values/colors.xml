@@ -15,10 +15,10 @@
     <color name="cosmic">#813867</color>
     <color name="bossanova">#66336E</color>
     <color name="blackGrape">#341539</color>
-    <color name="mediumBlue">#839BFD</color>
+    <color name="mediumBlue">#839BFD</color>E9E00C0C
     <color name="lightBlue">#DDE3FE</color>
     <color name="green"> #009688</color>
-    <color name="red"> #E8D50000</color>
+    <color name="red">#D50000</color>
 
 
     <array name="colors">
@@ -36,7 +36,8 @@
         <item>#8BC34A</item>
         <item>#CDDC39</item>
         <item>#FFEB3B</item>
-        <item>#FF9800</item>
+        <item>#F8850F</item>
         <item>#FF5722</item>
+        <item>#6E7377</item>
     </array>
 </resources>

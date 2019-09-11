@@ -1,4 +1,4 @@
-package com.waelkhelil.sayara_dz.view.model_ui
+package com.waelkhelil.sayara_dz.model_ui
 
 import android.util.Log
 import androidx.lifecycle.LiveData
@@ -128,7 +128,8 @@ class ModelVersionsViewModel (var id_modele:String) : ViewModel() {
 
 
 
-     fun checkAvailable (brand_id:String,modele_id:String,version_id:String,color_id:String,options:List<String>,price:Float):MutableLiveData<String>
+     fun checkAvailable (brand_id:String,modele_id:String,version_id:String,color_id:String,options:List<String>,
+                         price:Float):MutableLiveData<String>
     {  var result :MutableLiveData<String> = MutableLiveData("")
         var found:Boolean = false
         SayaraDzService.create().checkAvailable().enqueue(
@@ -190,52 +191,20 @@ class ModelVersionsViewModel (var id_modele:String) : ViewModel() {
 
     }
 
-    fun reserve(brand_id:String,modele_id:String,version_id:String,color_id:String,options:List<String>,price:Float):String
-    {
 
-        var message:String =""
-        var found:Boolean = false
-        var i=carsList!!.value!!.size
-        var j:Int=0
-        var item:Vehicule?
-        while (j<i && !found)
-        {   item= carsList.value!![j]
-            if (( item.brand_id ==brand_id)&&(item.color_id==color_id)&&(item.modele_id==modele_id)
-                &&(item.version_id==version_id)
-
-                && optionsEqual(item.options,options))
-            {
-                //reserver("fm_bourouais@esi.dz",item.car_id,price)
-
-
-                //message = "demande envoyée "
-                found=true
-            }
-
-            j++
-        }
-        if ( !found)
-        {
-           // message = "Non disponible "
-        }
-
-        return message
-
-    }
 
     fun optionsEqual (carOptions: String,neededOptions : List<String>):Boolean
     {   var isEqual:Boolean = false
         var sum:Int=0
         if (neededOptions.size!=0){
 
-             Log.i("car",carOptions)
+
         for ( item in neededOptions)
-        {   Log.i("optionnedded",item)
+        {
             if (carOptions.contains(item))
             {sum=sum+item.length}
         }
-            Log.i("len1",(sum+(neededOptions.size*2+2*neededOptions.size-1)+4).toString())
-            Log.i("len2",carOptions.length.toString())
+
         if ( (sum+(neededOptions.size*2+2*(neededOptions.size-1))+4)==carOptions.length){isEqual=true}
 
 
