@@ -11,15 +11,6 @@ class ModelViewModel (private val repository: BrandsRepository,private val id:St
     companion object {
         private const val VISIBLE_THRESHOLD = 5
     }
-
-
     val models: LiveData<PagedList<Model>> = repository.searchModels(id).data
     val networkErrors: LiveData<String> = repository.searchModels(id).networkErrors
-
-
-
-
-
-
-
 }

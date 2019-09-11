@@ -17,8 +17,6 @@ class ModelItemViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
     private var mTitleView: TextView? = null
     private var mBrandNameTitleView: TextView? = null
 
-
-
     init {
         mTitleView = itemView.findViewById(R.id.text_card_header)
         mBrandNameTitleView = itemView.findViewById(R.id.tv_brand_name_card)

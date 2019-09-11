@@ -1,19 +1,15 @@
 package com.waelkhelil.sayara_dz.view.compare
 
 import android.app.Dialog
-import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.TableLayout
 import android.widget.TableRow
 import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
-import androidx.core.view.children
-import androidx.core.view.setPadding
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.google.android.material.bottomsheet.BottomSheetBehavior.STATE_EXPANDED
@@ -24,7 +20,6 @@ import com.waelkhelil.sayara_dz.R
 import com.waelkhelil.sayara_dz.SharedViewModel
 import com.waelkhelil.sayara_dz.database.model.Option
 import com.waelkhelil.sayara_dz.database.model.Version
-import kotlinx.android.synthetic.main.fragment_home.*
 
 class CompareFragment: BottomSheetDialogFragment() {
 
@@ -32,7 +27,7 @@ class CompareFragment: BottomSheetDialogFragment() {
         const val TAG = "CompareFragment"
         fun newInstance() = CompareFragment()
     }
-    private lateinit var dialog : BottomSheetDialog
+    private lateinit var mDialog : BottomSheetDialog
     private lateinit var sharedViewModel: SharedViewModel
     private lateinit var tableLayout: TableLayout
 
@@ -76,12 +71,12 @@ class CompareFragment: BottomSheetDialogFragment() {
         } else super.onOptionsItemSelected(item)
     }
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        dialog = super.onCreateDialog(savedInstanceState) as BottomSheetDialog
-        return dialog
+        mDialog = super.onCreateDialog(savedInstanceState) as BottomSheetDialog
+        return mDialog
     }
     override fun onStart() {
         super.onStart()
-        dialog.behavior.state = STATE_EXPANDED
+        mDialog.behavior.state = STATE_EXPANDED
     }
     private fun createTable(versionsList:Set<Version>) {
         val optionSet = mutableSetOf<Option>()

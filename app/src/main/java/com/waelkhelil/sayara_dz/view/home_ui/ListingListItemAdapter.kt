@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.waelkhelil.sayara_dz.R
 import com.waelkhelil.sayara_dz.database.model.Listing
 
-class ListingListItemAdapter( var list: List<Listing>)
+class ListingListItemAdapter(private var list: List<Listing>)
     : RecyclerView.Adapter<ListingListItemAdapter.ListingViewHolder>(){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListingViewHolder {
@@ -23,9 +23,10 @@ class ListingListItemAdapter( var list: List<Listing>)
         this.list = pList
         notifyDataSetChanged()
     }
+
     inner class ListingViewHolder(inflater: LayoutInflater, parent: ViewGroup):
-        RecyclerView.ViewHolder(inflater.inflate(R.layout.layout_image, parent, false)){
-        fun bind(item: Any?) {
+        RecyclerView.ViewHolder(inflater.inflate(R.layout.listing_list_item, parent, false)){
+        fun bind(item: Listing) {
 
         }
     }
