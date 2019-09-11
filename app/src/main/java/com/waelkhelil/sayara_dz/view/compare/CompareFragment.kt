@@ -1,6 +1,8 @@
 package com.waelkhelil.sayara_dz.view.compare
 
 import android.app.Dialog
+
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.MenuItem
@@ -9,6 +11,7 @@ import android.view.ViewGroup
 import android.widget.TableLayout
 import android.widget.TableRow
 import android.widget.TextView
+import androidx.annotation.RequiresApi
 import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -46,6 +49,7 @@ class CompareFragment: BottomSheetDialogFragment() {
     ): View? {
         return inflater.inflate(R.layout.fragment_expanded_compare, container, false)
     }
+    @RequiresApi(Build.VERSION_CODES.M)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -78,8 +82,10 @@ class CompareFragment: BottomSheetDialogFragment() {
         super.onStart()
         mDialog.behavior.state = STATE_EXPANDED
     }
+    @RequiresApi(Build.VERSION_CODES.M)
     private fun createTable(versionsList:Set<Version>) {
         val optionSet = mutableSetOf<Option>()
+        val list :List<Option> = listOf(Option("1","op1"),Option("2","op2"))
 
 //      Create header
         val row = TableRow(context)
@@ -89,12 +95,19 @@ class CompareFragment: BottomSheetDialogFragment() {
         var lTextView = TextView(context)
         lTextView.setPadding(0,0,24,0)
         lTextView.text = getString(R.string.options)
-        lTextView.setTextAppearance(android.R.style.TextAppearance_Material_Medium)
+        if(Build.VERSION.SDK_INT < 23){
+        lTextView.setTextAppearance(this.activity,android.R.style.TextAppearance_Material_Medium)}
+        else{  lTextView.setTextAppearance(android.R.style.TextAppearance_Material_Medium)}
         row.addView(lTextView)
         versionsList.forEach {
             lTextView = TextView(context)
             lTextView.setPadding(0,0,24,0)
-            lTextView.setTextAppearance(android.R.style.TextAppearance_Material_Medium)
+
+
+            if(Build.VERSION.SDK_INT < 23){
+                lTextView.setTextAppearance(this.activity,android.R.style.TextAppearance_Material_Medium)}
+            else{  lTextView.setTextAppearance(android.R.style.TextAppearance_Material_Medium)}
+
             lTextView.text = it.name
             var lChip = Chip(context).apply {
                 text = it.name
@@ -106,7 +119,7 @@ class CompareFragment: BottomSheetDialogFragment() {
             }
 
                 row.addView(lChip)
-            optionSet.addAll(it.compatibleOptions)
+            optionSet.addAll(/*it.compatibleOptions*/ list )
         }
         tableLayout.addView(row)
 
@@ -118,7 +131,7 @@ class CompareFragment: BottomSheetDialogFragment() {
             row.addView(lTextView)
             versionsList.forEach { v ->
                 lTextView = TextView(context)
-                if (v.compatibleOptions.contains(it))
+                if (/*v.compatibleOptions*/list.contains(it))
                     lTextView.text = getString(R.string.yes)
                 else
                     lTextView.text = getString(R.string.no)

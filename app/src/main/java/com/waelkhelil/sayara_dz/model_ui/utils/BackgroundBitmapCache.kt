@@ -1,4 +1,4 @@
-package com.waelkhelil.sayara_dz.view.model_ui.utils
+package com.waelkhelil.sayara_dz.model_ui.utils
 
 import android.graphics.Bitmap
 import android.util.LruCache

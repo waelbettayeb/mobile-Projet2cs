@@ -1,10 +1,9 @@
-package com.waelkhelil.sayara_dz.view.model_ui.cards
+package com.waelkhelil.sayara_dz.model_ui.cards
 
 import android.os.Build
 import android.view.View
 import androidx.cardview.widget.CardView
 import androidx.core.view.ViewCompat
-import com.ramotion.cardslider.CardSliderLayoutManager
 import com.ramotion.cardslider.DefaultViewUpdater
 
 class CardsUpdater : DefaultViewUpdater() {

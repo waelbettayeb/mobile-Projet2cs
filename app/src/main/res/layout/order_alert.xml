@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:clipToPadding="false"
+              android:id="@+id/linearLayout">
+
+
+    <TextView android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
+              android:text="choisissez la couleur :"
+              android:textColor="@color/black"
+    android:layout_marginLeft="20dp"
+    android:layout_marginTop="10dp"/>
+
+    <Spinner
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/filtres" android:visibility="visible"
+            android:spinnerMode="dropdown" style="@style/Widget.AppCompat.Spinner.DropDown"
+            android:layout_margin="20dp"
+    />
+    <TextView android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
+              android:text="choisissez les options :"
+              android:textColor="@color/black"
+              android:layout_marginLeft="20dp"
+              android:layout_marginTop="10dp" android:id="@+id/tv_choose_option"/>
+
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" android:id="@+id/options_layout">
+    </LinearLayout>
+    <View
+            android:id="@+id/divider5"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="?android:attr/listDivider"
+            android:visibility="visible" android:layout_margin="15dp"/>
+
+
+
+    <Button
+            android:text="OK"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btn_ok"
+            android:layout_gravity="center"/>
+</LinearLayout>

@@ -1,4 +1,4 @@
-package com.waelkhelil.sayara_dz.view.model_ui
+package com.waelkhelil.sayara_dz.model_ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,7 +9,6 @@ import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.DialogFragment
 import androidx.recyclerview.widget.GridLayoutManager
 import com.waelkhelil.sayara_dz.R
-import com.waelkhelil.sayara_dz.database.model.PaintColor
 import kotlinx.android.synthetic.main.dialog_model_info.*
 
 
@@ -63,13 +62,14 @@ class ModelInfoDialogFragment : DialogFragment() {
         view?.findViewById<TextView>(R.id.tv_description)!!.text = "Nouvelle CLIO propose un niveau de qualité des matériaux inédit dans la catégorie, avec notamment le Smart cockpit immersif avec sa console haute"
 
         //Colors
-        val colorsList:List<PaintColor> = listOf(
-            PaintColor("red", "#2196F3",0),
+        val colorsList:List<String> = listOf(
+            /*PaintColor("red", "#2196F3",0),
             PaintColor("red", "#FF6050",100),
             PaintColor("red", "#FF0E83",200),
             PaintColor("red", "#839BFD",200),
-            PaintColor("red", "#DDE3FE",400)
+            PaintColor("red", "#DDE3FE",400)*/
         )
+
         val lColorsRecyclerView = rv_colors_list
         lColorsRecyclerView.adapter = ColorListAdapter(colorsList)
 

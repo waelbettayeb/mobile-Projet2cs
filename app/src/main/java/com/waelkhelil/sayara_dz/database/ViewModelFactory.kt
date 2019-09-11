@@ -20,7 +20,9 @@ package com.waelkhelil.sayara_dz.database
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.waelkhelil.sayara_dz.database.data.BrandsRepository
+import com.waelkhelil.sayara_dz.view.brand_ui.ModelViewModel
 import com.waelkhelil.sayara_dz.view.home_ui.BrandListViewModel
+import com.waelkhelil.sayara_dz.model_ui.ModelVersionsViewModel
 
 /**
  * Factory for ViewModels
@@ -30,9 +32,21 @@ class ViewModelFactory(private val repository: BrandsRepository) : ViewModelProv
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(BrandListViewModel::class.java)) {
             @Suppress("UNCHECKED_CAST")
-            return BrandListViewModel(repository) as T
+            return BrandListViewModel() as T
         }
 
         throw IllegalArgumentException("Unknown ViewModel class")
+    }
+
+   inner  class VersionViewModelFactory( private val id_modele:String) : ViewModelProvider.Factory {
+
+        override fun <T : ViewModel> create(modelClass: Class<T>): T {
+            if (modelClass.isAssignableFrom(ModelViewModel::class.java)) {
+                @Suppress("UNCHECKED_CAST")
+                return ModelVersionsViewModel(id_modele) as T
+            }
+
+            throw IllegalArgumentException("Unknown ViewModel class")
+        }
     }
 }

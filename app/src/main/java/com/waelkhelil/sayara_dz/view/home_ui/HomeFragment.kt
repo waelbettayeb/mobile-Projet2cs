@@ -1,7 +1,7 @@
 package com.waelkhelil.sayara_dz.view.home_ui
 
+import android.content.Context.MODE_PRIVATE
 import android.os.Bundle
-import android.preference.PreferenceManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -22,7 +22,7 @@ import com.waelkhelil.sayara_dz.view.compare.CompareFragment
 import kotlinx.android.synthetic.main.fragment_home.*
 
 
-class HomeFragment : Fragment() {
+class HomeFragment( ) : Fragment() {
 
     companion object {
         fun newInstance() = HomeFragment()
@@ -30,6 +30,7 @@ class HomeFragment : Fragment() {
 
     private lateinit var viewModel: HomeViewModel
     private lateinit var sharedViewModel: SharedViewModel
+    private lateinit  var user:String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         // Share data between fragments
@@ -72,44 +73,13 @@ class HomeFragment : Fragment() {
         prepareUi()
 
     }
-//    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-//
-//        val fragmentManager = childFragmentManager
-//        val fragmentTransaction = fragmentManager.beginTransaction()
-//
-//
-//        val lHomeTopFragment= HomeTopFragment()
-//        fragmentTransaction.add(R.id.lists_fragment_container, lHomeTopFragment)
-//
-//        val lBrandsHorziontalListFragment = HorizontalListFragment()
-//        fragmentTransaction.add(R.id.lists_fragment_container, lBrandsHorziontalListFragment)
-//
-////      preparing the Models list
-//        val lModelsHorziontalListFragment = HorizontalListFragment()
-//        val lBundle= Bundle()
-//
-//        lBundle.putString("header", "Models")
-//        lBundle.putBoolean("see_all_button_hidden", true)
-//
-//        lModelsHorziontalListFragment.arguments = lBundle
-//
-//        fragmentTransaction.add(R.id.lists_fragment_container, lModelsHorziontalListFragment)
-//
-//        val sharedPref =  PreferenceManager.getDefaultSharedPreferences(activity?.applicationContext)
-//        if(!sharedPref.getBoolean("is_connected", false)){
-//            val lHomeSignInFragment = HomeSignInFragment()
-//            fragmentTransaction.add(R.id.lists_fragment_container, lHomeSignInFragment)
-//        }
-//        fragmentTransaction.commit()
-//    }
 
     fun prepareUi(){
-        val sharedPref = PreferenceManager.getDefaultSharedPreferences(activity?.applicationContext)
+        val sharedPref = context!!.getSharedPreferences("userInfo",MODE_PRIVATE)
 
-        val lUser = sharedPref.getString("user_name", R.string.msg_please_sign_in.toString())
-        val lUserPhotoUrl = sharedPref.getString("photo_url","")
-        val lUserNameTextView = view!!.
-            findViewById<TextView>(R.id.text_user_name)
+       val lUser = sharedPref.getString("fb_last_name", "Marwa")
+        val lUserPhotoUrl = sharedPref.getString("fb_profileURL","")
+        val lUserNameTextView = view!!.findViewById<TextView>(R.id.text_user_name)
         val lUserProfileImageView = view!!.findViewById<ImageView>(R.id.image_user_profile_picture)
 
         lUserNameTextView.text = lUser

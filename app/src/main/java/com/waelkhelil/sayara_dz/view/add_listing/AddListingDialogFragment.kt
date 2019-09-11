@@ -13,7 +13,6 @@ import android.view.*
 import android.view.inputmethod.EditorInfo
 import android.widget.Button
 import android.widget.TextView
-import android.widget.Toast
 import androidx.annotation.ColorInt
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
@@ -26,9 +25,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import com.google.android.material.snackbar.Snackbar
 import com.waelkhelil.sayara_dz.R
-import com.waelkhelil.sayara_dz.view.model_ui.ModelInfoDialogFragment
 import dev.sasikanth.colorsheet.ColorSheet
 import dev.sasikanth.colorsheet.utils.ColorSheetUtils
 import kotlinx.android.synthetic.main.fragment_add_listing.*

@@ -48,7 +48,8 @@
                             android:paddingEnd="4dp"/>
                     <TextView
                             android:layout_width="0sp"
-                            android:layout_height="wrap_content" android:id="@+id/text_user_name"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/text_user_name"
                             android:layout_weight="1"
                             android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle2"
                             android:textStyle="bold"/>
@@ -97,6 +98,19 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     tools:layout="@layout/fragment_explore" />
+
+            <fragment android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:name="com.waelkhelil.sayara_dz.view.home_ui.HorizontalListFragment"
+                      android:id="@+id/horizontal_brands_list_fragment"
+                      tools:layout="@layout/horziontal_list_fragment"/>
+
+            <fragment android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:name="com.waelkhelil.sayara_dz.view.home_ui.ExploreFragment"
+                      android:id="@+id/explore_fragment"
+                      tools:layout="@layout/fragment_explore"/>
+
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
