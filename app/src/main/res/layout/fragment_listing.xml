@@ -1,10 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content">
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+tools:context=".view.home_ui.HomeFragment">
+
+<com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" android:background="@android:color/white">
+    <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:contentScrim="@color/white"
+            app:layout_scrollFlags="scroll|snap|snapMargins|exitUntilCollapsed"
+            app:scrimAnimationDuration="100"
+            app:expandedTitleTextAppearance="@style/hidden">
+        <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:layout_collapseMode="pin">
+            <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:adjustViewBounds="true"
+                    app:layout_collapseMode="parallax"
+                    android:id="@+id/image_user_profile_picture" app:srcCompat="@drawable/user_icon"
+                    android:padding="8dp" android:layout_marginEnd="8dp"
+                    android:contentDescription="@string/user_profile_image"/>
+        </androidx.appcompat.widget.Toolbar>
+    </com.google.android.material.appbar.CollapsingToolbarLayout>
+</com.google.android.material.appbar.AppBarLayout>
+
+<androidx.core.widget.NestedScrollView
+        android:id="@+id/settings"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
         <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
@@ -54,21 +95,42 @@
                     app:layout_constraintTop_toBottomOf="@+id/tv_price"
                     tools:srcCompat="@tools:sample/avatars" />
 
-            <TextView
-                    android:id="@+id/rv_description"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginBottom="8dp"
-                    android:maxLength="255"
-                    android:text="@string/description"
-                    android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/iv_listing" />
-
         </androidx.constraintlayout.widget.ConstraintLayout>
-</LinearLayout>
+
+        <TextView
+                android:id="@+id/textView10"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:text="Contact info"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6" />
+
+        <TextView
+                android:id="@+id/tv_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="+213 770000000" />
+
+        <TextView
+                android:id="@+id/rv_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:text="@string/description"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Body1" />
+
+        <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_listing_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:layout_editor_absoluteX="8dp"
+                tools:layout_editor_absoluteY="169dp"
+                tools:listitem="@layout/option_list_item" />
+
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

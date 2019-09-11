@@ -64,20 +64,24 @@
             </androidx.appcompat.widget.Toolbar>
         </com.google.android.material.appbar.CollapsingToolbarLayout>
     </com.google.android.material.appbar.AppBarLayout>
+
     <androidx.core.widget.NestedScrollView
             android:id="@+id/settings"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
         <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:orientation="vertical">
-            <fragment android:layout_width="match_parent"
-                      android:layout_height="wrap_content"
-                      android:name="com.waelkhelil.sayara_dz.view.MyListingsFragment"
-                      android:id="@+id/my_listings_fragment"
-                      tools:layout="@layout/fragment_my_listings"/>
+
+            <fragment
+                    android:id="@+id/my_listings_fragment"
+                    android:name="com.waelkhelil.sayara_dz.view.MyListingsFragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    tools:layout="@layout/fragment_my_listings" />
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
