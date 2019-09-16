@@ -1,4 +1,4 @@
-package com.waelkhelil.sayara_dz.model_ui
+package com.waelkhelil.sayara_dz.view.model_ui
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel

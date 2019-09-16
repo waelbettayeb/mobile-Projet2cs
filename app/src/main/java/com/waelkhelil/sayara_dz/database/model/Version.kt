@@ -12,5 +12,9 @@ data class Version(
     @ColumnInfo @field :SerializedName("Id_Modele") val id_modele : String
     /*@ColumnInfo var price: String,
     var compatibleOptions:Set<Option>*/
-)
+){
+    override fun toString(): String {
+        return this.name
+    }
+}
 

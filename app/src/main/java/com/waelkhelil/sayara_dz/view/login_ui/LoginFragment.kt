@@ -5,7 +5,6 @@ import android.content.Context.MODE_PRIVATE
 import android.content.Intent
 import android.content.SharedPreferences
 import android.net.Uri
-import android.os.Build
 import android.os.Bundle
 import android.preference.PreferenceManager
 import android.util.Log
@@ -14,13 +13,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.Toast
-import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation.findNavController
-import com.facebook.*
-import com.facebook.login.LoginResult
+import com.facebook.AccessToken
+import com.facebook.CallbackManager
+import com.facebook.Profile
 import com.facebook.login.widget.LoginButton
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
@@ -58,11 +57,10 @@ class LoginFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_login, container, false)
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProviders.of(this).get(LoginViewModel::class.java)
-
         val button_skip = view.findViewById<Button>(R.id.skip_button)
         button_skip.setOnClickListener{
             skipActivity()
@@ -86,53 +84,6 @@ class LoginFragment : Fragment() {
         val loginButton = view.findViewById(com.waelkhelil.sayara_dz.R.id.login_button) as LoginButton
         loginButton.setReadPermissions(Arrays.asList("public_profile"))
         loginButton.setFragment(this);
-        // Callback registration
-
-         loginButton.registerCallback(callbackManager, object : FacebookCallback<LoginResult> {
-            override fun onSuccess(loginResult: LoginResult) {
-
-              //////////////
-
-
-               val accessToken:String  = loginResult.getAccessToken().getToken();
-
-                // save accessToken to SharedPreference
-
-                                                Log.i("Login","${accessToken}")
-               var  request : GraphRequest= GraphRequest.newMeRequest(
-                        loginResult.getAccessToken(),
-                        GraphRequest.GraphJSONObjectCallback() {
-
-                                jsonObject: JSONObject, graphResponse: GraphResponse ->
-
-
-                            //Getting FB User Data
-
-                             var facebookData :   Bundle = getFacebookData(jsonObject)!!
-                            Log.i("userinfooo","${facebookData.getString("last_name")}")
-
-                            viewModel.authenticate(facebookData.getString("last_name").plus(" ").plus(facebookData.getString("first_name")),"")
-                            })
-
-                   var parameters :Bundle = Bundle()
-                parameters.putString("fields", "id,first_name,last_name,email,gender");
-                request.setParameters(parameters);
-                request.executeAsync();
-                        }
-
-
-                ///////////
-
-
-            override fun onCancel() {
-                Log.d(TAG, "login with facebook canceled")
-            }
-
-            override fun onError(exception: FacebookException) {
-                Log.w(TAG, "signInResult:failed code=" + exception.toString())
-                sendError()
-            }
-        })
 
 
         val navController = findNavController(view)
@@ -147,6 +98,17 @@ class LoginFragment : Fragment() {
             }
         })
     }
+
+
+
+
+
+
+
+
+
+
+
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
@@ -191,8 +153,7 @@ class LoginFragment : Fragment() {
     }
 
 
-    override
-    fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+   override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
     super.onActivityResult(requestCode, resultCode, data)
         callbackManager.onActivityResult(requestCode, resultCode, data)
         // Result returned from launching the Intent from GoogleSignInClient.getSignInIntent(...);
@@ -203,11 +164,55 @@ class LoginFragment : Fragment() {
             handleSignInResult(task)
         }
 
-        callbackManager?.onActivityResult(requestCode, resultCode, data)
+       callbackManager?.onActivityResult(requestCode, resultCode, data)
         val accessToken = AccessToken.getCurrentAccessToken()
         val isLoggedIn = accessToken != null && !accessToken.isExpired
+     /*  LoginManager.getInstance().registerCallback(callbackManager, object : FacebookCallback<LoginResult> {
+           override fun onSuccess(loginResult: LoginResult) {
+               Log.d("FBLOGIN", loginResult.accessToken.token.toString())
+               Log.d("FBLOGIN", loginResult.recentlyDeniedPermissions.toString())
+               Log.d("FBLOGIN", loginResult.recentlyGrantedPermissions.toString())
+
+
+               val request = GraphRequest.newMeRequest(loginResult.accessToken) { `object`, response ->
+                   try {
+                       //here is the data that you want
+                       Log.d("FBLOGIN_JSON_RES", `object`.toString())
+
+                       if (`object`.has("id")) {
+
+                           //handleSignInResultFacebook(`object`)
+                       } else {
+                           Log.e("FBLOGIN_FAILD", `object`.toString())
+                       }
+
+                   } catch (e: Exception) {
+                       e.printStackTrace()
+                    //   dismissDialogLogin()
+                   }
+               }
+
+               val parameters = Bundle()
+               parameters.putString("fields", "name,email,id,picture.type(large)")
+               request.parameters = parameters
+               request.executeAsync()
+
+           }
+
+           override fun onCancel() {
+               Log.e("FBLOGIN_FAILD", "Cancel")
+           }
+
+           override fun onError(error: FacebookException) {
+               Log.e("FBLOGIN_FAILD", "ERROR", error)
+           }
+       })
+
+*/
+
 
         if (isLoggedIn) {
+            Log.i("access",accessToken.toString())
             val profile = Profile.getCurrentProfile()
             setUser(profile.firstName, profile.getProfilePictureUri(100, 100))
         }

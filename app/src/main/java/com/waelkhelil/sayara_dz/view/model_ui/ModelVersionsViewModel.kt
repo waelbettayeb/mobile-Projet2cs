@@ -1,4 +1,4 @@
-package com.waelkhelil.sayara_dz.model_ui
+package com.waelkhelil.sayara_dz.view.model_ui
 
 import android.util.Log
 import androidx.lifecycle.LiveData
@@ -36,7 +36,7 @@ class ModelVersionsViewModel (var id_modele:String) : ViewModel() {
 
     }
 
-    fun getRepository(): LiveData<List<Version>>? {
+    fun getVersionsList(): LiveData<List<Version>>? {
         return versionsList
     }
     fun getNetworkErrors(): LiveData<String>? {

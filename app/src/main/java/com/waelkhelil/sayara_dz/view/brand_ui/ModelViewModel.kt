@@ -16,12 +16,12 @@ class ModelViewModel (var id_marque:String) : ViewModel() {
     private var networkErrors = MutableLiveData<String>()
 
 
-    companion object {
+  /*  companion object {
         private const val VISIBLE_THRESHOLD = 5
     }
-    val models: LiveData<PagedList<Model>> = repository.searchModels(id).data
-    val networkErrors: LiveData<String> = repository.searchModels(id).networkErrors
-}
+    //val models: LiveData<PagedList<Model>> = Repository.searchModels(id_marque).data
+    //val networkErrors: LiveData<String> = Repository.searchModels(id).networkErrors*/
+
 
     fun init() {
         if (mutableLiveData != null) {
@@ -37,7 +37,7 @@ class ModelViewModel (var id_marque:String) : ViewModel() {
 
     }
 
-    fun getRepository(): LiveData<List<Model>>? {
+        fun getRepository(): LiveData<List<Model>>? {
         return mutableLiveData
     }
     fun initColor (id_modele: String)

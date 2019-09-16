@@ -25,7 +25,7 @@ import com.waelkhelil.sayara_dz.R
 import com.waelkhelil.sayara_dz.database.Injection
 import com.waelkhelil.sayara_dz.database.model.Option
 import com.waelkhelil.sayara_dz.database.model.PaintColor
-import com.waelkhelil.sayara_dz.model_ui.ModelVersionsViewModel
+import com.waelkhelil.sayara_dz.view.model_ui.ModelVersionsViewModel
 import kotlinx.android.synthetic.main.fragment_configure_version.*
 import java.lang.Double.parseDouble
 

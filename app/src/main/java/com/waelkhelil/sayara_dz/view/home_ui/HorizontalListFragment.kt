@@ -1,7 +1,6 @@
 package com.waelkhelil.sayara_dz.view.home_ui
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -71,11 +70,7 @@ class HorizontalListFragment : Fragment() {
         viewModel.init()
         viewModel.getNewsRepository()!!.observe(this.activity!!, Observer<List<Brand>>  {
              if (it!=null){
-
-
-
-
-            val lLayoutManager = LinearLayoutManager(activity)
+                 val lLayoutManager = LinearLayoutManager(activity)
             lLayoutManager.orientation = LinearLayoutManager.HORIZONTAL
             adapter=CardsListItemAdapter(it)
                if (rv_horizontal_list!=null){
@@ -87,11 +82,7 @@ class HorizontalListFragment : Fragment() {
                 // set the custom adapter to the RecyclerView
 
             }}}
-
-
-
         viewModel.getNetworkErrors()!!.observe(this.activity!!, Observer<String> {
-            Log.i("errorrr","here")
             Toast.makeText(this.activity, R.string.brands_error, Toast.LENGTH_SHORT).show()
         })
        });

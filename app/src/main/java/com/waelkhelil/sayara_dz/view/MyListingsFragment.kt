@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.waelkhelil.sayara_dz.R
-import com.waelkhelil.sayara_dz.database.model.Listing
+import com.waelkhelil.sayara_dz.database.model.AdResponse
 import com.waelkhelil.sayara_dz.view.home_ui.ListingListItemAdapter
 import kotlinx.android.synthetic.main.fragment_explore.*
 
@@ -22,9 +22,9 @@ class MyListingsFragment : Fragment() {
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val list = listOf(
-            Listing("zec,", "zch", "jze "),
-            Listing("zec", "zch", "jze ")
+        val list = emptyList<AdResponse>(
+           /* AdResponse("zec,", "zch", "jze "),
+            AdResponse("zec", "zch", "jze ")*/
         )
         rv_listing_list.apply {
             adapter = ListingListItemAdapter(list)

@@ -3,7 +3,7 @@ package com.waelkhelil.sayara_dz.database
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.waelkhelil.sayara_dz.view.brand_ui.ModelViewModel
-import com.waelkhelil.sayara_dz.model_ui.ModelVersionsViewModel
+import com.waelkhelil.sayara_dz.view.model_ui.ModelVersionsViewModel
 
 class ModelViewModelFactory( private val id:String) : ViewModelProvider.Factory {
 

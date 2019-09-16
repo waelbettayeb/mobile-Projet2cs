@@ -66,18 +66,23 @@ interface SayaraDzService {
     @POST("reservation/commande/new")
     fun sendReservation(@Body  body: JsonObject):Call<reservation>
 
-    //check car availability  :
-    /*@POST("reservation/vehicule/disponible")
-    fun checkAvailable(@Body  body: String):Call<List<Vehicule>>*/
+    //post a new ad :
+    @POST("annonce/CreerAnnonce/")
+    fun sendAd(@Body  body: JsonObject):Call<Ad>
 
     @GET("reservation/vehicule/disponible")
     fun checkAvailable():Call<List<Vehicule>>
 
 
-    //geta user's accepted oreders :
+    //get a user's accepted oreders :
     @GET("reservation/Automobiliste/{User_Email}")
     fun getUserOrders(@Path("User_Email") user_email : String
     ): Call<List<reservation>>
+    //get all system ads :
+
+    @GET("annonce")
+    fun getAllAds(): Call<List<AdResponse>>
+
 
 
 

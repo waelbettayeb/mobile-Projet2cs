@@ -75,10 +75,13 @@
     <string name="commander">commander</string>
     <string name="new_listing">Nouvelle annonce</string>
     <string name="title">Titre</string>
-    <string name="price">Prix</string>
+    <string name="price">Prix minimal</string>
     <string name="add_option">Ajouter une option</string>
     <string name="color">Couleur</string>
     <string name="no_color">Aucune couleur</string>
     <string name="add">Ajouter</string>
     <string name="create">créer</string>
+    <string name="brand">Marque</string>
+    <string name="model">Modèle</string>
+    <string name="version">Version</string>
 </resources>

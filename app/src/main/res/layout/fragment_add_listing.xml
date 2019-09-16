@@ -29,55 +29,76 @@
     >
         <LinearLayout android:layout_width="match_parent"
                       android:layout_height="wrap_content"
-                      android:orientation="vertical"
-                      android:showDividers="middle"
-                      android:padding="8dp"
                       android:divider="@drawable/empty_divider"
+                      android:orientation="vertical"
+                      android:padding="8dp"
+                      android:showDividers="middle"
         >
+
             <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:hint="@string/price"
                     app:boxStrokeColor="@color/colorPrimary"
-                    app:hintTextColor="@color/colorPrimary"
-                    android:hint="@string/title">
+                    app:hintTextColor="@color/colorPrimary">
                 <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/et_price"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:inputType="numberDecimal"/>
             </com.google.android.material.textfield.TextInputLayout>
+
             <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:hint="@string/description"
                     app:boxStrokeColor="@color/colorPrimary"
-                    app:hintTextColor="@color/colorPrimary"
-                    android:hint="@string/price">
+                    app:hintTextColor="@color/colorPrimary">
                 <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/et_description"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-            </com.google.android.material.textfield.TextInputLayout>
-            <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    app:boxStrokeColor="@color/colorPrimary"
-                    app:hintTextColor="@color/colorPrimary"
-                    android:hint="@string/description">
-                <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="match_parent"
-                        android:inputType="textMultiLine"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:inputType="textMultiLine"/>
             </com.google.android.material.textfield.TextInputLayout>
             <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/color" />
-            <com.google.android.material.button.MaterialButton
-                    android:id="@+id/button_color"
-                    style="@style/Widget.MaterialComponents.Button"
-
+                    android:text="@string/brand"/>
+            <Spinner
+                    android:id="@+id/brands_spinner"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
+            <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/model"/>
+            <Spinner
+                    android:id="@+id/models_spinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+            <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/version"/>
+            <Spinner
+                    android:id="@+id/versions_spinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/color"/>
+
+            <Spinner
+                    android:id="@+id/colors_spinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+
+
             <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -87,7 +108,7 @@
                 <androidx.appcompat.widget.AppCompatTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/options" />
+                        android:text="@string/options"/>
 
                 <com.google.android.material.chip.ChipGroup
                         android:id="@+id/chipGroup2"
@@ -96,49 +117,39 @@
                         android:duplicateParentState="false">
 
                 </com.google.android.material.chip.ChipGroup>
-                <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/textInputLayout"
+                <Spinner
+                        android:id="@+id/options_spinner"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                        app:boxStrokeColor="@color/colorPrimary"
-                        app:hintTextColor="@color/colorPrimary"
-                        android:hint="@string/add_option">
-                    <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/etValue"
-                            android:imeOptions="actionDone"
-                            android:maxLines="1"
-                            android:singleLine="true"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-
-                </com.google.android.material.textfield.TextInputLayout>
+                        android:layout_height="wrap_content"/>
 
             </LinearLayout>
             <androidx.constraintlayout.widget.ConstraintLayout
-                    android:orientation="horizontal"
+                    android:id="@+id/constraintLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:layout_constraintTop_toBottomOf="@+id/linearLayout" app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginTop="8dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    android:id="@+id/constraintLayout" android:layout_marginTop="8dp">
+                    app:layout_constraintTop_toBottomOf="@+id/linearLayout">
                 <androidx.appcompat.widget.AppCompatTextView
-                        android:text="@string/images"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:text="@string/images"
                         android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintStart_toStartOf="parent"/>
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"/>
                 <com.google.android.material.button.MaterialButton
                         android:id="@+id/button_add_image"
                         style="@style/Widget.MaterialComponents.Button.TextButton"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/colorPrimary"
                         android:text="@string/add"
+                        android:textColor="@color/colorPrimary"
+                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintBottom_toBottomOf="parent"/>
+                        app:layout_constraintTop_toTopOf="parent"/>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
             <androidx.recyclerview.widget.RecyclerView
@@ -147,4 +158,5 @@
                     android:layout_height="wrap_content"/>
         </LinearLayout>
     </ScrollView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -5,7 +5,7 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.MutableLiveData
 import com.waelkhelil.sayara_dz.database.data.BrandsRepository
 import com.waelkhelil.sayara_dz.database.model.VersionPrice
-import com.waelkhelil.sayara_dz.model_ui.ModelVersionsViewModel
+import com.waelkhelil.sayara_dz.view.model_ui.ModelVersionsViewModel
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test

@@ -11,11 +11,8 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import androidx.navigation.ui.NavigationUI
 import com.waelkhelil.sayara_dz.R
-import com.waelkhelil.sayara_dz.database.model.Listing
 import com.waelkhelil.sayara_dz.view.add_listing.AddListingDialogFragment
 import com.waelkhelil.sayara_dz.view.configure_version.ConfigureDialogFragment
-import com.waelkhelil.sayara_dz.view.home_ui.ListingListItemAdapter
-import kotlinx.android.synthetic.main.fragment_explore.*
 import kotlinx.android.synthetic.main.fragment_user_content.*
 
 import androidx.lifecycle.ViewModelProviders

@@ -22,7 +22,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.waelkhelil.sayara_dz.database.data.BrandsRepository
 import com.waelkhelil.sayara_dz.view.brand_ui.ModelViewModel
 import com.waelkhelil.sayara_dz.view.home_ui.BrandListViewModel
-import com.waelkhelil.sayara_dz.model_ui.ModelVersionsViewModel
+import com.waelkhelil.sayara_dz.view.model_ui.ModelVersionsViewModel
 
 /**
  * Factory for ViewModels

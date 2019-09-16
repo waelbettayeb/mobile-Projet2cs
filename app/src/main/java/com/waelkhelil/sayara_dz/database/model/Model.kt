@@ -11,7 +11,11 @@ data class Model(
     @ColumnInfo @field:SerializedName("Id_Marque") val id_marque:String,
     @ColumnInfo @field:SerializedName("Image") val url: String
 
-)
+){
+    override fun toString(): String {
+        return this.name
+    }
+}
 
 
 

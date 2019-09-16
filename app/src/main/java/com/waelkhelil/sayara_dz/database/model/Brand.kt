@@ -10,6 +10,10 @@ data class Brand(
     @ColumnInfo @field:SerializedName("Logo") val url : String
 
 
-)
+){
+    override fun toString(): String {
+        return this.name
+    }
+}
 
 

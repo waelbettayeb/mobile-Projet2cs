@@ -15,11 +15,13 @@ import com.waelkhelil.sayara_dz.view.login_ui.LoginViewModel
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val navController = Navigation.findNavController(this, R.id.nav_host_fragment)
 
+        val navController = Navigation.findNavController(this, R.id.nav_host_fragment)
+        super.onPostResume()
         val viewModel = ViewModelProviders.of(this).get(LoginViewModel::class.java)
         viewModel.authenticationState.observe(this,
             Observer<LoginViewModel.AuthenticationState> { authenticationState ->

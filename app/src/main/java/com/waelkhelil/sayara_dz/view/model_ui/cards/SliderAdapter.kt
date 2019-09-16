@@ -1,4 +1,4 @@
-package com.waelkhelil.sayara_dz.model_ui.cards
+package com.waelkhelil.sayara_dz.view.model_ui.cards
 
 
 import android.view.LayoutInflater

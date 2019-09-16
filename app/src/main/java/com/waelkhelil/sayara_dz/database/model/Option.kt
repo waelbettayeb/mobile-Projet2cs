@@ -11,6 +11,11 @@ data class Option(
     @ColumnInfo @field:SerializedName("Nom_Option")var name:String
 
 )
-{  var price: Double =0.0}
+{  var price: Double =0.0
+
+    override fun toString(): String {
+        return this.name
+    }
+}
 
 
