@@ -11,6 +11,7 @@ import retrofit2.Response
 
 class HomeViewModel : ViewModel() {
     var user: User? = null
+    var adsList:List<AdResponse> = emptyList()
     init {
     }
 
@@ -22,6 +23,7 @@ class HomeViewModel : ViewModel() {
             override fun onResponse(call: Call<List<AdResponse>>, response: Response<List<AdResponse>>) {
                 if (response.isSuccessful()) {
                     adsData.setValue(response.body()!!)
+                    adsList=response.body()!!
                 } else {
                 }
             }

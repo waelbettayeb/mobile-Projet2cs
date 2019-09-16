@@ -19,7 +19,9 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation.findNavController
 import com.facebook.AccessToken
 import com.facebook.CallbackManager
-import com.facebook.Profile
+import com.facebook.FacebookCallback
+import com.facebook.FacebookException
+import com.facebook.login.LoginResult
 import com.facebook.login.widget.LoginButton
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
@@ -82,8 +84,29 @@ class LoginFragment : Fragment() {
 
         // Facebook
         val loginButton = view.findViewById(com.waelkhelil.sayara_dz.R.id.login_button) as LoginButton
-        loginButton.setReadPermissions(Arrays.asList("public_profile"))
+        //loginButton.setReadPermissions(Arrays.asList("public_profile"))
         loginButton.setFragment(this);
+        val EMAIL = "email"
+        val PUBLIC_PROFILE = "public_profile"
+
+        //callbackManager = CallbackManager.Factory.create()
+        loginButton.setOnClickListener {
+            loginButton.setReadPermissions(Arrays.asList(EMAIL, PUBLIC_PROFILE))
+            loginButton.registerCallback(callbackManager, object : FacebookCallback<LoginResult> {
+                override fun onSuccess(loginResult: LoginResult) {
+
+                    Log.i("LOGIN",loginResult.toString())
+                }
+
+                override fun onCancel() {
+
+                }
+
+                override fun onError(exception: FacebookException) {
+                    Toast.makeText(context,exception.localizedMessage, Toast.LENGTH_SHORT).show()
+                }
+            })
+        }
 
 
         val navController = findNavController(view)
@@ -132,12 +155,7 @@ class LoginFragment : Fragment() {
 
 
 
-    private fun sendError(){
-        val text = "sign In Result:failed"
-        val duration = Toast.LENGTH_SHORT
-        val toast = Toast.makeText(context, text, duration)
-        toast.show()
-    }
+
     private fun setUser(name: String, uri: Uri): User {
 
         val sharedPref = PreferenceManager.getDefaultSharedPreferences(context).edit()
@@ -167,55 +185,13 @@ class LoginFragment : Fragment() {
        callbackManager?.onActivityResult(requestCode, resultCode, data)
         val accessToken = AccessToken.getCurrentAccessToken()
         val isLoggedIn = accessToken != null && !accessToken.isExpired
-     /*  LoginManager.getInstance().registerCallback(callbackManager, object : FacebookCallback<LoginResult> {
-           override fun onSuccess(loginResult: LoginResult) {
-               Log.d("FBLOGIN", loginResult.accessToken.token.toString())
-               Log.d("FBLOGIN", loginResult.recentlyDeniedPermissions.toString())
-               Log.d("FBLOGIN", loginResult.recentlyGrantedPermissions.toString())
 
-
-               val request = GraphRequest.newMeRequest(loginResult.accessToken) { `object`, response ->
-                   try {
-                       //here is the data that you want
-                       Log.d("FBLOGIN_JSON_RES", `object`.toString())
-
-                       if (`object`.has("id")) {
-
-                           //handleSignInResultFacebook(`object`)
-                       } else {
-                           Log.e("FBLOGIN_FAILD", `object`.toString())
-                       }
-
-                   } catch (e: Exception) {
-                       e.printStackTrace()
-                    //   dismissDialogLogin()
-                   }
-               }
-
-               val parameters = Bundle()
-               parameters.putString("fields", "name,email,id,picture.type(large)")
-               request.parameters = parameters
-               request.executeAsync()
-
-           }
-
-           override fun onCancel() {
-               Log.e("FBLOGIN_FAILD", "Cancel")
-           }
-
-           override fun onError(error: FacebookException) {
-               Log.e("FBLOGIN_FAILD", "ERROR", error)
-           }
-       })
-
-*/
-
-
+       /*
         if (isLoggedIn) {
-            Log.i("access",accessToken.toString())
+
             val profile = Profile.getCurrentProfile()
             setUser(profile.firstName, profile.getProfilePictureUri(100, 100))
-        }
+        }*/
 
     }
 

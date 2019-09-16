@@ -1,7 +1,6 @@
 package com.waelkhelil.sayara_dz.view.add_listing
 
 import android.graphics.Bitmap
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.google.gson.JsonArray
@@ -115,7 +114,7 @@ class AddListingViewModel  : ViewModel() {
 
 
                             if (response.code() == 400) {
-                                Log.v("Error code 400",response.errorBody()!!.string())
+
                             }
 
                         }
